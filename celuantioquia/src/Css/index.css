@@ -1,0 +1,26 @@
+.centro {
+    border-radius: 1rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    margin: 5rem;
+}
+
+.imagen {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.nav-pills .nav-link.active,
+.show>.nav-pills .nav-link{
+    background: #1C6758 !important;
+}
+
+.nav-pills .nav-link,
+.show>.nav-pills .nav-link {
+    background-color: #1E8978;
+    color: #fff !important;
+}
