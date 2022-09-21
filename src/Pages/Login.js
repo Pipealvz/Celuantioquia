@@ -1,5 +1,5 @@
 //COMPONENTS
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container, Row, Tabs, Tab } from 'react-bootstrap';
 import Axios from "axios";
 import * as yup from 'yup';
