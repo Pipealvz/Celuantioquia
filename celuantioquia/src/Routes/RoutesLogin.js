@@ -4,7 +4,10 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import Login from "../Pages/Login"
+import Login from "../Pages/Login";
+import Home from "../Pages/Home";
+import CrearProducto from '../Pages/CrearProducto';
+import NuestrosProductos from '../Pages/NuestrosProductos';
 
 function RoutesIndex() {
   return (
@@ -12,6 +15,10 @@ function RoutesIndex() {
       <Routes>
 
         <Route exact path="/" element={<Login/>}/>
+        <Route exact path="/Home" element={<Home/>}/>
+        <Route exact path="/CrearProducto" element={<CrearProducto/>}/>
+        <Route exact path="/NuestrosProductos" element={<NuestrosProductos/>}/>
+
 
       </Routes>
     </BrowserRouter>
