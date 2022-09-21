@@ -8,7 +8,6 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
-<<<<<<< HEAD
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
@@ -18,16 +17,6 @@
     "sweetalert2": "^11.4.33",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
-=======
-    "md5": "^2.3.0",
-    "react": "^18.2.0",
-    "react-bootstrap": "^2.5.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.4.0",
-    "react-scripts": "5.0.1",
-    "universal-cookie": "^4.0.4",
-    "web-vitals": "^2.1.4"
->>>>>>> dfa5baf5341972dabf16747c4d6367b61f7253d6
   },
   "scripts": {
     "dev": "react-scripts start",
