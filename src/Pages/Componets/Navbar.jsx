@@ -10,9 +10,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import * as FaIcons from "react-icons/md";
-//import * as CssIcons from "react-icons/cg";
-//import css from "../Css/Navbar.css"
-import Logo from '../Logo.png';
+import  "../../Css/Navbar.css";
+import Logo from '../../Logo.png';
 
 
 function Navbar() {

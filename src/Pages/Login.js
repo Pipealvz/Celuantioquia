@@ -1,9 +1,11 @@
-//COMPONENTS
+///COMPONENTS
 import React from 'react';
 import { Container, Row, Tabs, Tab } from 'react-bootstrap';
 import Axios from "axios";
 import * as yup from 'yup';
-import login from './login.controller'
+import login from './Controllers/login.controller'
+import Session from "../Session/Session";
+import { useNavigate } from "react-router-dom";
 //COMPLEMENTS
 import { Formik, Form, Field } from 'formik';
 import { Button } from "react-bootstrap";
@@ -14,14 +16,36 @@ import Logo from '../Logo.png';
 import '../Css/index.css';
 
 const Login = () => {
-    /*const getData = async () => {
-        const data = await fetch('https://api-celu.felipealvarez8.repl.co/api/users')
-        console.log(data);
-    }
-    useEffect(() => {
-        getData()
-    }, [])*/
+    const navigate = useNavigate()
+   /*  const usuario = {
+        correo: document.getElementById("userIngresa").value,
+        clave: document.getElementById("passwordIngresa").value,
+    }; */
+    //comentario
+    Axios
+        .post("https://api-celu.felipealvarez8.repl.co/api/users/auth", usuario)
+        .then(function ({ data, status }) {
+            // Se ejecuta siempre que el servidor ejecute todo correctamente
+            if (status === 200) {
+                console.log(data);
+                Session.setUsuario(data);
+                navigate.push("/Home");
 
+            } else if (status === 400 || status === 500) {
+
+                Swal.fire({
+                    title: "Error",
+                    text: "Ocurrio un error al iniciar sesion",
+                    icon: "error",
+                    confirmButtonText: "Aceptar",
+                });
+            }
+        })
+        .catch(function (error) {
+            // Se ejecuta siempre que ocurra algún error
+            console.log(error);
+
+        });
 
 
     const isCorrect = () => {
@@ -30,11 +54,7 @@ const Login = () => {
             text: "Se ha registrado correctamente",
             icon: "success",
             confirmButtonText: "Aceptar",
-        }).then((res) => {
-            if (res.isConfirmed === true) {
-                window.location.reload(true);
-            }
-        });
+        })
     }
 
     const isFailed = () => {
@@ -47,8 +67,8 @@ const Login = () => {
     }
 
     const isFailedEmpty = () => {
-        return <div class="alert alert-danger" style={{width:'15rem',padding:'0rem'}} role="alert">Este campo requiere un valor
-</div>
+        return <div class="alert alert-danger" style={{ width: '15rem', padding: '0rem' }} role="alert">Este campo requiere un valor
+        </div>
     }
 
     const isRequired = "Campo obligatorio"
@@ -59,165 +79,131 @@ const Login = () => {
     })
     // yup.object().shape({    nombre: yup.string().required()})
     return (
-        <Formik
-            initialValues={{
-                nombre: "",
-                correo: "",
-                contraseña: ""
-            }}
-            validationSchema={validationSchema}
-            onSubmit={(values) => {
 
-                Axios.post(
-                    "https://api-celu.felipealvarez8.repl.co/api/users/new",
-                    {
-                        nombre: values.nombre,
-                        correo: values.correo,
-                        contraseña: values.contraseña
-                    }
-                )
-                    .then(function (res) {
-                        console.log(res);
+        <div>
+            <div className='bg-success row centro shadow-lg mt-2'>
+                <div className='col imagen' style={{
+                    backgroundColor: '#7FB77E',
+                    borderRadius: '1rem',
+                    height: '39rem'
+                }}>
+                    <img src={Logo} className="img-fluid" style={{ margin: '5rem' }} alt="..." />
+                </div>
 
-                        isCorrect();
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        isFailed();
-                    });
-                console.log(values);
+                <div className='col' >
 
-            }}
-        >
+                    <Container className="py-4">
+                        <Row className="justify-content-center">
 
-            {({ values, handleSubmit, handleChange, touched, errors, handleBlur }) => (
-                <div>
-                    <div className='bg-success row centro shadow-lg mt-2'>
-                        <div className='col imagen' style={{
-                            backgroundColor: '#7FB77E',
-                            borderRadius: '1rem',
-                            height: '39rem'
-                        }}>
-                            <img src={Logo} className="img-fluid" style={{ margin: '5rem' }} alt="..." />
-                        </div>
+                            <Tabs justify variant="pills" defaultActiveKey="tab-1" className="mb-1 p-0 text-light" style={{ borderRadius: '1rem' }}>
+                                <Tab eventKey="tab-1" title="Ingresar">
 
-                        <div className='col' >
+                                    <center><div className='container text-light'>
+                                        <h1 >Bienvenido</h1>
+                                        <Form onSubmit={login}>
+                                            <div className="mb-3">
+                                                <label className="form-label">Usuario</label>
+                                                <Field
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="nombreIngresa"
+                                                    id="userIngresa"
+                                                    placeholder="Ingrese su nombre."
+                                                    style={{ width: '20rem' }}
+                                                    value={usuario.correo}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                            </div>
+                                            {touched.nombre && errors.nombre && isFailedEmpty()}
+                                            <div className="mb-3">
+                                                <label className="form-label" >Contraseña</label>
+                                                <Field
+                                                    type="password"
+                                                    className="form-control"
+                                                    name="contraseñaIngresa"
+                                                    id="passwordIngresa"
+                                                    placeholder="Ingrese su contraseña."
+                                                    style={{ width: '20rem' }}
+                                                    value={usuario.clave}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur} />
+                                            </div>
+                                            {touched.contraseña && errors.contraseña && isFailedEmpty()}
+                                            <center><button type="submit" style={{ backgroundColor: '#146356', margin: '1rem' }} className="btn text-light  btn-lg">Ingresar</button></center>
+                                        </Form>
 
-                            <Container className="py-4">
-                                <Row className="justify-content-center">
+                                    </div></center>
 
-                                    <Tabs justify variant="pills" defaultActiveKey="tab-1" className="mb-1 p-0 text-light" style={{ borderRadius: '1rem' }}>
-                                        <Tab eventKey="tab-1" title="Ingresar">
-
-                                            <center><div className='container text-light'>
-                                                <h1 >Bienvenido</h1>
-                                                <Form onSubmit={login}>
-                                                    <div className="mb-3">
-                                                        <label className="form-label">Usuario</label>
-                                                        <Field
-                                                            type="text"
-                                                            className="form-control"
-                                                            name="nombreIngresa"
-                                                            id="userIngresa"
-                                                            placeholder="Ingrese su nombre."
-                                                            style={{ width: '20rem' }}
-                                                            value={values.nombre}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                        />
-                                                    </div>
-                                                    {touched.nombre && errors.nombre && isFailedEmpty()}
-                                                    <div className="mb-3">
-                                                        <label className="form-label" >Contraseña</label>
-                                                        <Field
-                                                            type="password"
-                                                            className="form-control"
-                                                            name="contraseñaIngresa"
-                                                            id="passwordIngresa"
-                                                            placeholder="Ingrese su contraseña."
-                                                            style={{ width: '20rem' }}
-                                                            value={values.contraseña}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur} />
-                                                    </div>
-                                                    {touched.contraseña && errors.contraseña && isFailedEmpty()}
-                                                    <center><button type="submit" style={{ backgroundColor: '#146356', margin: '1rem' }} className="btn text-light  btn-lg">Ingresar</button></center>
-                                                </Form>
-
-                                            </div></center>
-
-                                        </Tab>
+                                </Tab>
 
 
-                                        <Tab eventKey="tab-2" title="Registrese">
-                                            <center><div className='container text-light'>
-                                                <h1 >Registro</h1>
-                                                <Form onSubmit={handleSubmit}>
-                                                    <div className="mb-3">
-                                                        <label className="form-label">Nombre</label>
-                                                        <Field type="text"
-                                                            className="form-control"
-                                                            name="nombre"
-                                                            id="user"
-                                                            placeholder="Ingrese su nombre."
-                                                            style={{ width: '20rem' }}
-                                                            value={values.nombre}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                        />
-                                                    </div>
-                                                    {touched.nombre && errors.nombre && isFailedEmpty()}
-                                                    <div className="mb-3">
-                                                        <label className="form-label" >Correo</label>
-                                                        <Field
-                                                            type="email"
-                                                            className="form-control"
-                                                            name="correo"
-                                                            id="email"
-                                                            placeholder="Ingrese su correo."
-                                                            style={{ width: '20rem' }}
-                                                            value={values.correo}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                        />
-                                                    </div>
-                                                    {touched.correo && errors.correo && isFailedEmpty()}
-                                                    <div className="mb-3">
-                                                        <label className="form-label" >Contraseña</label>
-                                                        <Field
-                                                            type="password"
-                                                            className="form-control"
-                                                            name="contraseña"
-                                                            id="password"
-                                                            placeholder="Ingrese su contraseña."
-                                                            style={{ width: '20rem' }}
-                                                            value={values.contraseña}
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                        />
-                                                    </div>
-                                                    {touched.contraseña && errors.contraseña && isFailedEmpty()}
-                                                    <center><Button type="submit" style={{ backgroundColor: '#146356', margin: '1rem' }} className="btn text-light  btn-lg">Enviar</Button></center>
-                                                </Form>
+                                <Tab eventKey="tab-2" title="Registrese">
+                                    <center><div className='container text-light'>
+                                        <h1 >Registro</h1>
+                                        <Form onSubmit={handleSubmit}>
+                                            <div className="mb-3">
+                                                <label className="form-label">Nombre</label>
+                                                <Field type="text"
+                                                    className="form-control"
+                                                    name="nombre"
+                                                    id="user"
+                                                    placeholder="Ingrese su nombre."
+                                                    style={{ width: '20rem' }}
+                                                    value={values.nombre}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                            </div>
+                                            {touched.nombre && errors.nombre && isFailedEmpty()}
+                                            <div className="mb-3">
+                                                <label className="form-label" >Correo</label>
+                                                <Field
+                                                    type="email"
+                                                    className="form-control"
+                                                    name="correo"
+                                                    id="email"
+                                                    placeholder="Ingrese su correo."
+                                                    style={{ width: '20rem' }}
+                                                    value={values.correo}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                            </div>
+                                            {touched.correo && errors.correo && isFailedEmpty()}
+                                            <div className="mb-3">
+                                                <label className="form-label" >Contraseña</label>
+                                                <Field
+                                                    type="password"
+                                                    className="form-control"
+                                                    name="contraseña"
+                                                    id="password"
+                                                    placeholder="Ingrese su contraseña."
+                                                    style={{ width: '20rem' }}
+                                                    value={values.contraseña}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                />
+                                            </div>
+                                            {touched.contraseña && errors.contraseña && isFailedEmpty()}
+                                            <center><Button type="submit" style={{ backgroundColor: '#146356', margin: '1rem' }} className="btn text-light  btn-lg">Enviar</Button></center>
+                                        </Form>
 
-                                            </div></center>
-                                        </Tab>
+                                    </div></center>
+                                </Tab>
 
-                                    </Tabs>
+                            </Tabs>
 
-                                </Row>
-                            </Container>
-
-                        </div>
-
-                    </div>
+                        </Row>
+                    </Container>
 
                 </div>
-            )}
 
+            </div>
 
-        </Formik>
-    );
+        </div>
+
+    )
 }
 
 export default Login;

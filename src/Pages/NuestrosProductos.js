@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-import Navbar from '../Componets/Navbar';
+import Navbar from '../Pages/Componets/Navbar';
 
 const NuestrosProductos = memo(() => {
     return (
