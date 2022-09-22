@@ -47,7 +47,8 @@ const Login = () => {
     }
 
     const isFailedEmpty = () => {
-        return <div className='text-small text-light text-start m-0'>Este campo requiere un valor</div>
+        return <div class="alert alert-danger" style={{width:'15rem',padding:'0rem'}} role="alert">Este campo requiere un valor
+</div>
     }
 
     const isRequired = "Campo obligatorio"
@@ -95,7 +96,7 @@ const Login = () => {
                         <div className='col imagen' style={{
                             backgroundColor: '#7FB77E',
                             borderRadius: '1rem',
-                            height: '35rem'
+                            height: '39rem'
                         }}>
                             <img src={Logo} className="img-fluid" style={{ margin: '5rem' }} alt="..." />
                         </div>
@@ -116,8 +117,8 @@ const Login = () => {
                                                         <Field
                                                             type="text"
                                                             className="form-control"
-                                                            name="nombre"
-                                                            id="user"
+                                                            name="nombreIngresa"
+                                                            id="userIngresa"
                                                             placeholder="Ingrese su nombre."
                                                             style={{ width: '20rem' }}
                                                             value={values.nombre}
@@ -131,8 +132,8 @@ const Login = () => {
                                                         <Field
                                                             type="password"
                                                             className="form-control"
-                                                            name="contraseña"
-                                                            id="password"
+                                                            name="contraseñaIngresa"
+                                                            id="passwordIngresa"
                                                             placeholder="Ingrese su contraseña."
                                                             style={{ width: '20rem' }}
                                                             value={values.contraseña}
