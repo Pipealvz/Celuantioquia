@@ -6,7 +6,9 @@ import * as yup from 'yup';
 import { Formik } from 'formik';
 
 
+
 const login = () => {
+
     const validationSchemaLogin = yup.object().shape({
         correo: yup.string().required("Ingrese un correo válido").email(),
         contraseña: yup.string().required("Ingrese su contraseña")
@@ -37,10 +39,10 @@ const login = () => {
                     });
 
                 console.log(values);
-
             }}
         >
         </Formik>
+        
     )
 }
 

@@ -1,5 +1,5 @@
 //COMPONENTS
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Tabs, Tab } from 'react-bootstrap';
 import Axios from "axios";
 import * as yup from 'yup';
@@ -14,13 +14,12 @@ import Logo from '../Logo.png';
 import '../Css/index.css';
 
 const Login = () => {
-    /*const getData = async () => {
-        const data = await fetch('https://api-celu.felipealvarez8.repl.co/api/users')
-        console.log(data);
+    const getData = async () => {
+        console.log(document.getElementById('user').value);
     }
     useEffect(() => {
         getData()
-    }, [])*/
+    },[])
     const isCorrect = () => {
         Swal.fire({
             title: "Usuario creado",
@@ -43,6 +42,7 @@ const Login = () => {
         });
     }
 
+    
     const isFailedEmpty = () => {
         return <div className='text-small text-light text-start m-0'>Este campo requiere un valor</div>
     }
