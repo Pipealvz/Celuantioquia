@@ -6,12 +6,7 @@ import Navbar from '../Pages/Componets/Navbar';
 
 const Home = () => {
     return (<>
-
-
         <Navbar />
-
-
-
     </>
     );
 }

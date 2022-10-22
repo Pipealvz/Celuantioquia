@@ -22,7 +22,7 @@ const CrearProducto = memo(() => {
             confirmButtonText: "Aceptar",
         });
     }
-    
+
     function createProduct(e) {
         //e.preventDefault();
         const producto = {
@@ -36,12 +36,12 @@ const CrearProducto = memo(() => {
         }
 
         Axios
-            .post('https://api-celu.felipealvarez8.repl.co/api/products/new', producto)
+            .post('https://api-celu.felipealvarez8.repl.co/api/products/new', producto, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, })
             .then(function ({ data, status }) {
                 console.log(data);
                 if (status === 200) {
                     return isCorrect();
-                    
+
                 } else {
                     return isIncorrect();
                 }
