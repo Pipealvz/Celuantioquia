@@ -50,19 +50,20 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
 
 
-    const onLogin = values => {
-
-        console.log("EsLogin");
-        Axios.post("https://api-celu.felipealvarez8.repl.co/api/auth/login", {
-            correo: values.correoL,
-            contraseña: values.contraseñaL,
-        }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, })
+    const onRegister = values => {
+        console.log("Esregister");
+        Axios.post("https://api-celu.felipealvarez8.repl.co/api/auth/Register", {
+            nombre: values.nombreR,
+            correo: values.correoR,
+            contraseña: values.contraseñaR
+        }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, }
+        )
             .then(function (res) {
                 console.log(res);
 
                 Swal.fire({
                     title: "Bienvenido",
-                    text: "Te logueaste exitosamente",
+                    text: "Te registraste exitosamente",
                     icon: "success",
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
@@ -76,15 +77,12 @@ const Login = () => {
 
                 Swal.fire({
                     title: "Error",
-                    text: "Revise que tu nombre de usuario y contraseña esten correctos",
+                    text: "No te pudiste registrar, vuelve a intentarlo",
                     icon: "error",
                     confirmButtonText: "Aceptar",
                 });
             });
-        console.log(values);
-
     };
-
 
     return (
 
@@ -100,31 +98,40 @@ const Login = () => {
                     {/* FORMULARIO LOGIN */}
 
                     <div className="Login-register">
-                        <form className="login-form" onSubmit={handleSubmit(onLogin)}>
-                            <h2 className="mt-3 ">Iniciar Sesión</h2>
+
+                        {/* <Modal show={show} onHide={handleClose}> */}
+
+                        {/* FORMULARIO SINGUP */}
+
+                        <form className="register-form" onSubmit={handleSubmit(onRegister)}>
+                            <h2 className="mt-3 ">Registrarse</h2>
+
+                            {/* <Modal.Header closeButton>
+                                        <Modal.Title>Registrarse</Modal.Title>
+                                    </Modal.Header> */}
+                            {/* <Modal.Body> */}
                             <div className="input-field">
-                                <input type="email" className="form-control mt-4 mb-4" placeholder="Correo" {...register('correoL', { required: true })} />
+                                <input type="text" className="form-control mt-4 mb-4" required placeholder="Nombre" {...register('nombreR', { required: true })} />
                             </div>
                             <div className="input-field">
-                                <input type="password" className="form-control mt-4 mb-4" placeholder="Contraseña" {...register('contraseñaL', { required: true })} />
+                                <input type="email" className="form-control mt-4 mb-4" required placeholder="Correo" {...register('correoR', { required: true })} />
+                            </div>
+                            <div className="input-field">
+                                <input type="password" className="form-control mt-4 mb-4" placeholder="contraseña" {...register('contraseñaR', { required: true })} />
                             </div>
 
                             <div className="row w-100 align-items-center">
                                 <div className="col text-center">
-                                    <input type="submit" value="Iniciar Sesión" onClick={onLogin} className="btn btn-success mt-4 mb-4" />
-                                </div>
+                                    <input type="submit" value="Registro" onClick={onRegister} className="btn btn-success mt-4 mb-4" />
+                                    {/* </Modal.Body> */}                                    </div>
                                 <div className="col text-center">
-                                    <Button variant="text-success mb-2" href="/Home">
-                                        Registrarse
+                                    <Button variant="text-success mb-2" href="/">
+                                        Iniciar Sesión
                                     </Button>
                                 </div>
                             </div>
 
                         </form>
-
-                        {/* <Modal show={show} onHide={handleClose}> */}
-
-                        {/* FORMULARIO SINGUP */}
 
                         {/* </Modal> */}
                     </div>
