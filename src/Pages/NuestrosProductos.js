@@ -59,8 +59,6 @@ const NuestrosProductos = (() => {
                                     <div className='border border-success rounded-pill col-1 text-center fw-bold'>
                                         {item.cantidad}
                                     </div>
-
-
                                 </div>
                             </div>
                         )
