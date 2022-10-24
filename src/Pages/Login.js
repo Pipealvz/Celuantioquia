@@ -114,7 +114,7 @@ const Login = () => {
                                     <input type="submit" value="Iniciar Sesión" onClick={onLogin} className="btn btn-success mt-4 mb-4" />
                                 </div>
                                 <div className="col text-center">
-                                    <Button variant="text-success mb-2" href="/Home">
+                                    <Button variant="text-success mb-2" href="/Registro">
                                         Registrarse
                                     </Button>
                                 </div>
