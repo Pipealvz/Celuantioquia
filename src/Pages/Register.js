@@ -7,7 +7,8 @@ import { useForm } from "react-hook-form"
 // import { useEffect } from "react";
 //import React, { useState } from 'react';
 // import { Formik, Form, Field } from "formik";
-import Button from 'react-bootstrap/Button';
+//import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
 //import Modal from 'react-bootstrap/Modal';
 import Swal from "sweetalert2";
 //CSS
@@ -123,11 +124,12 @@ const Login = () => {
                             <div className="row w-100 align-items-center">
                                 <div className="col text-center">
                                     <input type="submit" value="Registro" onClick={onRegister} className="btn btn-success mt-4 mb-4" />
-                                    {/* </Modal.Body> */}                                    </div>
+                                    {/* </Modal.Body> */}
+                                </div>
                                 <div className="col text-center">
-                                    <Button variant="text-success mb-2" href="/">
+                                    <Link id="register_button" lassName="text-success mb-2" to="/">
                                         Iniciar Sesión
-                                    </Button>
+                                    </Link>
                                 </div>
                             </div>
 

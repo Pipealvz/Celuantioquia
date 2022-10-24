@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form"
 // import { useEffect } from "react";
 //import React, { useState } from 'react';
 // import { Formik, Form, Field } from "formik";
-import Button from 'react-bootstrap/Button';
+//import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 //import Modal from 'react-bootstrap/Modal';
 import Swal from "sweetalert2";
@@ -115,7 +115,7 @@ const Login = () => {
                                     <input type="submit" value="Iniciar Sesión" onClick={onLogin} className="btn btn-success mt-4 mb-4" />
                                 </div>
                                 <div className="col text-center">
-                                    <Link cid="register_button" lassName="text-success mb-2" to="/Registro">
+                                    <Link id="register_button" lassName="text-success mb-2" to="/Registro">
                                         Registrarse
                                     </Link>
                                 </div>
