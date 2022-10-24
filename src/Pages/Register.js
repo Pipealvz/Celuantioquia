@@ -5,10 +5,10 @@ import Axios from "axios";
 //COMPLEMENTS
 import { useForm } from "react-hook-form"
 // import { useEffect } from "react";
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
 // import { Formik, Form, Field } from "formik";
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+//import Modal from 'react-bootstrap/Modal';
 import Swal from "sweetalert2";
 //CSS
 import "bootstrap/dist/css/bootstrap.min.css";
