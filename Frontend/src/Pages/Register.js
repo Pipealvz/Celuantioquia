@@ -128,7 +128,7 @@ const Login = () => {
 
                             <div className="row w-100 align-items-center">
                                 <div className="col text-center">
-                                    <input type="submit" value="Registro" onClick={onRegister} className="btn btn-success mt-4 mb-4" />
+                                    <input type="submit" value="Registro"  className="btn btn-success mt-4 mb-4" />
                                     {/* </Modal.Body> */}
                                 </div>
                                 <div className="col text-center">
