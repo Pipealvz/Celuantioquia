@@ -60,8 +60,9 @@ const Login = () => {
             nombre: values.nombreR,
             correo: values.correoR,
             contrasena: values.contraseñaR
-        }
-        // , { headers: { 'Content-Type': 'application/x-www-form-urlencoded' },}
+        },
+        //  { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, }
+
         )
             .then(function (res) {
                 console.log(res);
