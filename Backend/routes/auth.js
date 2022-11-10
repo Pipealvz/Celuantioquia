@@ -36,6 +36,7 @@ router.post("/login", async (req, res) => {
 
 // Register
 router.post("/register", async (req, res) => {
+
     const { nombre, correo, contrasena } = req.body;
 
     if (!nombre || !correo || !contrasena) return res.json({ status: "error", error: "Por favor envia datos" });
