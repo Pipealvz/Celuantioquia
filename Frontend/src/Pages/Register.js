@@ -52,6 +52,9 @@ const Login = () => {
 
 
     const onRegister = values => {
+
+        debugger;
+
         console.log("Esregister");
         Axios.post("http://localhost:5000/register", {
             nombre: values.nombreR,
@@ -59,6 +62,7 @@ const Login = () => {
             contrasena: values.contraseñaR
         },
         //  { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, }
+
         )
             .then(function (res) {
                 console.log(res);
