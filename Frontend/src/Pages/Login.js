@@ -57,7 +57,9 @@ const Login = () => {
         Axios.post("http://localhost:5000/login", {
             correo: values.correoL,
             contrasena: values.contraseñaL,
-        }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' },})
+        }
+        // , { headers: { 'Content-Type': 'application/x-www-form-urlencoded' },}
+        )
             .then(function (res) {
                 console.log(res);
                 Swal.fire({
@@ -110,7 +112,7 @@ const Login = () => {
 
                             <div className="row w-100 align-items-center">
                                 <div className="col text-center">
-                                    <input type="submit" value="Iniciar Sesión" onClick={onLogin} className="btn btn-success mt-4 mb-4" />
+                                    <input type="submit" value="Iniciar Sesión"  className="btn btn-success mt-4 mb-4" />
                                 </div>
                                 <div className="col text-center">
                                     <Link id="register_button" className="text-success mb-2" to="/Registro">
