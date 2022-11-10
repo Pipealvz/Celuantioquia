@@ -52,12 +52,16 @@ const Login = () => {
 
 
     const onRegister = values => {
+
+        debugger;
+
         console.log("Esregister");
-        Axios.post("https://api-celu.felipealvarez8.repl.co/api/auth/Register", {
+        Axios.post("http://localhost:5000/register", {
             nombre: values.nombreR,
             correo: values.correoR,
-            contraseña: values.contraseñaR
-        }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, }
+            contrasena: values.contraseñaR
+        }
+        // , { headers: { 'Content-Type': 'application/x-www-form-urlencoded' },}
         )
             .then(function (res) {
                 console.log(res);
@@ -123,7 +127,7 @@ const Login = () => {
 
                             <div className="row w-100 align-items-center">
                                 <div className="col text-center">
-                                    <input type="submit" value="Registro" onClick={onRegister} className="btn btn-success mt-4 mb-4" />
+                                    <input type="submit" value="Registro" className="btn btn-success mt-4 mb-4" />
                                     {/* </Modal.Body> */}
                                 </div>
                                 <div className="col text-center">

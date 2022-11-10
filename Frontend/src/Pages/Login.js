@@ -54,13 +54,12 @@ const Login = () => {
     const onLogin = values => {
 
         console.log("EsLogin");
-        Axios.post("https://api-celu.felipealvarez8.repl.co/api/auth/login", {
+        Axios.post("http://localhost:5000/login", {
             correo: values.correoL,
-            contraseña: values.contraseñaL,
-        }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, })
+            contrasena: values.contraseñaL,
+        }, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' },})
             .then(function (res) {
                 console.log(res);
-
                 Swal.fire({
                     title: "Bienvenido",
                     text: "Te logueaste exitosamente",
@@ -83,7 +82,6 @@ const Login = () => {
                 });
             });
         console.log(values);
-
     };
 
 
