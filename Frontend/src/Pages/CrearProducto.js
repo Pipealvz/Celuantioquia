@@ -53,7 +53,7 @@ const CrearProducto = memo(() => {
     }
     return (<>
         <Navbar />
-        <div className='container vh-100'>
+        <div className='container p-4 vh-100 border rounded shadow'>
             <h2 className='text-success text-center text-uppercase fs-1'>Crear producto</h2>
             <hr />
             <form>
