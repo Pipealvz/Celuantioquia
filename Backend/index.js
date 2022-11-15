@@ -7,6 +7,7 @@ const morgan = require("morgan")
 const cors = require("cors")
 
 const auth = require("./routes/auth");
+const productos = require("./routes/productos")
 
 // Middlewares
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use(cors());
 
 // Rutas
 app.use('/', auth);
+app.use('/producto', productos);
 
 // Configuramos el puerto
 app.set("port", process.env.PORT || 5000);

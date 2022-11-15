@@ -18,7 +18,7 @@ function Navbar() {
     return (
         <>
             {[false].map((expand) => (
-                <NavBar key={expand} bg="light stylenav" expand={expand} className="mb-3" >
+                <NavBar key={expand} bg="text-light bg-success stylenav" expand={expand} className="mb-3" >
                     <Container fluid>
                         <NavBar.Brand href="#"><h3 className="text-light">CeluAntioquia</h3></NavBar.Brand>
                         <NavBar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />

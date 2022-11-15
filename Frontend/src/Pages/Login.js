@@ -69,7 +69,7 @@ const Login = () => {
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
                     if (res.isConfirmed === true) {
-                        window.location.reload(true);
+                        window.location.assign("/Home");
                     }
                 });
             })
