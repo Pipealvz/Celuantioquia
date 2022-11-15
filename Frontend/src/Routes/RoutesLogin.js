@@ -7,8 +7,9 @@ import {
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Home from "../Pages/Home";
-import CrearProducto from '../Pages/CrearProducto';
-import NuestrosProductos from '../Pages/NuestrosProductos';
+
+import CrearProducto from '../Pages/Productos/CrearProducto';
+import NuestrosProductos from '../Pages/Productos/NuestrosProductos';
 import CrearCategoria from '../Pages/CrearCategoria';
 import CrearProveedor from '../Pages/CrearProveedor';
 import CrearEmpleado from '../Pages/CrearEmpleado';

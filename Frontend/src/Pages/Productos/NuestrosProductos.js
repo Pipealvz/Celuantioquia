@@ -1,8 +1,8 @@
 //import { Axios } from 'axios';
 import React, { useEffect, useState } from 'react';
 
-import Navbar from '../Pages/Componets/Navbar';
-import img from '../images/asd.jpg'
+import Navbar from '../../Pages/Componets/Navbar';
+import img from '../../images/asd.jpg'
 
 const NuestrosProductos = (() => {
     const [productos, setProductos] = useState([]);
