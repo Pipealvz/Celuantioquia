@@ -53,8 +53,6 @@ const Login = () => {
 
     const onRegister = values => {
 
-        debugger;
-
         console.log("Esregister");
         Axios.post("http://localhost:5000/register", {
             nombre: values.nombreR,
