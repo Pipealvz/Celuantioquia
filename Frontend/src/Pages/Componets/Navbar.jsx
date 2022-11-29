@@ -42,7 +42,10 @@ function Navbar() {
 
                                     <Nav.Link href="/CrearProducto" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdCreateNewFolder className="me-2" /> Crear Producto</Nav.Link>
                                     <Nav.Link href="/NuestrosProductos" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Nuestros Productos</Nav.Link>
-                                    
+                                    <Nav.Link href="/CrearEmpleado" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Crear Empleado</Nav.Link>
+                                    <Nav.Link href="/NuestrosEmpleados" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Nuestros Empleados</Nav.Link>
+
+
                                 </Nav>
                             </Offcanvas.Body>
                         </NavBar.Offcanvas>

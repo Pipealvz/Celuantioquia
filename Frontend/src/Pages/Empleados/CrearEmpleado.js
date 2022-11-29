@@ -1,6 +1,6 @@
 
 import { useForm } from 'react-hook-form';
-import Navbar from '../Pages/Componets/Navbar';
+import Navbar from '../Componets/Navbar';
 import Swal from "sweetalert2";
 import Axios from "axios";
 
@@ -55,7 +55,6 @@ const CrearEmpleado = () => {
                 });
             });
     };
-
     return (<>
         <div className="modal fade" id="modal-empleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
