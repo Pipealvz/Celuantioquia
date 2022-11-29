@@ -24,7 +24,7 @@ const CrearEmpleado = () => {
             direccion_empleado: values.direccion_empleado,
             telefono_empleado: values.telefono_empleado,
             fecha_nacimiento_empleado: values.fecha_nacimiento_empleado,
-            rol_empleado: values.rol_empleado,
+            rol_empleado: values.rol_empleado
 
         },
             //  { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, }
@@ -67,9 +67,9 @@ const CrearEmpleado = () => {
                             <div className="row text-success d-flex  mb-3">
                                 <label for="documento_empleado" className="form-label">Documento de identidad</label>
                                 <div className="input-group">
-                                    <select className="input-group-text bg-success text-light">
-                                        <option className="form-control" id="tipo_documento" {...register('tipo_documento', { required: true })}>Cédula ciudadana</option>
-                                        <option className="form-control" id="tipo_documento" {...register('tipo_documento', { required: true })}>Cédula extranjera</option>
+                                    <select className="input-group-text bg-success text-light" {...register('tipo_documento', { required: true })}>
+                                        <option className="form-control" id="tipo_documento">Cédula ciudadana</option>
+                                        <option className="form-control" id="tipo_documento">Cédula extranjera</option>
                                     </select>
                                     <input type="number" min="1" className="form-control" id="documento_empleado" {...register('documento_empleado', { required: true })} />
                                 </div>
@@ -97,9 +97,9 @@ const CrearEmpleado = () => {
                             </div>
                             <div className="row text-success d-flex  mb-3">
                                 <span>Rol del empleado</span>
-                                <select for="rol_empleado" className="form-select">
-                                    <option className="form-control" id="rol_empleado" {...register('rol_empleado', { required: true })}>Administrador</option>
-                                    <option className="form-control" id="rol_empleado" {...register('rol_empleado', { required: true })}>Empleado</option>
+                                <select for="rol_empleado" className="form-select" {...register('rol_empleado', { required: true })}>
+                                    <option className="form-control" id="rol_empleado">Administrador</option>
+                                    <option className="form-control" id="rol_empleado">Empleado</option>
                                 </select>
                             </div>
                             <div className="row text-success d-flex  mb-3">
@@ -110,6 +110,18 @@ const CrearEmpleado = () => {
                             <br />
                             <div className='d-flex justify-content-center'>
                                 <buttom type="submit" className="btn btn-success col-6" value="Crear">Registrar Empleado</buttom>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Default radio
+                                    </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Default checked radio
+                                    </label>
                             </div>
                         </form>
                         <br />
