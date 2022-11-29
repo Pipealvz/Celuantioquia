@@ -1,13 +1,13 @@
 "use strict";
 
-const express = require ("express");
+const express = require("express");
 const app = express();
 const db = require("./database/connection");
-const morgan = require("morgan")
-const cors = require("cors")
+const morgan = require("morgan");
+const cors = require("cors");
 
 const auth = require("./routes/auth");
-const productos = require("./routes/productos")
+const productos = require("./routes/productos");
 
 // Middlewares
 app.use(express.json());
@@ -22,9 +22,12 @@ app.use('/producto', productos);
 app.set("port", process.env.PORT || 5000);
 
 // Verificamos conexión bd
-db.connect((err) =>{
-    if(err) throw err;
-    console.log("Conectado a la base de datos");
+db.connect((err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(`Conectado a la base de datos ${app.get("host")}`);
+  }
 });
 
 // Levantamos el servidor
