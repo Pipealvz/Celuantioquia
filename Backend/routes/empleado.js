@@ -7,11 +7,11 @@ const db = require("../database/connection");
 
 //Crear Empleado
 router.post('/crearEmpleado', async (req, res) => {
-    const { nombre_empleado, rol, documento_identidad, tipo_documento, direccion_vivienda, telefono_contacto,
-        fecha_nacimiento, correo_empleado, contraseña_empleado } = req.body;
+    const { nombre_empleado, rol_empleado, documento_identidad, tipo_documento, direccion_empleado, telefono_empleado,
+        fecha_nacimiento_empleado, correo_empleado, contraseña_empleado } = req.body;
 
-    if (!nombre_empleado || !rol || !documento_identidad || !tipo_documento || !direccion_vivienda || !telefono_contacto
-        || !fecha_nacimiento || !correo_empleado || !contraseña_empleado) return res.json({ status: "error", error: "Por favor envia datos" });
+    if (!nombre_empleado || !rol_empleado || !documento_identidad || !tipo_documento || !direccion_empleado || !telefono_empleado
+        || !fecha_nacimiento_empleado || !correo_empleado || !contraseña_empleado) return res.json({ status: "error", error: "Por favor envia datos" });
 
     else {
         db.query("SELECT documento_identidad FROM Empleado WHERE documento_identidad = ?", [documento_identidad], async (err, result) => {
@@ -21,12 +21,12 @@ router.post('/crearEmpleado', async (req, res) => {
             else {
                 db.query("INSERT INTO Empleado SET ?", {
                     nombre_empleado: nombre_empleado,
-                    rol: rol,
+                    rol_empleado: rol_empleado,
                     documento_identidad: documento_identidad,
                     tipo_documento: tipo_documento,
-                    direccion_vivienda: direccion_vivienda,
-                    telefono_contacto: telefono_contacto,
-                    fecha_nacimiento: fecha_nacimiento,
+                    direccion_empleado: direccion_empleado,
+                    telefono_empleado: telefono_empleado,
+                    fecha_nacimiento_empleado: fecha_nacimiento_empleado,
                     correo_empleado: correo_empleado,
                     contraseña_empleado: contraseña_empleado
                 }, (error, result) => {
@@ -55,8 +55,8 @@ router.post('/nuestrosEmpleados', async (req, res) => {
 router.post('/empleadoPorId', async (req, res) => {
 
     const { id_empleado } = req.body;
-    
-    db.query('SELECT * FROM Empleado  WHERE id_empleado = ?',[id_empleado] , async (err, rows, result) => {
+
+    db.query('SELECT * FROM Empleado  WHERE id_empleado = ?', [id_empleado], async (err, rows, result) => {
         if (!err) {
             res.json(rows);
         } else {
@@ -85,14 +85,14 @@ router.post('/eliminarEmpleado', async (req, res) => {
 });
 
 //Actualizar Empleado
-router.post('/actualizarProveedor', async (req, res)=>{
-    const {id_empleado , nombre_empleado, rol, documento_identidad, tipo_documento, direccion_vivienda, telefono_contacto,
-        fecha_nacimiento, correo_empleado, contraseña_empleado } = req.body;
+router.post('/actualizarProveedor', async (req, res) => {
+    const { nombre_empleado, rol_empleado, documento_identidad, tipo_documento, direccion_empleado, telefono_empleado,
+        fecha_nacimiento_empleado, correo_empleado, contraseña_empleado } = req.body;
 
-        db.query('UPDATE Empleado SET nombre_empleado = ?, rol = ?, documento_identidad = ?, tipo_documento = ?, direccion_vivienda = ? ,telefono_contacto = ?,fecha_nacimiento = ?, correo_empleado = ? , contraseña_empleado = ?  WHERE id_empleado = ?',
-        [nombre_empleado, rol, documento_identidad, tipo_documento, direccion_vivienda, telefono_contacto,
-        fecha_nacimiento, correo_empleado, contraseña_empleado, id_empleado ],
-        async (err, result)=> {
+    db.query('UPDATE Empleado SET nombre_empleado = ?, rol = ?, documento_identidad = ?, tipo_documento = ?, direccion_vivienda = ? ,telefono_contacto = ?,fecha_nacimiento = ?, correo_empleado = ? , contraseña_empleado = ?  WHERE id_empleado = ?',
+        [nombre_empleado, rol_empleado, documento_identidad, tipo_documento, direccion_empleado, telefono_empleado,
+            fecha_nacimiento_empleado, correo_empleado, contraseña_empleado, id_empleado],
+        async (err, result) => {
             if (!err) {
                 res.json({ status: "success", error: "Se Actualizo Correctamente el Empleado" });
             } else {

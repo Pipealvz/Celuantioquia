@@ -7,9 +7,9 @@ const db = require("../database/connection");
 
 //Crear Proveedor
 router.post('/crearProveedor', async (req, res) => {
-    const { nombre_proveedor, correo_proveedor , contacto_proveedor, nit, direccion_proveedor } = req.body;
+    const { nombre_proveedor, correo_proveedor , contacto_proveedor, nit_proveedor, direccion_proveedor } = req.body;
 
-    if (!nombre_proveedor || !correo_proveedor || !contacto_proveedor || !nit || !direccion_proveedor ) return res.json({ status: "error", error: "Por favor envia datos" });
+    if (!nombre_proveedor || !correo_proveedor || !contacto_proveedor || !nit_proveedor || !direccion_proveedor ) return res.json({ status: "error", error: "Por favor envia datos" });
 
     else {
         db.query("SELECT nombre_proveedor FROM Proveedor WHERE nombre_proveedor = ?", [nombre_proveedor], async (err, result) => {
@@ -21,7 +21,7 @@ router.post('/crearProveedor', async (req, res) => {
                     nombre_proveedor: nombre_proveedor, 
                     correo_proveedor:correo_proveedor , 
                     contacto_proveedor: contacto_proveedor, 
-                    nit: nit, 
+                    nit: nit_proveedor, 
                     direccion_proveedor: direccion_proveedor                    
                 }, (error, result) => {
                     if (error) throw error;
@@ -67,11 +67,11 @@ router.post('/eliminarProveedores', async (req, res) => {
 
 //Actualizar Proveedor
 router.post('/actualizarProveedor', async (req, res)=>{
-    const {id_proveedor, nombre_proveedor, correo_proveedor , contacto_proveedor, nit, direccion_proveedor
+    const {id_proveedor, nombre_proveedor, correo_proveedor , contacto_proveedor, nit_proveedor, direccion_proveedor
     } = req.body;
 
-        db.query('UPDATE Proveedor SET nombre_proveedor = ?, correo_proveedor = ?, contacto_proveedor = ?, nit = ?, direccion_proveedor = ?  WHERE id_proveedor = ?',
-        [nombre_proveedor, correo_proveedor, contacto_proveedor, nit, direccion_proveedor, id_proveedor],
+        db.query('UPDATE Proveedor SET nombre_proveedor = ?, correo_proveedor = ?, contacto_proveedor = ?, nit_proveedor = ?, direccion_proveedor = ?  WHERE id_proveedor = ?',
+        [nombre_proveedor, correo_proveedor, contacto_proveedor, nit_proveedor, direccion_proveedor, id_proveedor],
         async (err, result)=> {
             if (!err) {
                 res.json({ status: "success", error: "Se Actualizo Correctamente el Proveedor" });
