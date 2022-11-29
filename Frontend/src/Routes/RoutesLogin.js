@@ -32,7 +32,6 @@ function RoutesIndex() {
         <Route exact path="/CrearEmpleado" element={<CrearEmpleado/>}/>
         <Route exact path="/TodosEmpleados" element={<MostrarEmpleados/>}/>
 
-
       </Routes>
     </BrowserRouter>
   );
