@@ -56,6 +56,8 @@ const CrearEmpleado = () => {
             });
     };
     return (<>
+                <Navbar />
+
         <div className="modal fade" id="modal-empleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">

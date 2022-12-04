@@ -7,10 +7,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-
-
 import Navbar from '../Componets/Navbar';
-// import img from '../../images/asd.jpg'
+
+
 
 const NuestrosProductos = memo(() => {
 
@@ -20,13 +19,12 @@ const NuestrosProductos = memo(() => {
 
 
     const [deleteShow, setDeletehow] = React.useState(false);
-    const [editShow, setEdithow] = React.useState(false);
+    const [editShow, setEditShow] = React.useState(false);
 
     const { register, handleSubmit } = useForm();
 
     React.useEffect(() => {
         getAllProductos();
-
     }, []);
 
 
@@ -43,8 +41,10 @@ const NuestrosProductos = memo(() => {
 
         debugger;
 
+        console.log(modalData);
+
         Axios.post('http://localhost:5000/producto/actualizarProducto', {
-            id_producto:  values.id_producto,
+            id_producto: modalData.id_producto,
             nombre_producto: values.nombre_producto,
             tipo_producto: values.tipo_producto,
             cantidad: values.cantidad,
@@ -106,40 +106,39 @@ const NuestrosProductos = memo(() => {
 
                         return (
 
-                            item ? (
-                                <div className="card border border-success rounded p-2 col-5 mb-5" key={item.id_producto}>
-                                    <div className='row-fluid d-flex justify-content-between'>
-                                        <div className='text-center  text-success border border-success rounded-pill col-2'
-                                            style={{ height: 'fit-content', width: 'auto', padding: '0.3rem' }}
-                                        >
-                                            {item.tipo_producto}
-                                        </div>
-                                        <div className='text-center text-success col-2 fw-bold fs-5 font-monospace'>
-                                            {item.precio}
-                                        </div>
+                            <div className="card border border-success rounded p-2 col-5 mb-5" key={item.id_producto}>
+                                <div className='row-fluid d-flex justify-content-between'>
+                                    <div className='text-center  text-success border border-success rounded-pill col-2'
+                                        style={{ height: 'fit-content', width: 'auto', padding: '0.3rem' }}
+                                    >
+                                        {item.tipo_producto}
                                     </div>
-                                    <br />
-                                    <div className="row col">
-                                        <h5 className="card-title">{item.nombre_producto}</h5>
-                                        <p className="card-text">{item.descripcion}</p>
+                                    <div className='text-center text-success col-2 fw-bold fs-5 font-monospace'>
+                                        {item.precio}
                                     </div>
-                                    <hr />
-                                    <div className='row-fluid d-flex justify-content-between'>
-                                        <div className='text-success'>
-                                            Cantidad:
-                                        </div>
+                                </div>
+                                <br />
+                                <div className="row col">
+                                    <h5 className="card-title">{item.nombre_producto}</h5>
+                                    <p className="card-text">{item.descripcion}</p>
+                                </div>
+                                <hr />
+                                <div className='row-fluid d-flex justify-content-between'>
+                                    <div className='text-success'>
+                                        Cantidad:
+                                    </div>
 
-                                        <div className='border border-success rounded-pill col-1 text-center fw-bold'
-                                            style={{ width: 'auto', padding: '0.3rem' }}
-                                        >
-                                            {item.cantidad}
-                                        </div>
+                                    <div className='border border-success rounded-pill col-1 text-center fw-bold'
+                                        style={{ width: 'auto', padding: '0.3rem' }}
+                                    >
+                                        {item.cantidad}
                                     </div>
-                                    <div className='row'>
-                                        <Button variant="danger" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setDeletehow(true); }} > Eliminar</Button>
-                                        <Button variant="warning" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setEdithow(true); }}>Editar</Button>
-                                    </div>
-                                </div>) : null
+                                </div>
+                                <div className='row'>
+                                    <Button variant="danger" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setDeletehow(true); }} > Eliminar</Button>
+                                    <Button variant="warning" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setEditShow(true);}}>Editar</Button>
+                                </div>
+                            </div>
                         )
                     })}
 
@@ -167,8 +166,8 @@ const NuestrosProductos = memo(() => {
                     </Modal>
 
 
-                    <Modal  show={editShow} 
-                            onHide={() => setEdithow(false)}
+                    <Modal show={editShow}
+                        onHide={() => setEditShow(false)}
                         aria-labelledby="contained-modal-title-vcenter"
                     >
                         <Modal.Header closeButton>
@@ -176,51 +175,85 @@ const NuestrosProductos = memo(() => {
                                 Editar producto
                             </Modal.Title>
                         </Modal.Header>
-                        <Modal.Body>
-                            <form >
-                            {/* <label for="nombre_producto" className="form-label">{modalData.id_producto}</label> */}
 
-                                <div className="row text-success d-flex mb-3">
-                                    <label for="nombre_producto" className="form-label">Nombre del producto</label>
-                                    <input type="text" className="form-control" id="nombre_producto" {...register('nombre_producto', { required: true })} />
-                                </div>
-                                <div className="row text-success d-flex  mb-3">
-                                    <label for="tipo_producto" className="form-label">Tipo del produto</label>
-                                    <input type="text" className="form-control" id="tipo_producto" {...register('tipo_producto', { required: true })} />
-                                </div>
-                                <div className="row text-success d-flex  mb-3">
-                                    <label for="cantidad" className="form-label">Cantidad del producto</label>
-                                    <input type="number" min="1" className="form-control" id="cantidad"{...register('cantidad', { required: true })} />
-                                </div>
-                                <div className="row text-success d-flex  mb-3">
-                                    <label for="precio" className="form-label">Precio del producto</label>
-                                    <input type="number" min="1" className="form-control" id="precio" {...register('precio', { required: true })} />
-                                </div>
-                                <div className="row text-success d-flex  mb-3">
-                                    <label for="descripcion" className="form-label">Descripción</label>
-                                    <textarea type="text" className="form-control text-area" id="descripcion" {...register('descripcion', { required: true })}></textarea>
-                                </div>
-                                <div class="form-check">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" id="producto_destacado" value="1" {...register('producto_destacado', { required: true })} />
-                                        <label class="form-check-label" >Destacar producto.</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" id="producto_no_destacado" value="0" {...register('producto_destacado', { required: true })} />
-                                        <label class="form-check-label"> No destacar producto.</label>
-                                    </div>
-                                </div>
-                            </form>
-                            <Modal.Footer>
-                                <Button variant="success" onClick={() => setEdithow(false)}>
-                                    Cancelar
-                                </Button>
-                                <Button variant="success" onClick={() => { editProducto()}}>
-                                Crear
-                            </Button>
-                            </Modal.Footer>
+                            <Modal.Body>
+                                <Form onSubmit={handleSubmit(editProducto)}>
+                                <label for="nombre_producto" className="form-label" >Producto</label>
 
-                        </Modal.Body>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                        <Form.Label>Nombre del producto</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Samsung..."
+                                            // value={modalData.nombre_producto}
+                                            autoFocus
+                                            {...register('nombre_producto', { required: true })}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+                                        <Form.Label>Tipo del produto</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Celular"
+                                            //value={modalData.tipo_producto}
+                                            autoFocus
+                                            {...register('tipo_producto', { required: true })}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+                                        <Form.Label>Cantidad del producto</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            placeholder="50"
+                                            // value={modalData.cantidad}
+                                            autoFocus
+                                            {...register('cantidad', { required: true })}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+                                        <Form.Label>Precio del producto</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            placeholder="50"
+                                            // value={modalData.precio}
+                                            autoFocus
+                                            {...register('precio', { required: true })}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                        <Form.Label>Descripción</Form.Label>
+                                        <Form.Control as="textarea" rows={3} 
+                                        // value={modalData.descripcion}
+                                            {...register('descripcion', { required: true })}
+
+                                        />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" value="1" id="flexRadioDefault1" {...register('producto_destacado', { required: true })} />
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Destacar producto.
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" value="0" id="flexRadioDefault2" checked {...register('producto_destacado', { required: true })} />
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                No destacar producto.
+                                            </label>
+                                        </div>
+                                    </Form.Group>
+                                
+                                <Modal.Footer>
+                                    <Button variant="success" onClick={() => setEditShow(false)}>
+                                        Cancelar
+                                    </Button>
+                                    <Button type="submit"  onClick={editProducto} variant="success" >
+                                        Guardar cambios
+                                    </Button>
+                                </Modal.Footer>
+                                </Form>
+                            </Modal.Body>
+
                     </Modal>
                 </div>
 
