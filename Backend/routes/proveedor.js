@@ -13,7 +13,7 @@ router.post('/crearProveedor', async (req, res) => {
 
     else {
         db.query("SELECT nombre_proveedor FROM Proveedor WHERE nombre_proveedor = ?", [nombre_proveedor], async (err, result) => {
-            if (err) throw err;
+            if (err) return err;
             if (result[0]) return res.json({ status: "error", error: "Ya se ha registrado un proveedor con este nombre" })
 
             else {
@@ -24,7 +24,7 @@ router.post('/crearProveedor', async (req, res) => {
                     nit: nit_proveedor, 
                     direccion_proveedor: direccion_proveedor                    
                 }, (error, result) => {
-                    if (error) throw error;
+                    if (error) return error;
                     return res.json({ status: "success", success: "La Categoria se ha registrado" });
                 });
             }
@@ -51,7 +51,7 @@ router.post('/eliminarProveedores', async (req, res) => {
 
     const { id_proveedor } = req.body;
     db.query('SELECT id_proveedor FROM Proveedor WHERE id_proveedor = ?', [id_proveedor], async (err, result) => {
-        if (err) throw err;
+        if (err) return err;
         if (!result[0]) return res.json({ status: "error", error: "No existe un proveedor con este Id" })
         else {
             db.query('DELETE FROM Proveedor WHERE id_proveedor = ? ', [id_proveedor], async (err, result) => {

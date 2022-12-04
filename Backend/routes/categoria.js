@@ -13,7 +13,7 @@ router.post('/crearCategoria', async (req, res) => {
 
     else {
         db.query("SELECT nombre_categoria FROM Categoria WHERE nombre_categoria = ?", [nombre_categoria], async (err, result) => {
-            if (err) throw err;
+            if (err) return err;
             if (result[0]) return res.json({ status: "error", error: "Ya se ha registrado una categoria con este nombre" })
 
             else {
@@ -22,7 +22,7 @@ router.post('/crearCategoria', async (req, res) => {
                     tipo_categoria: tipo_categoria,
                     prioridad_categoria: prioridad_categoria
                 }, (error, result) => {
-                    if (error) throw error;
+                    if (error) return error;
                     return res.json({ status: "success", success: "La Categoria se ha registrado" });
                 });
             }
@@ -62,7 +62,7 @@ router.post('/eliminarCategorias', async (req, res) => {
 
     const { id_categoria } = req.body;
     db.query('SELECT id_categoria FROM Categoria WHERE id_categoria = ?', [id_categoria], async (err, result) => {
-        if (err) throw err;
+        if (err) return err;
         if (!result[0]) return res.json({ status: "error", error: "No existe un empleado con este Id" })
         else {
             db.query('DELETE FROM Categoria WHERE id_categoria = ? ', [id_categoria], async (err, result) => {
