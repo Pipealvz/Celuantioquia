@@ -13,7 +13,6 @@ import NuestrosProductos from '../Pages/Productos/NuestrosProductos';
 import CrearCategoria from '../Pages/CrearCategoria';
 import CrearProveedor from '../Pages/CrearProveedor';
 import CrearEmpleado from '../Pages/Empleados/CrearEmpleado';
-import MostrarEmpleados from '../Pages/MostrarEmpleados';
 import NuestrosEmpleados from '../Pages/Empleados/NuestrosEmpleados';
 
 
@@ -31,7 +30,7 @@ function RoutesIndex() {
         <Route exact path="/CrearCategoria" element={<CrearCategoria/>}/>
         <Route exact path="/CrearProveedor" element={<CrearProveedor/>}/>
         <Route exact path="/CrearEmpleado" element={<CrearEmpleado/>}/>
-        <Route exact path="/TodosEmpleados" element={<MostrarEmpleados/>}/>        <Route exact path="/NuestrosEmpleados" element={<NuestrosEmpleados/>}/>
+        <Route exact path="/NuestrosEmpleados" element={<NuestrosEmpleados/>}/>
 
 
       </Routes>

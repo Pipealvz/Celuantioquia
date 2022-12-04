@@ -37,7 +37,7 @@ function Navbar() {
                                 <NavDropdown  className="text-success py-2 w-100 d-inline-block option"
                                         title="Nombre Usuario"
                                         id={`offcanvasNavbarDropdown-expand-${expand}`}>
-                                        <NavDropdown.Item href="#action3" className="text-success py-2 w-100 d-inline-block option">Cerrar sesion</NavDropdown.Item>                                      
+                                        <NavDropdown.Item href="/" className="text-success py-2 w-100 d-inline-block option">Cerrar sesion</NavDropdown.Item>                                      
                                     </NavDropdown>
 
                                     <Nav.Link href="/CrearProducto" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdCreateNewFolder className="me-2" /> Crear Producto</Nav.Link>
