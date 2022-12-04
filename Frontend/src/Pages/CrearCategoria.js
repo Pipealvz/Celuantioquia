@@ -1,6 +1,6 @@
 import Navbar from "./Componets/Navbar";
-import Swal from "sweetalert2";
-import Axios from "axios";
+// import Swal from "sweetalert2";
+// import Axios from "axios";
 
 const CrearCategoria = () => {
     // const registerCategory = e => {
