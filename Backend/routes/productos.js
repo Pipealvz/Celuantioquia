@@ -39,13 +39,11 @@ router.post('/crearProducto', async (req, res) => {
 
 //Mostar Productos
 router.post('/nuestrosProductos', async (req, res) => {
-    await db.query('SELECT * FROM Producto;', (err, rows, result) => {
+     db.query('SELECT * FROM Producto;', (err, rows, result) => {
         if (!err) {
             res.json(rows);
         } else {
             res.json({ status: "error", error: "Error al consultar datos" });
-            console.log(err);
-            res.send(err);
         }
     });
 });
@@ -72,6 +70,9 @@ router.post('/eliminarProducto', async (req, res) => {
 
 //Actualizar producto
 router.post('/actualizarProducto', async (req, res)=>{
+
+        debugger;
+
     const { id_producto ,nombre_producto, tipo_producto, cantidad, precio, descripcion,
         producto_destacado } = req.body;
 
