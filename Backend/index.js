@@ -19,7 +19,7 @@ app.use('/', auth);
 app.use('/producto', productos);
 
 // Configuramos el puerto
-app.set("port", process.env.PORT || 5000);
+app.set("port", 3306);
 
 // Verificamos conexión bd
 db.connect((err) => {
