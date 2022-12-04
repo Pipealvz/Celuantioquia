@@ -1,9 +1,10 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '../Pages/Componets/Navbar';
 import CrearEmpleado from './CrearEmpleado';
 
 const MostrarEmpleados = () => {
+
     const { empleados, setEmpleados } = useState();
 
     const getEmpleados = async () => {
@@ -21,12 +22,16 @@ const MostrarEmpleados = () => {
     };
 
 
+    useEffect(() => {
+        getEmpleados();
+    });
+
     return (<>
         <Navbar />
         <div className='container p-4 vh-auto border rounded shadow'>
             <h2 className='text-success text-center text-uppercase fs-1'>Lista de Empleado</h2>
             <hr />
-            {/* {
+            {
                 empleados.map(item => {
                     return (
                         <div className="card" key={item.id_empleado}>
@@ -40,7 +45,7 @@ const MostrarEmpleados = () => {
                         </div>
                     )
                 })
-            } */}
+            }
             <div className="container">
                 <div className="row-fluid mt-4 justify-content-center d-flex">
                     <div
