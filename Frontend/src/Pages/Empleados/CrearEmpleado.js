@@ -12,8 +12,6 @@ const CrearEmpleado = () => {
 
     const empleadoRegister = values => {
 
-        debugger;
-
         console.log("Empleado registrado");
         Axios.post("", {
             nombre_empleado: values.nombre_empleado,

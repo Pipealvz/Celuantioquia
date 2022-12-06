@@ -8,6 +8,8 @@ const jwt = require("jsonwebtoken");
 
 // Login
 router.post("/login", async (req, res) => {
+
+
     const { correo, contrasena } = req.body;
     if (!correo || !contrasena) return res.json({ status: "error", error: "Por favor envia datos" });
     else {

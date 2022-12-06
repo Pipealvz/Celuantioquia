@@ -8,6 +8,12 @@ const cors = require("cors");
 
 const auth = require("./routes/auth");
 const productos = require("./routes/productos");
+const proveedor = require("./routes/proveedor");
+const categoria = require("./routes/categoria");
+const empleado = require("./routes/empleado");
+
+
+
 
 // Middlewares
 app.use(express.json());
@@ -15,8 +21,14 @@ app.use(morgan("dev"));
 app.use(cors());
 
 // Rutas
-app.use('/', auth);
+app.use('/auth', auth);
 app.use('/producto', productos);
+app.use('/proveedor', proveedor);
+app.use('/categoria', categoria);
+app.use('/empleado', empleado);
+
+
+
 
 // Configuramos el puerto
 app.set("port", process.env.PORT || 5000);

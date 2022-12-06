@@ -2,14 +2,14 @@ import Axios from 'axios';
 import React, { memo } from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
-import Navbar from '../../Pages/Componets/Navbar';
+import Navbar from '../../Pages/Componets/sidebar';
 
 const CrearProducto = memo(() => {
 
     const { register, handleSubmit } = useForm();
 
     const createProduct = values => {
-
+        
         //Se llama el enlace dle servicio y se le asiganan los valores al 
         //objeto que se con datos ingresasos en el formulario
 
@@ -50,10 +50,11 @@ const CrearProducto = memo(() => {
     };
 
 
-    return (<>
+    return (<div className=' d-flex'>
+
         <Navbar />
 
-        <div className=' container shadow-lg ' style={{ padding: '4rem', marginBottom: '2rem', borderRadius: '1rem' }}>
+        <div className=' container shadow-lg ' style={{ padding: '4rem', margin: '8rem 12rem 5rem 12rem', borderRadius: '1rem' }}>
             <div className='container vh-100'>
                 <h2 className='text-success text-center text-uppercase fs-1'>Crear producto</h2>
                 <hr />
@@ -97,7 +98,7 @@ const CrearProducto = memo(() => {
 
             </div>
         </div>
-    </>);
+    </div>);
 });
 
 export default CrearProducto;

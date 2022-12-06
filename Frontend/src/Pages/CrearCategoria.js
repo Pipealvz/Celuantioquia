@@ -5,8 +5,6 @@ import Axios from "axios";
 const CrearCategoria = () => {
     const registerCategory = e => {
 
-        debugger;
-
         console.log("Categoría Creada");
         Axios.post("http://localhost:5000/register", {
             nombre: e.nombreR,
