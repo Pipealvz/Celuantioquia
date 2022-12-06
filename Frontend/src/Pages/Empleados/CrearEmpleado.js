@@ -1,5 +1,5 @@
 
-import Axios from "../Axios/axios";
+import Axios from "axios";
 import { useForm } from 'react-hook-form';
 //import React, { useState } from 'react';
 import Navbar from '../Componets/Navbar';

@@ -1,4 +1,4 @@
-import Axios from "../Axios/axios";
+import Axios from "axios";
 import React from 'react';
 import Navbar from '../Componets/Navbar';
 import Swal from 'sweetalert2';
@@ -12,7 +12,7 @@ const EditarEmpleado = () => {
 
     const EditarEmpleado = values => {
 
-        Axios.post('producto/actualizarEmpleado', {
+        Axios.post('https://celuantioqueno.onrender.com/producto/actualizarEmpleado', {
             nombre_empleado: values.nombre_empleado,
             correo_empleado: values.correo_empleado,
             contrasena_empleado: values.contraseña_empleado,
