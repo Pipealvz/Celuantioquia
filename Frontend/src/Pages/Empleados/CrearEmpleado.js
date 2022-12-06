@@ -9,11 +9,13 @@ import Axios from "axios";
 const CrearEmpleado = () => {
 
     const { register, handleSubmit } = useForm();
+    const { empleados, setEmpleados } = useState();
 
     const empleadoRegister = values => {
 
         console.log("Empleado registrado");
         Axios.post("", {
+            
             nombre_empleado: values.nombre_empleado,
             correo_empleado: values.correo_empleado,
             contrasena_empleado: values.contraseña_empleado,

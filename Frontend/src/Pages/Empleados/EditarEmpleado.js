@@ -11,14 +11,16 @@ const EditarEmpleado = () => {
 
     const EditarEmpleado = () => {
 
-        Axios.post('http://localhost:5000/producto/actualizarProducto', {
-            id_producto: modalData.id_producto,
-            nombre_producto: values.nombre_producto,
-            tipo_producto: values.tipo_producto,
-            cantidad: values.cantidad,
-            precio: values.precio,
-            descripcion: values.descripcion,
-            producto_destacado: values.producto_destacado,
+        Axios.post('http://localhost:5000/producto/actualizarEmpleado', {
+            nombre_empleado: values.nombre_empleado,
+            correo_empleado: values.correo_empleado,
+            contrasena_empleado: values.contraseña_empleado,
+            documento_empleado: values.documento_empleado,
+            tipo_empleado: values.tipo_empleado,
+            direccion_empleado: values.direccion_empleado,
+            telefono_empleado: values.telefono_empleado,
+            fecha_nacimiento_empleado: values.fecha_nacimiento_empleado,
+            rol_empleado: values.rol_empleado
         })
             .then(function (res) {
                 console.log(res);
@@ -55,9 +57,10 @@ return (<>
         <div className="modal-dialog">
             <div className="modal-content">
                 <div className='container p-4 vh-auto border rounded shadow'>
-                    <h2 className='text-success text-center text-uppercase fs-1'>Registrar Empleado</h2>
+                    <h2 className='text-success text-center text-uppercase fs-1'>Editar Empleado</h2>
                     <hr />
-                    <form onSubmit={handleSubmit(empleadoRegister)}>
+                    <form onSubmit={handleSubmit(EditarEmpleado)}>
+                        { }
                         <div className="row text-success d-flex  mb-3">
                             <label for="documento_empleado" className="form-label">Documento de identidad</label>
                             <div className="input-group">
@@ -92,8 +95,8 @@ return (<>
                         <div className="row text-success d-flex  mb-3">
                             <span>Rol del empleado</span>
                             <select for="rol_empleado" className="form-select" {...register('rol_empleado', { required: true })}>
-                                <option className="form-control" id="rol_empleado">Administrador</option>
-                                <option className="form-control" id="rol_empleado">Empleado</option>
+                                <option className="form-control" id="rol_empleado" value="Administrador"></option>
+                                <option className="form-control" id="rol_empleado" value="Empleado"></option>
                             </select>
                         </div>
                         <div className="row text-success d-flex  mb-3">
@@ -103,19 +106,7 @@ return (<>
 
                         <br />
                         <div className='d-flex justify-content-center'>
-                            <buttom type="submit" className="btn btn-success col-6" value="Crear">Registrar Empleado</buttom>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Default radio
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Default checked radio
-                            </label>
+                            <buttom type="submit" className="btn btn-success col-6" value="Crear">Guardar cambios</buttom>
                         </div>
                     </form>
                     <br />

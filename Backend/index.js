@@ -31,7 +31,7 @@ app.use('/empleado', empleado);
 
 
 // Configuramos el puerto
-app.set("port", 3306);
+app.set("port", 3306 || 5001);
 
 // Verificamos conexión bd
 db.connect((err) => {
