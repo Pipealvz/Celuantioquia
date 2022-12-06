@@ -100,16 +100,16 @@ const NuestrosProductos = memo(() => {
     return (
         <div className='d-flex'>
             <Navbar />
-            <div className='container' style={{  margin: '8rem 10rem 5rem 8rem'}}>
+            <div className='container' style={{ margin: '8rem 10rem 5rem 8rem' }}>
 
                 <h2 className='text-success text-center text-uppercase fs-1'>productos</h2>
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <div class="row">
                     <Link class="btn btn-success" type="button" to="/CrearProducto">Crear</Link>
                 </div>
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <div className='container d-flex'>
                     <div className='row justify-content-around'>
                         {post.map((item) => {
@@ -148,7 +148,7 @@ const NuestrosProductos = memo(() => {
                                     </div>
                                     <div className='row'>
                                         <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setDeletehow(true); }} ><FaIcons.MdDelete className="" /> </Button>
-                                        <Button variant="outline-success"style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setEditShow(true); }}><FaIcons.MdModeEdit className="" /></Button>
+                                        <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setEditShow(true); }}><FaIcons.MdModeEdit className="" /></Button>
                                     </div>
                                 </div>
 

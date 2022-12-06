@@ -1,7 +1,8 @@
 
 import { useEffect, useState } from 'react';
-import Navbar from '../Pages/Componets/Navbar';
+import Navbar from '../Componets/Navbar';
 import CrearEmpleado from './CrearEmpleado';
+import EditarEmpleado from './EditarEmpleado';
 
 const MostrarEmpleados = () => {
 
@@ -38,7 +39,15 @@ const MostrarEmpleados = () => {
                             <div className="row d-flex card-body">
                                 <div id="nombre_empleado" className="fw-bold col-7 fs-5"> {item.nombre_empleado} </div>
                                 <div className="row col-4 d-flex justify-content-between">
-                                    <button className="btn btn-warning col-5">Editar</button>
+                                            <div
+                                                id="btn-editEmpleado"
+                                                className="btn btn-warning col-5"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modal-editar-empleado"
+                                            >
+                                                Editar empleado
+                                            </div>
+                                            <EditarEmpleado />
                                     <button className="btn btn-danger col-5">Eliminar</button>
                                 </div>
                             </div>

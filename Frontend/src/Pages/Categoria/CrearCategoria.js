@@ -1,4 +1,4 @@
-import Navbar from "./Componets/Navbar";
+import Navbar from "../Componets/Navbar";
 // import Swal from "sweetalert2";
 // import Axios from "axios";
 
