@@ -1,52 +1,51 @@
-import Navbar from "./Componets/Navbar";
-// import Swal from "sweetalert2";
-// import Axios from "axios";
+import React from "react";
+import Navbar from "../Componets/Navbar";
+import Swal from "sweetalert2";
+import Axios from "axios";
 
 const CrearCategoria = () => {
-    // const registerCategory = e => {
+    const registerCategory = e => {
 
-    //     debugger;
+        console.log("Categoría Creada");
+        Axios.post("http://localhost:3306/", {
+            nombre: e.nombreR,
+            tipo: e.correoR,
+            prioridad: e.contraseñaR
+        },
+        //  { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, }
 
-    //     console.log("Categoría Creada");
-    //     Axios.post("http://localhost:5000/register", {
-    //         nombre: e.nombreR,
-    //         correo: e.correoR,
-    //         contrasena: e.contraseñaR
-    //     },
-    //     //  { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, }
+        )
+            .then(function (res) {
+                console.log(res);
 
-    //     )
-    //         .then(function (res) {
-    //             console.log(res);
+                Swal.fire({
+                    title: "Correcto",
+                    text: "Categoría creada exitosamente",
+                    icon: "success",
+                    confirmButtonText: "Aceptar",
+                }).then((res) => {
+                    if (res.isConfirmed === true) {
+                        window.location.reload(true);
+                    }
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
 
-    //             Swal.fire({
-    //                 title: "Bienvenido",
-    //                 text: "Te registraste exitosamente",
-    //                 icon: "success",
-    //                 confirmButtonText: "Aceptar",
-    //             }).then((res) => {
-    //                 if (res.isConfirmed === true) {
-    //                     window.location.reload(true);
-    //                 }
-    //             });
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-
-    //             Swal.fire({
-    //                 title: "Error",
-    //                 text: "No te pudiste registrar, vuelve a intentarlo",
-    //                 icon: "error",
-    //                 confirmButtonText: "Aceptar",
-    //             });
-    //         });
-    // };
+                Swal.fire({
+                    title: "Error",
+                    text: "No se pudo crear la categoría",
+                    icon: "error",
+                    confirmButtonText: "Aceptar",
+                });
+            });
+    };
     return (<>
     <Navbar/>
         <div className='container p-4 vh-100 border rounded shadow'>
             <h2 className='text-success text-center text-uppercase fs-1'>Crear Categoría</h2>
             <hr />
-            <form>
+            <form onSubmit={registerCategory}>
                 <div className="row text-success d-flex mb-3">
                     <label for="nombre_categoria" className="form-label">Nombre de la categoría</label>
                     <input type="text" className="form-control" id="nombre_categoria" aria-describedby="emailHelp" />

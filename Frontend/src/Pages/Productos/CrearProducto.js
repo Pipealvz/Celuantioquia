@@ -13,7 +13,7 @@ const CrearProducto = memo(() => {
         //Se llama el enlace dle servicio y se le asiganan los valores al 
         //objeto que se con datos ingresasos en el formulario
 
-        Axios.post("http://localhost:5000/producto/crearProducto", {
+        Axios.post("http://localhost:3306/producto/crearProducto", {
             nombre_producto: values.nombre_producto,
             tipo_producto: values.tipo_producto,
             cantidad: values.cantidad,
