@@ -14,6 +14,7 @@ import  "../../Css/Navbar.css";
 import Logo from '../../Logo.png';
 
 
+
 function Navbar() {
     return (
         <>
@@ -25,7 +26,7 @@ function Navbar() {
                         <NavBar.Offcanvas
                             id={`offcanvasNavbar-expand-${expand}`}
                             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                            placement="end"
+                            placement="start"
                         >
                             <Offcanvas.Header closeButton>
                                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
@@ -33,7 +34,7 @@ function Navbar() {
                                 </Offcanvas.Title>
                             </Offcanvas.Header>
                             <Offcanvas.Body>
-                                <Nav className="justify-content-end flex-grow-1 pe-3">
+                                <Nav className="flex-grow-1 pe-3">
                                 <NavDropdown  className="text-success py-2 w-100 d-inline-block option"
                                         title="Nombre Usuario"
                                         id={`offcanvasNavbarDropdown-expand-${expand}`}>
@@ -44,14 +45,15 @@ function Navbar() {
                                     <Nav.Link href="/NuestrosProductos" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Nuestros Productos</Nav.Link>
                                     <Nav.Link href="/CrearEmpleado" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Crear Empleado</Nav.Link>
                                     <Nav.Link href="/NuestrosEmpleados" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Nuestros Empleados</Nav.Link>
-
+                                    <Nav.Link href="/CrearProveedor" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Crear proveedor</Nav.Link>
+                                    <Nav.Link href="/NuestrosProveedores" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Nuestros  proveedores</Nav.Link>
 
                                 </Nav>
                             </Offcanvas.Body>
                         </NavBar.Offcanvas>
                     </Container>
                 </NavBar>
-            ))}
+                ))} 
         </>
     );
 }

@@ -16,7 +16,7 @@ router.post('/crearProducto', async (req, res) => {
 
     else {
         db.query("SELECT nombre_producto FROM Producto WHERE nombre_producto = ?;", [nombre_producto], async (err, result) => {
-            if (err) throw err;
+            if (err) return err;
             if (result[0]) return res.json({ status: "error", error: "Ya se ha registrado un producto con este nombre" })
 
             else {
@@ -28,7 +28,7 @@ router.post('/crearProducto', async (req, res) => {
                     descripcion: descripcion,
                     producto_destacado: producto_destacado
                 }, (error, result) => {
-                    if (error) throw error;
+                    if (error) return error;
                     return res.json({ status: "success", success: "El Producto se ha registrado" });
                 });
             }
@@ -53,7 +53,7 @@ router.post('/eliminarProducto', async (req, res) => {
 
     const { id_producto } = req.body;
     db.query('SELECT id_producto FROM Producto WHERE id_producto = ?', [id_producto], async (err, result) => {
-        if (err) throw err;
+        if (err) return err;
         if (!result[0]) return res.json({ status: "error", error: "No existe un producto con este Id" })
         else {
             db.query('DELETE FROM Producto WHERE id_producto = ? ', [id_producto], async (err, result) => {
@@ -70,8 +70,6 @@ router.post('/eliminarProducto', async (req, res) => {
 
 //Actualizar producto
 router.post('/actualizarProducto', async (req, res)=>{
-
-        debugger;
 
     const { id_producto ,nombre_producto, tipo_producto, cantidad, precio, descripcion,
         producto_destacado } = req.body;

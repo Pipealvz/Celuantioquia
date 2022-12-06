@@ -15,7 +15,7 @@ router.post('/crearEmpleado', async (req, res) => {
 
     else {
         db.query("SELECT documento_identidad FROM Empleado WHERE documento_identidad = ?", [documento_identidad], async (err, result) => {
-            if (err) throw err;
+            if (err) return err;
             if (result[0]) return res.json({ status: "error", error: "Ya se ha registrado un empleado con este documento de identidad" })
 
             else {
@@ -30,7 +30,7 @@ router.post('/crearEmpleado', async (req, res) => {
                     correo_empleado: correo_empleado,
                     contraseña_empleado: contraseña_empleado
                 }, (error, result) => {
-                    if (error) throw error;
+                    if (error) return error;
                     return res.json({ status: "success", success: "La Categoria se ha registrado" });
                 });
             }
@@ -70,7 +70,7 @@ router.post('/eliminarEmpleado', async (req, res) => {
 
     const { id_empleado } = req.body;
     db.query('SELECT id_empleado FROM Empleado WHERE id_empleado = ?', [id_empleado], async (err, result) => {
-        if (err) throw err;
+        if (err) return err;
         if (!result[0]) return res.json({ status: "error", error: "No existe un empleado con este Id" })
         else {
             db.query('DELETE FROM Empleado WHERE id_empleado = ? ', [id_empleado], async (err, result) => {

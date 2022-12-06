@@ -55,10 +55,10 @@ const Login = () => {
     const onLogin = values => {
 
         console.log("EsLogin");
-        Axios.post("http://localhost:5000/login", {
-            correo: values.correoL,
-            contrasena: values.contraseñaL,
-        }
+        Axios.post("http://localhost:5000/auth/login", {
+            correo: values.correo,
+            contrasena: values.contrasena
+        },
         // , { headers: { 'Content-Type': 'application/x-www-form-urlencoded' },}
         )
             .then(function (res) {
@@ -69,7 +69,7 @@ const Login = () => {
                     icon: "success",
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
-                    if (res.isConfirmed === true) {
+                    if (res.isConfirmed === true || res !== null || res !== []) {
                         window.location.assign("/Home");
                     }
                 });
@@ -105,10 +105,10 @@ const Login = () => {
                         <form className="login-form" onSubmit={handleSubmit(onLogin)}>
                             <h2 className="mt-3 ">Iniciar Sesión</h2>
                             <div className="input-field">
-                                <input type="email" className="form-control mt-4 mb-4" placeholder="Correo" {...register('correoL', { required: true })} />
+                                <input type="email" className="form-control mt-4 mb-4" placeholder="Correo" {...register('correo', { required: true })} />
                             </div>
                             <div className="input-field">
-                                <input type="password" className="form-control mt-4 mb-4" placeholder="Contraseña" {...register('contraseñaL', { required: true })} />
+                                <input type="password" className="form-control mt-4 mb-4" placeholder="Contraseña" {...register('contrasena', { required: true })} />
                             </div>
 
                             <div className="row w-100 align-items-center">

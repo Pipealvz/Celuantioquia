@@ -55,7 +55,7 @@ const Login = () => {
     const onRegister = values => {
 
         console.log("Esregister");
-        Axios.post("http://localhost:5000/register", {
+        Axios.post("http://localhost:5000/auth/register", {
             nombre: values.nombreR,
             correo: values.correoR,
             contrasena: values.contraseñaR
