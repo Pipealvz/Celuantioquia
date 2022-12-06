@@ -1,5 +1,6 @@
-import Axios from 'axios';
+import Axios from "../Axios/axios";
 import React from 'react';
+import Navbar from '../Componets/Navbar';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
 
@@ -9,9 +10,9 @@ const EditarEmpleado = () => {
 
     const { register, handleSubmit } = useForm();
 
-    const EditarEmpleado = () => {
+    const EditarEmpleado = values => {
 
-        Axios.post('http://localhost:5000/producto/actualizarEmpleado', {
+        Axios.post('producto/actualizarEmpleado', {
             nombre_empleado: values.nombre_empleado,
             correo_empleado: values.correo_empleado,
             contrasena_empleado: values.contraseña_empleado,
@@ -48,9 +49,8 @@ const EditarEmpleado = () => {
                 });
             });
     }
-
-}
-return (<>
+    
+    return (<>
     <Navbar />
 
     <div className="modal fade" id="modal-editEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -116,6 +116,6 @@ return (<>
     </div>
 
 </>
-)
+)};
 
 export default EditarEmpleado;

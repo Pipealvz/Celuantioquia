@@ -1,5 +1,5 @@
 //COMPONENTS
-import Axios from '../../Axios/axios';
+import Axios from "axios";
 // import * as yup from "yup";
 // import login from "./Controllers/login.controller";
 //COMPLEMENTS
@@ -54,7 +54,7 @@ const Login = () => {
     const onLogin = values => {
 
         console.log("EsLogin");
-        Axios.post("auth/login", {
+        Axios.post("https://celuantioqueno.onrender.com/auth/login", {
             correo: values.correo,
             contrasena: values.contrasena
         },

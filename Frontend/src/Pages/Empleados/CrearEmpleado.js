@@ -1,15 +1,16 @@
 
+import Axios from "../Axios/axios";
 import { useForm } from 'react-hook-form';
+//import React, { useState } from 'react';
 import Navbar from '../Componets/Navbar';
 import Swal from "sweetalert2";
-import Axios from "axios";
 
 
 
 const CrearEmpleado = () => {
 
     const { register, handleSubmit } = useForm();
-    const { empleados, setEmpleados } = useState();
+    //const { empleados, setEmpleados } = useState();
 
     const empleadoRegister = values => {
 
