@@ -1,5 +1,5 @@
 //COMPONENTS
-import Axios from "axios";
+import Axios from '../../Axios/axios';
 // import * as yup from "yup";
 // import login from "./Controllers/login.controller";
 //COMPLEMENTS
