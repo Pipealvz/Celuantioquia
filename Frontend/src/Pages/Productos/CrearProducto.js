@@ -1,4 +1,4 @@
-import Axios from '../Axios/axios';
+import Axios from 'axios';
 import React, { memo } from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
@@ -13,7 +13,7 @@ const CrearProducto = memo(() => {
         //Se llama el enlace dle servicio y se le asiganan los valores al 
         //objeto que se con datos ingresasos en el formulario
 
-        Axios.post("producto/crearProducto", {
+        Axios.post("https://celuantioqueno.onrender.com/producto/crearProducto", {
             nombre_producto: values.nombre_producto,
             tipo_producto: values.tipo_producto,
             cantidad: values.cantidad,

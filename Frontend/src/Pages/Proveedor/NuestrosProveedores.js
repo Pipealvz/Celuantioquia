@@ -1,4 +1,4 @@
-import Axios from '../Axios/axios';
+import Axios from 'axios';
 import React, { memo } from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
@@ -32,7 +32,7 @@ const NuestrosProveedores = memo(() => {
 
 
     const getAllProveedor = () => {
-        Axios.post('proveedor/nuestrosProveedores')
+        Axios.post('https://celuantioqueno.onrender.com/proveedor/nuestrosProveedores')
             .then((response) => {
                 setPost(response.data)
             });
@@ -43,7 +43,7 @@ const NuestrosProveedores = memo(() => {
 
         console.log(modalData);
 
-        Axios.post('proveedor/actualizarProveedor', {
+        Axios.post('https://celuantioqueno.onrender.com/proveedor/actualizarProveedor', {
             id_proveedor: modalData.id_proveedor,
             nombre_proveedor: values.nombre_proveedor,
             correo_proveedor: values.correo_proveedor,
@@ -83,7 +83,7 @@ const NuestrosProveedores = memo(() => {
 
 
     function deleteProveedor(id) {
-        Axios.post('proveedor/eliminarProveedores', {
+        Axios.post('https://celuantioqueno.onrender.com/proveedor/eliminarProveedores', {
             id_proveedor: id
         })
             .then(() => {
