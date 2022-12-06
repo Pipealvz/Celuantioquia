@@ -17,15 +17,15 @@ router.post('/crearProveedor', async (req, res) => {
             if (result[0]) return res.json({ status: "error", error: "Ya se ha registrado un proveedor con este nombre" })
 
             else {
-                db.query("INSERT INTO Empleado SET ?", {
+                db.query("INSERT INTO Proveedor SET ?", {
                     nombre_proveedor: nombre_proveedor, 
                     correo_proveedor:correo_proveedor , 
                     contacto_proveedor: contacto_proveedor, 
-                    nit: nit_proveedor, 
+                    nit_proveedor: nit_proveedor, 
                     direccion_proveedor: direccion_proveedor                    
                 }, (error, result) => {
                     if (error) return error;
-                    return res.json({ status: "success", success: "La Categoria se ha registrado" });
+                    return res.json({ status: "success", success: "El proveedor se ha registrado" });
                 });
             }
         });

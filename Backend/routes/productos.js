@@ -71,8 +71,6 @@ router.post('/eliminarProducto', async (req, res) => {
 //Actualizar producto
 router.post('/actualizarProducto', async (req, res)=>{
 
-        debugger;
-
     const { id_producto ,nombre_producto, tipo_producto, cantidad, precio, descripcion,
         producto_destacado } = req.body;
 
