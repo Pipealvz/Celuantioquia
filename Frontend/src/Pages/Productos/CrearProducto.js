@@ -1,4 +1,4 @@
-import Axios from '../../Axios/axios';
+import Axios from '../Axios/axios';
 import React, { memo } from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
