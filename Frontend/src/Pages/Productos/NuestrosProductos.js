@@ -43,7 +43,7 @@ const NuestrosProductos = memo(() => {
 
         console.log(modalData);
 
-        Axios.post('http://localhost:3306/producto/actualizarProducto', {
+        Axios.post('http://localhost:5000/producto/actualizarProducto', {
             id_producto: modalData.id_producto,
             nombre_producto: values.nombre_producto,
             tipo_producto: values.tipo_producto,

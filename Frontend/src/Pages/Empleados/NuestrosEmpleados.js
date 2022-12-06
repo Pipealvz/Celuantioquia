@@ -17,7 +17,7 @@ const NuestrosEmpleados = (() => {
     const getEmpleados = async () => {
         try {
             const res = await fetch(
-                "http://localhost:3306/"
+                " "
             );
             // console.log(res);
             const datos = await res.json();

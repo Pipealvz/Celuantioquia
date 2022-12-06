@@ -10,7 +10,8 @@ import Home from "../Pages/Home";
 
 import CrearProducto from '../Pages/Productos/CrearProducto';
 import NuestrosProductos from '../Pages/Productos/NuestrosProductos';
-import CrearCategoria from '../Pages/Categoria/CrearCategoria';
+
+import CrearCategoria from '../Pages/CrearCategoria';
 
 import CrearProveedor from '../Pages/Proveedor/CrearProveedor';
 import NuestrosProveedores from '../Pages/Proveedor/NuestrosProveedores';
