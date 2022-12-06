@@ -1,4 +1,5 @@
 
+import React from "react";
 import { useForm } from 'react-hook-form';
 import Navbar from '../Componets/Navbar';
 import Swal from "sweetalert2";
@@ -13,7 +14,7 @@ const CrearEmpleado = () => {
     const empleadoRegister = values => {
 
         console.log("Empleado registrado");
-        Axios.post("", {
+        Axios.post("http://localhost:3306/", {
             nombre_empleado: values.nombre_empleado,
             correo_empleado: values.correo_empleado,
             contrasena_empleado: values.contraseña_empleado,
@@ -54,7 +55,7 @@ const CrearEmpleado = () => {
             });
     };
     return (<>
-                <Navbar />
+        <Navbar />
 
         <div className="modal fade" id="modal-empleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
@@ -111,16 +112,16 @@ const CrearEmpleado = () => {
                                 <buttom type="submit" className="btn btn-success col-6" value="Crear">Registrar Empleado</buttom>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Default radio
-                                    </label>
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Default radio
+                                </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Default checked radio
-                                    </label>
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Default checked radio
+                                </label>
                             </div>
                         </form>
                         <br />
