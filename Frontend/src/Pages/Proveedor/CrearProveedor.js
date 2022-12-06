@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import Axios from '../../Axios/axios';
 import React, { memo } from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
@@ -13,7 +13,7 @@ const CrearProveedor = memo(() => {
         //Se llama el enlace dle servicio y se le asiganan los valores al 
         //objeto que se con datos ingresasos en el formulario
 
-        Axios.post("http://localhost:5000/proveedor/crearProveedor", {
+        Axios.post("proveedor/crearProveedor", {
             nombre_proveedor: values.nombre_proveedor,
             correo_proveedor: values.correo_proveedor,
             contacto_proveedor: values.contacto_proveedor,
