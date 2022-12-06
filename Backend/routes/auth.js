@@ -17,7 +17,7 @@ router.post("/login", async (req, res) => {
             db.query("SELECT * FROM Usuario WHERE correo = ?", [correo], async (err, result) => {
                 console.log(result)
                 if (err) return err;
-                if (!result[0]) return res.json({ status: "error", error: "Correo o contraseña incorrectos" })
+                if (!result[0]) return res.status(400).json({ status: "error", error: "Correo o contraseña incorrectos" })
                 else {
                     const contraseñaValida = await bcrypt.compare(contrasena, result[0].contrasena)
                     if (!contraseñaValida) return res.status(400).send('El correo o la contraseña son incorrectos');
