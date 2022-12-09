@@ -5,14 +5,14 @@ import Swal from 'sweetalert2';
 // import Swal from "sweetalert2";
 // import Axios from "axios";
 
-const CrearCategoria = () => {
+const EditarCategory = () => {
     const { register, handleSubmit } = useForm();
     //const { empleados, setEmpleados } = useState();
 
     const categoryRegister = values => {
 
         console.log("Category register");
-        Axios.post("https://celuantioqueno.onrender.com/categoria/crearCategoria", {
+        Axios.post("https://celuantioqueno.onrender.com/categoria/actualizarCategoria", {
             // nombre_categoria, tipo_categoria, prioridad_categoria
             nombre_categoria: values.nombre_categoria,
             tipo_categoria: values.tipo_categoria,
@@ -26,7 +26,7 @@ const CrearCategoria = () => {
 
                 Swal.fire({
                     title: "Categoría registrada",
-                    text: "Se registró la categoría exitosamente",
+                    text: "Se actualizó la categoría exitosamente",
                     icon: "success",
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
@@ -40,14 +40,14 @@ const CrearCategoria = () => {
 
                 Swal.fire({
                     title: "Error",
-                    text: "No se pudo registrar la categoría, intente de nuevo",
+                    text: "No se pudo actualizar la categoría, intente de nuevo",
                     icon: "error",
                     confirmButtonText: "Aceptar",
                 });
             });
     };
     return (
-        <div className="modal fade" id="modal-category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="modal-editCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className='container p-4 vh-auto border rounded shadow'>
@@ -71,7 +71,7 @@ const CrearCategoria = () => {
                             </div>
                             <br />
                             <div className='d-flex justify-content-center'>
-                                <button type="submit" className="btn btn-success col-6" value="Crear">Crear categoría</button>
+                                <button type="submit" className="btn btn-success col-6" value="Crear">Guardar cambios</button>
                             </div>
                         </form>
                         <br />
@@ -83,4 +83,4 @@ const CrearCategoria = () => {
 
 }
 
-export default CrearCategoria;
+export default EditarCategory;

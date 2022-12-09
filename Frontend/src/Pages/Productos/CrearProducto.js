@@ -60,33 +60,33 @@ const CrearProducto = memo(() => {
                 <hr />
                 <form className="producto-form" onSubmit={handleSubmit(createProduct)}>
                     <div className="row text-success d-flex mb-3">
-                        <label for="nombre_producto" className="form-label">Nombre del producto</label>
+                        <label htmlFor="nombre_producto" className="form-label">Nombre del producto</label>
                         <input type="text" className="form-control" id="nombre_producto" {...register('nombre_producto', { required: true })} />
                     </div>
                     <div className="row text-success d-flex  mb-3">
-                        <label for="tipo_producto" className="form-label">Tipo del produto</label>
+                        <label htmlFor="tipo_producto" className="form-label">Tipo del produto</label>
                         <input type="text" className="form-control" id="tipo_producto" {...register('tipo_producto', { required: true })} />
                     </div>
                     <div className="row text-success d-flex  mb-3">
-                        <label for="cantidad" className="form-label">Cantidad del producto</label>
+                        <label htmlFor="cantidad" className="form-label">Cantidad del producto</label>
                         <input type="number" min="1" className="form-control" id="cantidad"{...register('cantidad', { required: true })} />
                     </div>
                     <div className="row text-success d-flex  mb-3">
-                        <label for="precio" className="form-label">Precio del producto</label>
+                        <label htmlFor="precio" className="form-label">Precio del producto</label>
                         <input type="number" min="1" className="form-control" id="precio" {...register('precio', { required: true })} />
                     </div>
                     <div className="row text-success d-flex  mb-3">
-                        <label for="descripcion" className="form-label">Descripción</label>
+                        <label htmlFor="descripcion" className="form-label">Descripción</label>
                         <textarea type="text" className="form-control text-area" id="descripcion" {...register('descripcion', { required: true })}></textarea>
                     </div>
-                    <div class="form-check">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" id="producto_destacado" value="1" {...register('producto_destacado', { required: true })}/>
-                                <label class="form-check-label" >Destacar producto.</label>
+                    <div className="form-check">
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" id="producto_destacado" value="1" {...register('producto_destacado', { required: true })}/>
+                                <label className="form-check-label" >Destacar producto.</label>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio"  id="producto_no_destacado" value="0" {...register('producto_destacado', { required: true })}/>
-                                <label class="form-check-label"> No destacar producto.</label>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio"  id="producto_no_destacado" value="0" {...register('producto_destacado', { required: true })}/>
+                                <label className="form-check-label"> No destacar producto.</label>
                         </div>
                     </div>
                     <br />

@@ -30,7 +30,7 @@ function Navbar() {
                         >
                             <Offcanvas.Header closeButton>
                                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                    <img src={Logo} class=" img-fluid inline-block" style={{ margin: '3rem 6rem', height: '10rem', weight: '10rem' }} alt="..." />
+                                    <img src={Logo} className=" img-fluid inline-block" style={{ margin: '3rem 6rem', height: '10rem', weight: '10rem' }} alt="..." />
                                 </Offcanvas.Title>
                             </Offcanvas.Header>
                             <Offcanvas.Body>
