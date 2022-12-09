@@ -37,7 +37,7 @@ const MostrarCategory = () => {
                                     id="btn-editEmpleado"
                                     className="btn btn-warning col-5"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#modal-editar-category"
+                                    data-bs-target="#modal-editCategory"
                                 >
                                     Editar categoría
                                 </div>
