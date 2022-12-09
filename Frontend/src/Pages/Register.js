@@ -115,13 +115,13 @@ const Login = () => {
                                     </Modal.Header> */}
                             {/* <Modal.Body> */}
                             <div className="input-field">
-                                <input type="text" className="form-control mt-4 mb-4" required placeholder="Nombre" {...register('nombreR', { required: true })} />
+                                <input type="text" className="form-control mt-4 mb-4"  maxlength="30" required placeholder="Nombre" {...register('nombreR', { required: true })} />
                             </div>
                             <div className="input-field">
-                                <input type="email" className="form-control mt-4 mb-4" required placeholder="Correo" {...register('correoR', { required: true })} />
+                                <input type="email" className="form-control mt-4 mb-4"  maxlength="50" required placeholder="Correo" {...register('correoR', { required: true })} />
                             </div>
                             <div className="input-field">
-                                <input type="password" className="form-control mt-4 mb-4" placeholder="contraseña" {...register('contraseñaR', { required: true })} />
+                                <input type="password" className="form-control mt-4 mb-4" maxlength="50" placeholder="contraseña" {...register('contraseñaR', { required: true })} />
                             </div>
 
                             <div className="row w-100 align-items-center">
