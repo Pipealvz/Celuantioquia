@@ -58,27 +58,29 @@ const CrearProveedor = memo(() => {
                 <form className="proveedor-form" onSubmit={handleSubmit(createProveedor)}>
                     <div className="row text-success d-flex mb-3">
                         <label for="nombre_producto" className="form-label">Nombre proveedor</label>
-                        <input type="text" className="form-control" id="nombre_proveedor" {...register('nombre_proveedor', { required: true })} />
+                        <input type="text" className="form-control" id="nombre_proveedor" maxlength="40" {...register('nombre_proveedor', { required: true })} />
                     </div>
                     <div className="row text-success d-flex  mb-3">
                         <label for="tipo_producto" className="form-label">Correo Proveedor</label>
-                        <input type="email" className="form-control mt-4 mb-4" id="correo_proveedor" {...register('correo_proveedor', { required: true })} />
+                        <input type="email" className="form-control mt-1 mb-2" id="correo_proveedor"  maxlength="50"{...register('correo_proveedor', { required: true })} />
                     </div>
                     <div className="row text-success d-flex  mb-3">
                         <label for="cantidad" className="form-label">contacto proveedor</label>
 
                         <div className="input-group  mb-3"style={{padding: '0rem 0rem'}}>
-                            <span className="input-group-text bg-success text-light">📱 604</span>
-                            <input type="number" min="1" className="form-control" id="contacto_proveedor"{...register('contacto_proveedor', { required: true })} />
+                            <span className="input-group-text bg-success text-light">📱 604/+57</span>
+                            <input type="number" min="1" max="1000000000000" className="form-control" id="contacto_proveedor"{...register('contacto_proveedor', { required: true })} />
                         </div>
                     </div>
                     <div className="row text-success d-flex  mb-3">
                         <label for="precio" className="form-label">Nit del proveedor</label>
-                        <input type="number" min="1" className="form-control" id="nit_proveedor" {...register('nit_proveedor', { required: true })} />
+                        <input type="number" min="1" className="form-control" id="nit_proveedor" max="50" {...register('nit_proveedor', { required: true })} />
                     </div>
                     <div className="row text-success d-flex  mb-3">
                         <label for="descripcion" className="form-label">Dirección del proveedor</label>
-                        <textarea type="text" className="form-control text-area" id="direccion_proveedor" {...register('direccion_proveedor', { required: true })}></textarea>
+                        <input type="text" className="form-control text-area" id="direccion_proveedor" 
+                        
+                        {...register('direccion_proveedor', { required: true })}></input>
                     </div>
                     <br />
                     <div className="col text-center">

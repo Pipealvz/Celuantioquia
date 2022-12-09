@@ -105,10 +105,10 @@ const Login = () => {
                         <form className="login-form" onSubmit={handleSubmit(onLogin)}>
                             <h2 className="mt-3 ">Iniciar Sesión</h2>
                             <div className="input-field">
-                                <input type="email" className="form-control mt-4 mb-4" placeholder="Correo" {...register('correo', { required: true })} />
+                                <input type="email" className="form-control mt-4 mb-4" maxlength="50" placeholder="Correo" {...register('correo', { required: true })} />
                             </div>
                             <div className="input-field">
-                                <input type="password" className="form-control mt-4 mb-4" placeholder="Contraseña" {...register('contrasena', { required: true })} />
+                                <input type="password" className="form-control mt-4 mb-4"  maxlength="50" placeholder="Contraseña" {...register('contrasena', { required: true })} />
                             </div>
 
                             <div className="row w-100 align-items-center">

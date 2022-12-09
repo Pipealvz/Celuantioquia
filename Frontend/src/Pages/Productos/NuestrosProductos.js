@@ -167,7 +167,7 @@ const NuestrosProductos = memo(() => {
                                     Advertencia
                                 </Modal.Title>
                             </Modal.Header>
-                            <Modal.Body>¿Estas seguro de queres eliminar este producto?</Modal.Body>
+                            <Modal.Body>¿Estas seguro de querer eliminar este producto?</Modal.Body>
 
                             <Modal.Footer>
                                 <Button variant="success" onClick={() => setDeletehow(false)}>

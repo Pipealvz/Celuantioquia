@@ -14,8 +14,6 @@ const App = () => {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light blue fixed-top">
-                <button id="sidebarCollapse" className="btn navbar-btn">
-                </button>
                 <a className="navbar-brand">
                     <h3 id="logo">CeluAntioquia</h3>
                 </a>
@@ -26,9 +24,9 @@ const App = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item active">
-                            <Link className="nav-link" id="link" to="/">
+                            <Link class="btn btn-light text-success" type="button" id="link" to="/">
                                 <i className="fas fa-sign-out-alt"></i>
-                                Cerrar sesion<span className="sr-only"></span></Link>
+                            Cerrar sesion<span className="sr-only"></span></Link>
                         </li>
 
                     </ul>
@@ -43,12 +41,6 @@ const App = () => {
                     </div>
 
                     <ul className="list-unstyled components">
-                        {/* <li>
-                            <Link to="/CrearProducto"><FaIcons.MdCreateNewFolder className="me-2" />Crear Producto</Link>
-                        </li>
-                        <li>
-                            <Link to="/NuestrosProductos"><i className="fas fa-clipboard"></i>Nuestros Productos</Link>
-                        </li> */}
 
                         <li>
                             <NavDropdown className="py-2 w-100 d-inline-block option"
@@ -59,13 +51,6 @@ const App = () => {
                             </NavDropdown>
                         </li>
 
-                        {/* <li>
-                            <Link type="text" to="/CrearProveedor"><FaIcons.MdCreateNewFolder className="me-2" />crear Proveedor</Link>
-                        </li>
-                        <li>
-                            <Link to="/NuestrosProveedores"><i className="fas fa-hands-helping"></i>Nuestros Proveedores</Link>
-                        </li> */}
-
                         <li>
                             <NavDropdown className="py-2 w-100 d-inline-block option"
                                 title="Acciones Proveedores">
@@ -75,20 +60,30 @@ const App = () => {
                             </NavDropdown>
                         </li>
 
-{/* 
-                        <li>
-                            <Link to="/CrearEmpleado"><FaIcons.MdCreateNewFolder className="me-2" />Crear Empleado</Link>
-                        </li>
-                        <li>
-                            <Link to="/NuestrosEmpleados"><i className="fas fa-info"></i>Nuestros Empleados</Link>
-                        </li> */}
-
                         
                         <li>
                             <NavDropdown className="py-2 w-100 d-inline-block option"
                                 title="Acciones Empleados">
                                 <NavDropdown.Item > <Link to="/CrearEmpleado"><FaIcons.MdCreateNewFolder className="me-2" />Crear Empleado</Link></NavDropdown.Item>
                                 <NavDropdown.Item > <Link to="/NuestrosEmpleados"><i className="fas fa-info"></i>Nuestros Empleados</Link></NavDropdown.Item>
+
+                            </NavDropdown>
+                        </li>
+
+                        <li>
+                            <NavDropdown className="py-2 w-100 d-inline-block option"
+                                title="Acciones Categoria">
+                                <NavDropdown.Item > <Link to="/CrearEmpleado"><FaIcons.MdCreateNewFolder className="me-2" />Crear Categoria</Link></NavDropdown.Item>
+                                <NavDropdown.Item > <Link to="/NuestrosEmpleados"><i className="fas fa-info"></i>Nuestros Categoria</Link></NavDropdown.Item>
+
+                            </NavDropdown>
+                        </li>
+
+                        <li>
+                            <NavDropdown className="py-2 w-100 d-inline-block option"
+                                title="Acciones Cliente">
+                                <NavDropdown.Item > <Link to="/CrearEmpleado"><FaIcons.MdCreateNewFolder className="me-2" />Crear Cliente</Link></NavDropdown.Item>
+                                <NavDropdown.Item > <Link to="/NuestrosEmpleados"><i className="fas fa-info"></i>Nuestros Cliente</Link></NavDropdown.Item>
 
                             </NavDropdown>
                         </li>
