@@ -105,8 +105,8 @@ const NuestrosProductos = memo(() => {
                 <h2 className='text-success text-center text-uppercase fs-1'>productos</h2>
                 <br />
                 <br />
-                <div class="row">
-                    <Link class="btn btn-success" type="button" to="/CrearProducto">Crear</Link>
+                <div className="row">
+                    <Link className="btn btn-success" type="button" to="/CrearProducto">Crear</Link>
                 </div>
                 <br />
                 <br />
@@ -243,15 +243,15 @@ const NuestrosProductos = memo(() => {
                                         />
                                     </Form.Group>
                                     <Form.Group>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" value="1" id="flexRadioDefault1" {...register('producto_destacado', { required: true })} />
-                                            <label class="form-check-label" for="flexRadioDefault1">
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="radio" name="flexRadioDefault" value="1" id="flexRadioDefault1" {...register('producto_destacado', { required: true })} />
+                                            <label className="form-check-label" for="flexRadioDefault1">
                                                 Destacar producto.
                                             </label>
                                         </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" value="0" id="flexRadioDefault2" checked {...register('producto_destacado', { required: true })} />
-                                            <label class="form-check-label" for="flexRadioDefault2">
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="radio" name="flexRadioDefault" value="0" id="flexRadioDefault2" checked {...register('producto_destacado', { required: true })} />
+                                            <label className="form-check-label" for="flexRadioDefault2">
                                                 No destacar producto.
                                             </label>
                                         </div>

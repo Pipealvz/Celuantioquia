@@ -104,11 +104,11 @@ const NuestrosProveedores = memo(() => {
 
                 <h2 className='text-success text-center text-uppercase fs-1'>Proveedores</h2>
                 <br/>
-                <div class="d-grid gap-2 col-6 mx-auto">
-                    <Link class="btn btn-success" type="button" to="/CrearProveedor">Crear Proveedor</Link>
+                <div className="d-grid gap-2 col-6 mx-auto">
+                    <Link className="btn btn-success" type="button" to="/CrearProveedor">Crear Proveedor</Link>
                 </div>
                 <br/>
-                <table class="table text-success">
+                <table className="table text-success">
                     <thead>
                         <tr>
                             <th scope="col">#Id</th>
@@ -120,12 +120,12 @@ const NuestrosProveedores = memo(() => {
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody class="table-group-divider ">
+                    <tbody className="table-group-divider ">
 
                         {post.map((item) => {
 
                             return (
-                                <tr class="table-light text-success ">
+                                <tr className="table-light text-success ">
                                     <th scope="row" key={item.id_proveedor}>{item.id_proveedor}</th>
                                     <td>{item.nombre_proveedor}</td>
                                     <td>{item.correo_proveedor}</td>

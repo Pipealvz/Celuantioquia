@@ -37,7 +37,7 @@ const App = () => {
                 style={{ width: '25%' }}>
                 <nav id="sidebar">
                     <div className="sidebar-header">
-                        <img src={Logo} class=" img-fluid inline-block" style={{ margin: '1rem 2rem', height: '10rem', weight: '10rem' }} alt="..." />
+                        <img src={Logo} className=" img-fluid inline-block" style={{ margin: '1rem 2rem', height: '10rem', weight: '10rem' }} alt="..." />
                     </div>
 
                     <ul className="list-unstyled components">
