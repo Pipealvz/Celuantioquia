@@ -14,20 +14,19 @@ const CrearEmpleado = () => {
     const empleadoRegister = values => {
 
         console.log("Empleado registrado");
-        Axios.post("", {
+        Axios.post("https://celuantioqueno.onrender.com/empleado/crearEmpleado", {
             
-            nombre_empleado: values.nombre_empleado,
-            correo_empleado: values.correo_empleado,
-            contrasena_empleado: values.contraseña_empleado,
-            documento_empleado: values.documento_empleado,
-            tipo_empleado: values.tipo_empleado,
-            direccion_empleado: values.direccion_empleado,
-            telefono_empleado: values.telefono_empleado,
-            fecha_nacimiento_empleado: values.fecha_nacimiento_empleado,
-            rol_empleado: values.rol_empleado
+        nombre_empleado:values.nombre_empleado,
+        rol_empleado: values.rol_empleado,
+        documento_identidad: values.documento_identidad,
+        tipo_documento: values.tipo_documento,
+        direccion_empleado: values.direccion_empleado,
+        telefono_empleado: values.telefono_empleado,
+        fecha_nacimiento_empleado: values.fecha_nacimiento_empleado,
+        correo_empleado: values.correo_empleado,
+        contraseña_empleado: values.contraseña_empleado
 
         },
-            //  { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, }
 
         )
             .then(function (res) {
@@ -70,7 +69,7 @@ const CrearEmpleado = () => {
                                         <option className="form-control" id="tipo_documento">Cédula ciudadana</option>
                                         <option className="form-control" id="tipo_documento">Cédula extranjera</option>
                                     </select>
-                                    <input type="number" min="1" className="form-control" id="documento_empleado" {...register('documento_empleado', { required: true })} />
+                                    <input type="number" min="1" max="10000000000000" className="form-control" id="documento_identidad" {...register('documento_identidad', { required: true })} />
                                 </div>
                             </div>
                             <div className="row text-success d-flex mb-3">
@@ -97,8 +96,8 @@ const CrearEmpleado = () => {
                             <div className="row text-success d-flex  mb-3">
                                 <span>Rol del empleado</span>
                                 <select htmlFor="rol_empleado" className="form-select" {...register('rol_empleado', { required: true })}>
-                                    <option className="form-control" id="rol_empleado">Administrador</option>
-                                    <option className="form-control" id="rol_empleado">Empleado</option>
+                                    <option className="form-control" id="rol_empleado" value="1">Administrador</option>
+                                    <option className="form-control" id="rol_empleado" value="0">Empleado</option>
                                 </select>
                             </div>
                             <div className="row text-success d-flex  mb-3">
@@ -106,22 +105,15 @@ const CrearEmpleado = () => {
                                 <input type="text" className="form-control" id="direccion_empleado" {...register('direccion_empleado', { required: true })} />
                             </div>
 
+                            <div className="row text-success d-flex  mb-3">
+                                <label htmlFor="fecha_nacimiento_empleado" className="form-label">Dirección del empleado</label>
+                                <input type="date" className="form-control" id="fecha_nacimiento_empleado" {...register('fecha_nacimiento_empleado', { required: true })} />
+                            </div>
+
                             <br />
                             <div className='d-flex justify-content-center'>
-                                <button type="submit" className="btn btn-success col-6" value="Crear">Registrar Empleado</button>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                                    <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                        Default radio
-                                    </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
-                                    <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                        Default checked radio
-                                    </label>
-                            </div>
+                                <input type="submit" className="btn btn-success col-6" value="Registrar Empleado"/>
+                            </div>                     
                         </form>
                         <br />
                     </div>

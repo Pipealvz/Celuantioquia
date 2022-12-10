@@ -64,7 +64,7 @@ const App = () => {
                         <li>
                             <NavDropdown className="py-2 w-100 d-inline-block option"
                                 title="Acciones Empleados">
-                                <NavDropdown.Item > <Link to="/CrearEmpleado"><FaIcons.MdCreateNewFolder className="me-2" />Crear Empleado</Link></NavDropdown.Item>
+                                    
                                 <NavDropdown.Item > <Link to="/NuestrosEmpleados"><i className="fas fa-info"></i>Nuestros Empleados</Link></NavDropdown.Item>
 
                             </NavDropdown>
@@ -73,8 +73,8 @@ const App = () => {
                         <li>
                             <NavDropdown className="py-2 w-100 d-inline-block option"
                                 title="Acciones Categoria">
-                                <NavDropdown.Item > <Link to="/CrearEmpleado"><FaIcons.MdCreateNewFolder className="me-2" />Crear Categoria</Link></NavDropdown.Item>
-                                <NavDropdown.Item > <Link to="/NuestrosEmpleados"><i className="fas fa-info"></i>Nuestros Categoria</Link></NavDropdown.Item>
+                                <NavDropdown.Item > <Link to="/CrearCategoria"><FaIcons.MdCreateNewFolder className="me-2" />Crear Categoria</Link></NavDropdown.Item>
+                                <NavDropdown.Item > <Link to="/NuestrasCategorias"><i className="fas fa-info"></i>Nuestros Categoria</Link></NavDropdown.Item>
 
                             </NavDropdown>
                         </li>
@@ -82,7 +82,6 @@ const App = () => {
                         <li>
                             <NavDropdown className="py-2 w-100 d-inline-block option"
                                 title="Acciones Cliente">
-                                <NavDropdown.Item > <Link to="/CrearEmpleado"><FaIcons.MdCreateNewFolder className="me-2" />Crear Cliente</Link></NavDropdown.Item>
                                 <NavDropdown.Item > <Link to="/NuestrosEmpleados"><i className="fas fa-info"></i>Nuestros Cliente</Link></NavDropdown.Item>
 
                             </NavDropdown>
