@@ -11,6 +11,7 @@ const productos = require("./routes/productos");
 const proveedor = require("./routes/proveedor");
 const categoria = require("./routes/categoria");
 const empleado = require("./routes/empleado");
+const cliente = require("./routes/cliente");
 
 
 
@@ -26,6 +27,7 @@ app.use('/producto', productos);
 app.use('/proveedor', proveedor);
 app.use('/categoria', categoria);
 app.use('/empleado', empleado);
+app.use("/cliente", cliente)
 
 
 
