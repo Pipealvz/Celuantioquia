@@ -85,10 +85,10 @@ router.post('/eliminarEmpleado', async (req, res) => {
 });
 
 //Actualizar Empleado
-router.post('/actualizarProveedor', async (req, res) => {
+router.post('/actualizarEmpleado', async (req, res) => {
     const { id_empleado,rol_empleado,direccion_empleado, telefono_empleado, correo_empleado, contraseña_empleado } = req.body;
 
-    db.query('UPDATE Empleado SET  rol = ?,  direccion_vivienda = ? ,telefono_contacto = ?, correo_empleado = ? , contraseña_empleado = ?  WHERE id_empleado = ?',
+    db.query('UPDATE Empleado SET  rol = ?,  direccion_empleado = ? ,telefono_empleado = ?, correo_empleado = ? , contraseña_empleado = ?  WHERE id_empleado = ?',
         [rol_empleado,  direccion_empleado, telefono_empleado, correo_empleado, contraseña_empleado, id_empleado],
         async (err, result) => {
             if (!err) {
