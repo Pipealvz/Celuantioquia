@@ -11,13 +11,13 @@ import * as FaIcons from "react-icons/md";
 
 
 
-const MostrarEmpleados = () => {
+export default function  MostrarEmpleados  () {
 
     const [empleados, setEmpleados] = useState();
 
     const [deleteShow, setDeletehow] = React.useState(false);
     const [modalData, setModalData] = React.useState(null);
-    const [ estableceDatos] = useState(null);
+    const [ datosE, estableceDatos] = useState(null);
 
 
 
@@ -106,7 +106,7 @@ const MostrarEmpleados = () => {
                                             >
                                                 <FaIcons.MdModeEdit className="" />
                                             </div>
-                                            <EditarEmpleado />
+                                            
                                             <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setDeletehow(true); }} ><FaIcons.MdDelete className="" /></Button>
                                         </div>
                                     </td>
@@ -115,8 +115,9 @@ const MostrarEmpleados = () => {
                             )
 
                         })}
-                    </tbody>
+                    </tbody> 
                 </table>
+                <EditarEmpleado setDatosEditarEmpleados={datosE} />
                 <Modal
                     show={deleteShow}
                     onHide={() => setDeletehow(false)}
@@ -147,5 +148,3 @@ const MostrarEmpleados = () => {
     )
 
 }
-
-export default MostrarEmpleados;

@@ -12,7 +12,9 @@ export default function EditarEmpleado ({setDatosEditarEmpleados})  {
 
     const EditarEmpleado = values => {
 
-        Axios.post('https://celuantioqueno.onrender.com/producto/actualizarEmpleado', {
+        debugger;
+
+        Axios.post('https://celuantioqueno.onrender.com/empleado/actualizarEmpleado', {
             id_empleado: setDatosEditarEmpleados.id_empleado,
             rol_empleado: values.rol_empleado,
             direccion_empleado: values.direccion_empleado,
@@ -36,7 +38,7 @@ export default function EditarEmpleado ({setDatosEditarEmpleados})  {
             })
             .catch(function (error) {
                 console.log(error);
-                //             Alerta si ocurre algun error al crea el producto 
+                //             Alerta si ocurre algun error al crea el empleado 
 
                 Swal.fire({
                     title: "Error",
@@ -104,7 +106,7 @@ export default function EditarEmpleado ({setDatosEditarEmpleados})  {
 
                             <br />
                             <div className='d-flex justify-content-center'>
-                                <button type="submit" className="btn btn-success col-6" value="Crear">Guardar cambios</button>
+                                <input type="submit" className="btn btn-success col-6" value="Guardar cambios"/>
                             </div>
                         </form>
                         <br />
