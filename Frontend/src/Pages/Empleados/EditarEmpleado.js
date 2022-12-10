@@ -15,7 +15,7 @@ export default function EditarEmpleado ({setDatosEditarEmpleados})  {
         debugger;
 
         Axios.post('https://celuantioqueno.onrender.com/empleado/actualizarEmpleado', {
-            id_empleado: setDatosEditarEmpleados.id_empleado,
+            id_empleado: setDatosEditarEmpleados,
             rol_empleado: values.rol_empleado,
             direccion_empleado: values.direccion_empleado,
             telefono_empleado: values.telefono_empleado,
