@@ -111,7 +111,7 @@ const NuestrosProveedores = memo(() => {
                 <table className="table text-success">
                     <thead>
                         <tr>
-                            <th scope="col">#Id</th>
+                            <th scope="col">#</th>
                             <th scope="col">Nombre Proveedor</th>
                             <th scope="col">Correo Proveedor</th>
                             <th scope="col">Contacto</th>
@@ -126,7 +126,7 @@ const NuestrosProveedores = memo(() => {
 
                             return (
                                 <tr className="table-light text-success ">
-                                    <th scope="row" key={item.id_proveedor}>{item.id_proveedor}</th>
+                                    <th scope="row" key={item.id_proveedor}></th>
                                     <td>{item.nombre_proveedor}</td>
                                     <td>{item.correo_proveedor}</td>
                                     <td>{item.contacto_proveedor}</td>
