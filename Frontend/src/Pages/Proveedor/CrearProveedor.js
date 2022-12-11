@@ -74,7 +74,7 @@ const CrearProveedor = memo(() => {
                     </div>
                     <div className="row text-success d-flex  mb-3">
                         <label for="precio" className="form-label">Nit del proveedor</label>
-                        <input type="number" min="1" className="form-control" id="nit_proveedor" max="50" {...register('nit_proveedor', { required: true })} />
+                        <input type="number" min="1" className="form-control" id="nit_proveedor" max="10000000000000" {...register('nit_proveedor', { required: true })} />
                     </div>
                     <div className="row text-success d-flex  mb-3">
                         <label for="descripcion" className="form-label">Dirección del proveedor</label>
