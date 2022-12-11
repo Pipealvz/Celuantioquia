@@ -78,7 +78,7 @@ router.post('/eliminarCategorias', async (req, res) => {
 
 
 //Actualizar Categorias
-router.post('/actualizarProveedor', async (req, res)=>{
+router.post('/actualizarCategoria', async (req, res)=>{
     const {id_categoria, nombre_categoria, tipo_categoria, prioridad_categoria } = req.body;
 
         db.query('UPDATE Categoria SET  nombre_categoria = ?, tipo_categoria = ?, prioridad_categoria = ? WHERE id_categoria = ?',

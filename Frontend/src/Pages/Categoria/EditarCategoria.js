@@ -11,7 +11,7 @@ export default function EditarCategory  ({setDatosEditarCategoria})  {
     const categoryRegister = values => {
 
         console.log("Category register");
-        Axios.post("https://celuantioqueno.onrender.com/categoria/actualizarProveedor", {
+        Axios.post("https://celuantioqueno.onrender.com/categoria/actualizarCategoria", {
             id_categoria: setDatosEditarCategoria,
             nombre_categoria: values.nombre_categoria,
             tipo_categoria: values.tipo_categoria,
