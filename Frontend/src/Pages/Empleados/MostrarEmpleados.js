@@ -117,6 +117,7 @@ export default function  MostrarEmpleados  () {
                         })}
                     </tbody> 
                 </table>
+                
                 <EditarEmpleado setDatosEditarEmpleados={datosE} />
                 <Modal
                     show={deleteShow}
