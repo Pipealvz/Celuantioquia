@@ -41,11 +41,11 @@ router.post("/register", async (req, res) => {
 
     const { nombre, correo, contrasena } = req.body;
 
-    if (!nombre || !correo || !contrasena) return res.json({ status: "error", error: "Por favor envia datos" });
+    if (!nombre || !correo || !contrasena) return   res.status(400).json({ status: "error", error: "Por favor envia datos" });
     else {
         db.query("SELECT correo FROM Usuario WHERE correo = ?", [correo], async (err, result) => {
             if (err) return err;
-            if (result[0]) return res.json({ status: "error", error: "El correo ya ha sido registrado" })
+            if (result[0]) return   res.status(400).json({ status: "error", error: "El correo ya ha sido registrado" })
             else {
                 bcrypt.genSalt(10, function(err, salt) {
                     bcrypt.hash(contrasena, salt, function(err, hash) {

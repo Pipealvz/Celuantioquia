@@ -9,12 +9,12 @@ const db = require("../database/connection");
 router.post('/crearCategoria', async (req, res) => {
     const { nombre_categoria, tipo_categoria, prioridad_categoria } = req.body;
 
-    if (!nombre_categoria || !tipo_categoria || !prioridad_categoria) return res.json({ status: "error", error: "Por favor envia datos" });
+    if (!nombre_categoria || !tipo_categoria || !prioridad_categoria) return   res.status(400).json({ status: "error", error: "Por favor envia datos" });
 
     else {
         db.query("SELECT nombre_categoria FROM Categoria WHERE nombre_categoria = ?", [nombre_categoria], async (err, result) => {
             if (err) return err;
-            if (result[0]) return res.json({ status: "error", error: "Ya se ha registrado una categoria con este nombre" })
+            if (result[0]) return  res.status(400).json({ status: "error", error: "Ya se ha registrado una categoria con este nombre" })
 
             else {
                 db.query("INSERT INTO Categoria SET ?", {
@@ -37,7 +37,7 @@ router.post('/nuestrasCategorias', async (req, res) => {
         if (!err) {
             res.json(rows);
         } else {
-            res.json({ status: "error", error: "Error al consultar datos" });
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
         }
 
     });
@@ -52,7 +52,7 @@ router.post('/empleadoPorId', async (req, res) => {
         if (!err) {
             res.json(rows);
         } else {
-            res.json({ status: "error", error: "Error al consultar datos" });
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
         }
     });
 });
@@ -63,13 +63,13 @@ router.post('/eliminarCategorias', async (req, res) => {
     const { id_categoria } = req.body;
     db.query('SELECT id_categoria FROM Categoria WHERE id_categoria = ?', [id_categoria], async (err, result) => {
         if (err) return err;
-        if (!result[0]) return res.json({ status: "error", error: "No existe un empleado con este Id" })
+        if (!result[0]) return   res.status(400).json({ status: "error", error: "No existe un empleado con este Id" })
         else {
             db.query('DELETE FROM Categoria WHERE id_categoria = ? ', [id_categoria], async (err, result) => {
                 if (!err) {
                     res.json({ status: "success", error: "Se Elimino Correctamente el empleado" });
                 } else {
-                    res.json({ status: "error", error: "Error al eliminar" });
+                    res.status(400).json({ status: "error", error: "Error al eliminar" });
                 }
             });
         }
@@ -78,7 +78,7 @@ router.post('/eliminarCategorias', async (req, res) => {
 
 
 //Actualizar Categorias
-router.post('/actualizarProveedor', async (req, res)=>{
+router.post('/actualizarCategoria', async (req, res)=>{
     const {id_categoria, nombre_categoria, tipo_categoria, prioridad_categoria } = req.body;
 
         db.query('UPDATE Categoria SET  nombre_categoria = ?, tipo_categoria = ?, prioridad_categoria = ? WHERE id_categoria = ?',
@@ -87,7 +87,7 @@ router.post('/actualizarProveedor', async (req, res)=>{
             if (!err) {
                 res.json({ status: "success", error: "Se Actualizo Correctamente la Categoria" });
             } else {
-                res.json({ status: "error", error: "Error al actualizar" });
+                res.status(400).json({ status: "error", error: "Error al actualizar" });
             }
         });
 });

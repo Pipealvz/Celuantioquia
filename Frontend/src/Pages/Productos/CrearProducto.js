@@ -70,9 +70,7 @@ const CrearProducto = memo(() => {
                             <option value="Celular">Celular</option>
                             <option value="Accesorios de celular">Accesorios de celular</option>
                             <option value="Tableta">Tableta</option>
-                            <option value="Periferico">Periferico</option>
                             <option value="Audio">Audio</option>
-
                         </select>
                     </div>
                     <div className="row text-success d-flex  mb-3">
