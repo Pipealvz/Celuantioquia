@@ -73,13 +73,13 @@ export default function  MostrarEmpleados  () {
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nombre Emleado</th>
+                            <th scope="col">Nombre Empleado</th>
                             <th scope="col">Tipo Documento</th>
                             <th scope="col">Documento</th>
                             <th scope="col">Telefono</th>
                             <th scope="col">Correo</th>
                             <th scope="col">Cumpleaños</th>
-                            <th scope="col">accciones</th>
+                            <th scope="col">aciones</th>
                         </tr>
                     </thead>
                     <tbody className="table-group-divider ">

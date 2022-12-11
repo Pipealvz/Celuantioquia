@@ -5,14 +5,12 @@ import { useForm } from "react-hook-form"
 
 
 
-export default function EditarEmpleado ({setDatosEditarEmpleados})  {
+export default function EditarEmpleado({ setDatosEditarEmpleados }) {
 
     const { register, handleSubmit } = useForm();
 
 
     const EditarEmpleado = values => {
-
-        debugger;
 
         Axios.post('https://celuantioqueno.onrender.com/empleado/actualizarEmpleado', {
             id_empleado: setDatosEditarEmpleados,
@@ -48,8 +46,6 @@ export default function EditarEmpleado ({setDatosEditarEmpleados})  {
                 });
             });
     }
-
-
 
     return (<>
         <div className="modal fade" id="modal-editEmpleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -88,15 +84,15 @@ export default function EditarEmpleado ({setDatosEditarEmpleados})  {
                             <div className="row text-success d-flex  mb-3">
                                 <label htmlFor="telefono_empleado" className="form-label">Teléfono del empleado</label>
                                 <div className="input-group">
-                                    <span className="input-group-text bg-success text-light">📱 604 / +57</span>
+                                    <span className="input-group-text bg-success text-light" role="img" aria-label='img'>📱 604 / +57</span>
                                     <input type="number" min="1" className="form-control" id="telefono_empleado" placeholder="Número de teléfono o celular" {...register('telefono_empleado', { required: true })} />
                                 </div>
                             </div>
                             <div className="row text-success d-flex  mb-3">
                                 <span>Rol del empleado</span>
                                 <select htmlFor="rol_empleado" className="form-select" {...register('rol_empleado', { required: true })}>
-                                    <option className="form-control" id="rol_empleado" value="Administrador">Administrador</option>
-                                    <option className="form-control" id="rol_empleado" value="Empleado">Empleado</option>
+                                    <option className="form-control" id="rol_empleado" value="1">Administrador</option>
+                                    <option className="form-control" id="rol_empleado" value="0">Empleado</option>
                                 </select>
                             </div>
                             <div className="row text-success d-flex  mb-3">
@@ -106,7 +102,7 @@ export default function EditarEmpleado ({setDatosEditarEmpleados})  {
 
                             <br />
                             <div className='d-flex justify-content-center'>
-                                <input type="submit" className="btn btn-success col-6" value="Guardar cambios"/>
+                                <input type="submit" className="btn btn-success col-6" value="Guardar cambios" />
                             </div>
                         </form>
                         <br />
