@@ -6,25 +6,18 @@ import Swal from "sweetalert2";
 
 
 
-const CrearEmpleado = () => {
+const CrearCliente = () => {
 
     const { register, handleSubmit } = useForm();
     //const { empleados, setEmpleados } = useState();
 
-    const empleadoRegister = values => {
+    const clienteRegister = values => {
 
-        console.log("Empleado registrado");
-        Axios.post("https://celuantioqueno.onrender.com/empleado/crearEmpleado", {
+        console.log("Cliente registrado");
+        Axios.post("https://celuantioqueno.onrender.com/cliente/crearCliente", {
             
-        nombre_empleado:values.nombre_empleado,
-        rol_empleado: values.rol_empleado,
-        documento_identidad: values.documento_identidad,
-        tipo_documento: values.tipo_documento,
-        direccion_empleado: values.direccion_empleado,
-        telefono_empleado: values.telefono_empleado,
-        fecha_nacimiento_empleado: values.fecha_nacimiento_empleado,
-        correo_empleado: values.correo_empleado,
-        contraseña_empleado: values.contraseña_empleado
+
+        
 
         },
 
@@ -34,7 +27,7 @@ const CrearEmpleado = () => {
 
                 Swal.fire({
                     title: "Empleado registrado",
-                    text: "Se registró el empleado exitosamente",
+                    text: "Se registró el cliente exitosamente",
                     icon: "success",
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
@@ -48,14 +41,14 @@ const CrearEmpleado = () => {
 
                 Swal.fire({
                     title: "Error",
-                    text: "No se pudo registrar el empleado, intente de nuevo",
+                    text: "No se pudo registrar el cliente, intente de nuevo",
                     icon: "error",
                     confirmButtonText: "Aceptar",
                 });
             });
     };
     return (
-        <div className="modal fade" id="modal-empleado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="modal-cliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className='container p-4 vh-auto border rounded shadow'>
@@ -124,4 +117,4 @@ const CrearEmpleado = () => {
 
 }
 
-export default CrearEmpleado;
+export default CrearCliente;

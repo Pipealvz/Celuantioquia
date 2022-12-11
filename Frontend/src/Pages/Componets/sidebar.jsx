@@ -82,7 +82,7 @@ const App = () => {
                         <li>
                             <NavDropdown className="py-2 w-100 d-inline-block option"
                                 title="Acciones Cliente">
-                                <NavDropdown.Item > <Link to="/NuestrosEmpleados"><i className="fas fa-info"></i>Nuestros Cliente</Link></NavDropdown.Item>
+                                <NavDropdown.Item > <Link to="/NuestrosClientes"><i className="fas fa-info"></i>Nuestros Cliente</Link></NavDropdown.Item>
 
                             </NavDropdown>
                         </li>

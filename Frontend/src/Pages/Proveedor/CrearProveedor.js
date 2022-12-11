@@ -68,7 +68,7 @@ const CrearProveedor = memo(() => {
                         <label for="cantidad" className="form-label">contacto proveedor</label>
 
                         <div className="input-group  mb-3"style={{padding: '0rem 0rem'}}>
-                            <span className="input-group-text bg-success text-light">📱 604/+57</span>
+                            <span className="input-group-text bg-success text-light" role="img" aria-label='img'>📱 604/+57</span>
                             <input type="number" min="1" max="1000000000000" className="form-control" id="contacto_proveedor"{...register('contacto_proveedor', { required: true })} />
                         </div>
                     </div>

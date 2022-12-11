@@ -19,6 +19,7 @@ import NuestrosEmpleados from '../Pages/Empleados/MostrarEmpleados';
 
 import CrearCategoria  from '../Pages/Categoria/CrearCategoria';
 import MostrarCategoria from '../Pages/Categoria/MostrarCategoria';
+import MostrarCliente from '../Pages/Clientes/MostrarCliente';
 
 
 
@@ -45,7 +46,7 @@ function RoutesIndex() {
         <Route exact path="/NuestrasCategorias" element={<MostrarCategoria/>} />
         <Route exact path="/CrearCategoria" element={<CrearCategoria/>} />
 
-
+        <Route exact path="/NuestrosClientes" element={<MostrarCliente />} />
       </Routes>
 
     </BrowserRouter>
