@@ -12,12 +12,12 @@ router.post('/crearProducto', async (req, res) => {
         producto_destacado } = req.body;
 
     if (!nombre_producto || !tipo_producto || !cantidad || !precio || !descripcion
-        || !producto_destacado) return res.json({ status: "error", error: "Por favor envia datos" });
+        || !producto_destacado) return   res.status(400).json({ status: "error", error: "Por favor envia datos" });
 
     else {
         db.query("SELECT nombre_producto FROM Producto WHERE nombre_producto = ?;", [nombre_producto], async (err, result) => {
             if (err) return err;
-            if (result[0]) return res.json({ status: "error", error: "Ya se ha registrado un producto con este nombre" })
+            if (result[0]) return   res.status(400).json({ status: "error", error: "Ya se ha registrado un producto con este nombre" })
 
             else {
                 db.query("INSERT INTO Producto SET ?", {
@@ -43,7 +43,7 @@ router.post('/nuestrosProductos', async (req, res) => {
         if (!err) {
             res.json(rows);
         } else {
-            res.json({ status: "error", error: "Error al consultar datos" });
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
         }
     });
 });
@@ -54,13 +54,13 @@ router.post('/eliminarProducto', async (req, res) => {
     const { id_producto } = req.body;
     db.query('SELECT id_producto FROM Producto WHERE id_producto = ?', [id_producto], async (err, result) => {
         if (err) return err;
-        if (!result[0]) return res.json({ status: "error", error: "No existe un producto con este Id" })
+        if (!result[0]) return   res.status(400).json({ status: "error", error: "No existe un producto con este Id" })
         else {
             db.query('DELETE FROM Producto WHERE id_producto = ? ', [id_producto], async (err, result) => {
                 if (!err) {
                     res.json({ status: "success", error: "Se Elimino Correctamente el Producto" });
                 } else {
-                    res.json({ status: "error", error: "Error al eliminar" });
+                    res.status(400).json({ status: "error", error: "Error al eliminar" });
                 }
             });
         }
@@ -80,7 +80,7 @@ router.post('/actualizarProducto', async (req, res)=>{
             if (!err) {
                 res.json({ status: "success", error: "Se Actualizo Correctamente el Producto" });
             } else {
-                res.json({ status: "error", error: "Error al actualizar" });
+                res.status(400).json({ status: "error", error: "Error al actualizar" });
             }
         });
 });
@@ -95,7 +95,7 @@ router.post('/productoPorId', async (req, res) => {
         if (!err) {
             res.json(rows);
         } else {
-            res.json({ status: "error", error: "Error al consultar datos" });
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
         }
     });
 });

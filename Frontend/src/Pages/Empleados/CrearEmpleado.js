@@ -9,7 +9,6 @@ import Swal from "sweetalert2";
 const CrearEmpleado = () => {
 
     const { register, handleSubmit } = useForm();
-    //const { empleados, setEmpleados } = useState();
 
     const empleadoRegister = values => {
 
@@ -74,23 +73,25 @@ const CrearEmpleado = () => {
                             </div>
                             <div className="row text-success d-flex mb-3">
                                 <label htmlFor="nombre_empleado" className="form-label">Nombre del empleado</label>
-                                <input type="text" className="form-control" id="nombre_empleado" {...register('nombre_empleado', { required: true })} />
+                                <input type="text" className="form-control" id="nombre_empleado"maxlength="50" {...register('nombre_empleado', { required: true })} />
                             </div>
                             <div className="row text-success d-flex  mb-3">
                                 <label htmlFor="correo_empleado" className="form-label">Correo del empleado</label>
-                                <input type="email" className="form-control" id="correo_empleado" {...register('correo_empleado', { required: true })} />
+                                <input type="email" className="form-control" id="correo_empleado" maxlength="50" {...register('correo_empleado', { required: true })} />
                             </div>
                             <div className="row text-success d-flex  mb-3">
-                                <label htmlFor="contraseña_empleado" className="form-label">Contraseña del empleado</label>
+                                <label htmlFor="contraseña_empleado" className="form-label" >Contraseña del empleado</label>
                                 <div className="input-group">
-                                    <input type="password" className="form-control" id="contraseña_empleado" {...register('contraseña_empleado', { required: true })} />
+                                    <input type="password" className="form-control" id="contraseña_empleado" maxlength="30" {...register('contraseña_empleado', { required: true })} />
                                 </div>
                             </div>
                             <div className="row text-success d-flex  mb-3">
                                 <label htmlFor="telefono_empleado" className="form-label">Teléfono del empleado</label>
                                 <div className="input-group">
+                                
                                     <span className="input-group-text bg-success text-light" role="img" aria-label='img'>📱 604 / +57</span>
                                     <input type="number" min="1" className="form-control" id="telefono_empleado" placeholder="Número de teléfono o celular" {...register('telefono_empleado', { required: true })} />
+
                                 </div>
                             </div>
                             <div className="row text-success d-flex  mb-3">
@@ -102,11 +103,11 @@ const CrearEmpleado = () => {
                             </div>
                             <div className="row text-success d-flex  mb-3">
                                 <label htmlFor="direccion_empleado" className="form-label">Dirección del empleado</label>
-                                <input type="text" className="form-control" id="direccion_empleado" {...register('direccion_empleado', { required: true })} />
+                                <input type="text" className="form-control" id="direccion_empleado" maxlength="50" {...register('direccion_empleado', { required: true })} />
                             </div>
 
                             <div className="row text-success d-flex  mb-3">
-                                <label htmlFor="fecha_nacimiento_empleado" className="form-label">Dirección del empleado</label>
+                                <label htmlFor="fecha_nacimiento_empleado" className="form-label">Fecha de nacimiento</label>
                                 <input type="date" className="form-control" id="fecha_nacimiento_empleado" {...register('fecha_nacimiento_empleado', { required: true })} />
                             </div>
 

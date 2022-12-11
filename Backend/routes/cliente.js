@@ -43,7 +43,7 @@ router.post('/nuestrosClientes', async (req, res) => {
         if (!err) {
             res.json(rows);
         } else {
-            res.json({ status: "error", error: "Error al consultar datos" });
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
         }
 
     });
@@ -58,7 +58,7 @@ router.post('/clientePorId', async (req, res) => {
         if (!err) {
             res.json(rows);
         } else {
-            res.json({ status: "error", error: "Error al consultar datos" });
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
         }
     });
 });
@@ -69,13 +69,13 @@ router.post('/eliminarCliente', async (req, res) => {
     const { id_cliente } = req.body;
     db.query('SELECT id_cliente FROM Cliente WHERE id_cliente = ?', [id_cliente], async (err, result) => {
         if (err) return err;
-        if (!result[0]) return res.json({ status: "error", error: "No existe un Cliente con este Id" })
+        if (!result[0]) return   res.status(400).json({ status: "error", error: "No existe un Cliente con este Id" })
         else {
             db.query('DELETE FROM Cliente WHERE id_cliente = ? ', [id_cliente], async (err, result) => {
                 if (!err) {
                     res.json({ status: "success", error: "Se Elimino Correctamente el Cliente" });
                 } else {
-                    res.json({ status: "error", error: "Error al eliminar" });
+                    res.status(400).json({ status: "error", error: "Error al eliminar" });
                 }
             });
         }
@@ -95,7 +95,7 @@ router.post('/actualizarCliente', async (req, res) => {
             if (!err) {
                 res.json({ status: "success", error: "Se Actualizo Correctamente la Cliente" });
             } else {
-                res.json({ status: "error", error: "Error al actualizar" });
+                res.status(400).json({ status: "error", error: "Error al actualizar" });
             }
         });
 });
