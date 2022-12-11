@@ -11,12 +11,12 @@ router.post('/crearEmpleado', async (req, res) => {
         fecha_nacimiento_empleado, correo_empleado, contraseña_empleado } = req.body;
 
     if (!nombre_empleado || !rol_empleado || !documento_identidad || !tipo_documento || !direccion_empleado || !telefono_empleado
-        || !fecha_nacimiento_empleado || !correo_empleado || !contraseña_empleado) return res.json({ status: "error", error: "Por favor envia datos" });
+        || !fecha_nacimiento_empleado || !correo_empleado || !contraseña_empleado) return   res.status(400).json({ status: "error", error: "Por favor envia datos" });
 
     else {
         db.query("SELECT documento_identidad FROM Empleado WHERE documento_identidad = ?", [documento_identidad], async (err, result) => {
             if (err) return err;
-            if (result[0]) return res.json({ status: "error", error: "Ya se ha registrado un empleado con este documento de identidad" })
+            if (result[0]) return   res.status(400).json({ status: "error", error: "Ya se ha registrado un empleado con este documento de identidad" })
 
             else {
                 db.query("INSERT INTO Empleado SET ?", {
@@ -31,7 +31,7 @@ router.post('/crearEmpleado', async (req, res) => {
                     contraseña_empleado: contraseña_empleado
                 }, (error, result) => {
                     if (error) return error;
-                    return res.json({ status: "success", success: "La Categoria se ha registrado" });
+                    return   res.json({ status: "success", success: "La Empleado se ha registrado" });
                 });
             }
         });
@@ -45,7 +45,7 @@ router.post('/nuestrosEmpleados', async (req, res) => {
         if (!err) {
             res.json(rows);
         } else {
-            res.json({ status: "error", error: "Error al consultar datos" });
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
         }
 
     });
@@ -60,7 +60,7 @@ router.post('/empleadoPorId', async (req, res) => {
         if (!err) {
             res.json(rows);
         } else {
-            res.json({ status: "error", error: "Error al consultar datos" });
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
         }
     });
 });
@@ -77,7 +77,7 @@ router.post('/eliminarEmpleado', async (req, res) => {
                 if (!err) {
                     res.json({ status: "success", error: "Se Elimino Correctamente el empleado" });
                 } else {
-                    res.json({ status: "error", error: "Error al eliminar" });
+                    res.status(400).json({ status: "error", error: "Error al eliminar" });
                 }
             });
         }
@@ -95,7 +95,7 @@ router.post('/actualizarEmpleado', async (req, res) => {
             if (!err) {
                 res.json({ status: "success", error: "Se Actualizo Correctamente el Empleado" });
             } else {
-                res.json({ status: "error", error: "Error al actualizar" });
+                res.status(400).json({ status: "error", error: "Error al actualizar" });
             }
         });
 });
