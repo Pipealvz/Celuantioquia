@@ -112,7 +112,7 @@ const MostrarCliente = () => {
                                     <td>{item.correo_cliente}</td>
                                     <td>{item.direccion_vivienda}</td>
                                     <td>
-                                        <button className='btn btn-success bg-' data-bs-toggle="modal" data-bs-target="#deleteCustomer" onClick={() => { setModalData(item)}}>
+                                        <button className='btn btn-success bg-' data-bs-toggle="modal" data-bs-target="#deleteCustomer" onClick={() => { setModalData(item) }}>
                                             <span><FaIcons.MdDelete></FaIcons.MdDelete></span>
                                         </button>
                                     </td>
@@ -120,15 +120,18 @@ const MostrarCliente = () => {
                             )
                         })}
                         <div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro de eliminar este cliente?</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Advertencia</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Estás seguro de eliminar este cliente?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-success" onClick={() => {deleteCliente(modalData.id_cliente)}}>Sí, eliminar</button>
+                                        <button type="button" class="btn btn-success" onClick={() => { deleteCliente(modalData.id_cliente) }}>Sí, eliminar</button>
                                     </div>
                                 </div>
                             </div>
