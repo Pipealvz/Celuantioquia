@@ -26,7 +26,8 @@ router.post('/crearProducto', async (req, res) => {
                     cantidad: cantidad,
                     precio: precio,
                     descripcion: descripcion,
-                    producto_destacado: producto_destacado
+                    producto_destacado: producto_destacado,
+                    rol_empleado: 1
                 }, (error, result) => {
                     if (error) return error;
                     return res.json({ status: "success", success: "El Producto se ha registrado" });
