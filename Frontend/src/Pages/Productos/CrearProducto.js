@@ -67,10 +67,10 @@ const CrearProducto = memo(() => {
                         <label for="tipo_producto" className="form-label">Tipo del produto</label>
                         <select class="form-select" aria-label="Default select example"
                         id="tipo_producto" {...register('tipo_producto', { required: true })} >
-                            <option value="Celular">Celular</option>
-                            <option value="Accesorios de celular">Accesorios de celular</option>
-                            <option value="Tableta">Tableta</option>
-                            <option value="Audio">Audio</option>
+                            <option value="1">Celular</option>
+                            <option value="2">Accesorios de celular</option>
+                            <option value="3">Tableta</option>
+                            <option value="4">Audio</option>
                         </select>
                     </div>
                     <div className="row text-success d-flex  mb-3">
