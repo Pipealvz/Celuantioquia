@@ -21,7 +21,7 @@ router.post('/crearEmpleado', async (req, res) => {
             else {
                 db.query("INSERT INTO Empleado SET ?", {
                     nombre_empleado: nombre_empleado,
-                    rol_empleado: rol_empleado,
+                    rol_empleado: 1,
                     documento_identidad: documento_identidad,
                     tipo_documento: tipo_documento,
                     direccion_empleado: direccion_empleado,
