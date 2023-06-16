@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "opn:browser": "opn http://localhost:3306",
     "build": "npm run build"
   },
   "author": "",

@@ -27,7 +27,7 @@ app.use('/producto', productos);
 app.use('/proveedor', proveedor);
 app.use('/categoria', categoria);
 app.use('/empleado', empleado);
-app.use("/cliente", cliente)
+app.use("/cliente", cliente);
 
 
 

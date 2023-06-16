@@ -5,25 +5,23 @@ const router = express.Router();
 const db = require("../database/connection");
 
 
-//Crear Categoria
+//Crear categoria
 router.post('/crearCategoria', async (req, res) => {
-    const { nombre_categoria, tipo_categoria, prioridad_categoria } = req.body;
+    const { nombre_categoria} = req.body;
 
-    if (!nombre_categoria || !tipo_categoria || !prioridad_categoria) return   res.status(400).json({ status: "error", error: "Por favor envia datos" });
+    if (!nombre_categoria) return   res.status(400).json({ status: "error", error: "Por favor envia datos" });
 
     else {
-        db.query("SELECT nombre_categoria FROM Categoria WHERE nombre_categoria = ?", [nombre_categoria], async (err, result) => {
+        db.query("SELECT nombre_categoria FROM categoria WHERE nombre_categoria = ?", [nombre_categoria], async (err, result) => {
             if (err) return err;
-            if (result[0]) return  res.status(400).json({ status: "error", error: "Ya se ha registrado una categoria con este nombre" })
+            if (result[0]) return  res.status(400).json({ status: "error", error: "Ya se ha registrado una categoría con este nombre" })
 
             else {
-                db.query("INSERT INTO Categoria SET ?", {
+                db.query("INSERT INTO categoria SET ?", {
                     nombre_categoria: nombre_categoria,
-                    tipo_categoria: tipo_categoria,
-                    prioridad_categoria: prioridad_categoria
                 }, (error, result) => {
                     if (error) return error;
-                    return res.json({ status: "success", success: "La Categoria se ha registrado" });
+                    return res.json({ status: "success", success: "La categoría se ha registrado" });
                 });
             }
         });
@@ -33,7 +31,7 @@ router.post('/crearCategoria', async (req, res) => {
 
 //Mostar Categorias
 router.post('/nuestrasCategorias', async (req, res) => {
-    db.query('SELECT * FROM Categoria;', (err, rows, fields) => {
+    db.query('SELECT * FROM categoria;', (err, rows, fields) => {
         if (!err) {
             res.json(rows);
         } else {
@@ -44,11 +42,11 @@ router.post('/nuestrasCategorias', async (req, res) => {
 });
 
 //Mostar Categorias por id
-router.post('/empleadoPorId', async (req, res) => {
+router.post('/categoriaId', async (req, res) => {
 
     const { id_categoria } = req.body;
     
-    db.query('SELECT * FROM Categoria  WHERE id_categoria = ?',[id_categoria] , async (err, rows, result) => {
+    db.query('SELECT * FROM categoria  WHERE id_categoria = ?',[id_categoria] , async (err, rows, result) => {
         if (!err) {
             res.json(rows);
         } else {
@@ -61,13 +59,13 @@ router.post('/empleadoPorId', async (req, res) => {
 router.post('/eliminarCategorias', async (req, res) => {
 
     const { id_categoria } = req.body;
-    db.query('SELECT id_categoria FROM Categoria WHERE id_categoria = ?', [id_categoria], async (err, result) => {
+    db.query('SELECT id_categoria FROM categoria WHERE id_categoria = ?', [id_categoria], async (err, result) => {
         if (err) return err;
-        if (!result[0]) return   res.status(400).json({ status: "error", error: "No existe un empleado con este Id" })
+        if (!result[0]) return   res.status(400).json({ status: "error", error: "No existe la categoría con ese id" })
         else {
-            db.query('DELETE FROM Categoria WHERE id_categoria = ? ', [id_categoria], async (err, result) => {
+            db.query('DELETE FROM categoria WHERE id_categoria = ? ', [id_categoria], async (err, result) => {
                 if (!err) {
-                    res.json({ status: "success", error: "Se Elimino Correctamente el empleado" });
+                    res.json({ status: "success", error: "Se Elimino Correctamente la categoría" });
                 } else {
                     res.status(400).json({ status: "error", error: "Error al eliminar" });
                 }
@@ -79,13 +77,13 @@ router.post('/eliminarCategorias', async (req, res) => {
 
 //Actualizar Categorias
 router.post('/actualizarCategoria', async (req, res)=>{
-    const {id_categoria, nombre_categoria, tipo_categoria, prioridad_categoria } = req.body;
+    const {id_categoria, nombre_categoria } = req.body;
 
-        db.query('UPDATE Categoria SET  nombre_categoria = ?, tipo_categoria = ?, prioridad_categoria = ? WHERE id_categoria = ?',
-        [ nombre_categoria, tipo_categoria, prioridad_categoria, id_categoria],
+        db.query('UPDATE categoria SET  nombre_categoria = ? WHERE id_categoria = ?',
+        [ nombre_categoria, id_categoria],
         async (err, result)=> {
             if (!err) {
-                res.json({ status: "success", error: "Se Actualizo Correctamente la Categoria" });
+                res.json({ status: "success", error: "Se actualizó correctamente la categoria" });
             } else {
                 res.status(400).json({ status: "error", error: "Error al actualizar" });
             }

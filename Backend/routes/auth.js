@@ -49,7 +49,7 @@ router.post("/register", async (req, res) => {
             else {
                 bcrypt.genSalt(10, function(err, salt) {
                     bcrypt.hash(contrasena, salt, function(err, hash) {
-                        db.query("INSERT INTO Usuario SET ?", { nombre: nombre, correo: correo, contrasena: hash, rol_usuario: 1 }, (error, result) => {
+                        db.query("INSERT INTO Usuario SET ?", { nombre: nombre, correo: correo, contrasena: hash, rol_usuario:  "admin" }, (error, result) => {
                             if (error) return error;
                             return res.json({ status: "success", success: "El usuario ha sido registrado" });
                         })
