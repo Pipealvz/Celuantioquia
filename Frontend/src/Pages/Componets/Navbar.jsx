@@ -1,61 +1,62 @@
 import React from 'react';
 //import { Link } from 'react-router-dom';
-
-//import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-//import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
-import NavBar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import Navbar from 'react-bootstrap/Navbar';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 
-import * as FaIcons from "react-icons/md";
-import  "../../Css/Navbar.css";
 import Logo from '../../Logo.png';
+import "../../Css/Navbar.css";
 
 
 
-function Navbar() {
+function NavbarHome() {
     return (
         <>
-            {[false].map((expand) => (
-                <NavBar key={expand} bg="text-light bg-success stylenav" expand={expand} className="mb-3" >
-                    <Container fluid>
-                        <NavBar.Brand href="#"><h3 className="text-light">CeluAntioquia</h3></NavBar.Brand>
-                        <NavBar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-                        <NavBar.Offcanvas
-                            id={`offcanvasNavbar-expand-${expand}`}
-                            aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                            placement="start"
-                        >
-                            <Offcanvas.Header closeButton>
-                                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                    <img src={Logo} className=" img-fluid inline-block" style={{ margin: '3rem 6rem', height: '10rem', weight: '10rem' }} alt="..." />
-                                </Offcanvas.Title>
-                            </Offcanvas.Header>
-                            <Offcanvas.Body>
-                                <Nav className="flex-grow-1 pe-3">
-                                <NavDropdown  className="text-success py-2 w-100 d-inline-block option"
-                                        title="Nombre Usuario"
-                                        id={`offcanvasNavbarDropdown-expand-${expand}`}>
-                                        <NavDropdown.Item href="/" className="text-success py-2 w-100 d-inline-block option">Cerrar sesion</NavDropdown.Item>                                      
-                                    </NavDropdown>
-
-                                    <Nav.Link href="/CrearProducto" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdCreateNewFolder className="me-2" /> Crear Producto</Nav.Link>
-                                    <Nav.Link href="/NuestrosProductos" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Nuestros Productos</Nav.Link>
-                                    <Nav.Link href="/CrearEmpleado" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Crear Empleado</Nav.Link>
-                                    <Nav.Link href="/NuestrosEmpleados" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Nuestros Empleados</Nav.Link>
-                                    <Nav.Link href="/CrearProveedor" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Crear proveedor</Nav.Link>
-                                    <Nav.Link href="/NuestrosProveedores" className="text-success py-2 w-100 d-inline-block option" activeClassName="active"><FaIcons.MdAssignment className="me-2" />Nuestros  proveedores</Nav.Link>
-
-                                </Nav>
-                            </Offcanvas.Body>
-                        </NavBar.Offcanvas>
+            <div  className="shadow shadowNav" >
+                <Navbar collapseOnSelect expand="lg" bg="light" color='success'>
+                    <Container>
+                        <Navbar.Brand href="#home">
+                            <img
+                                src={Logo}
+                                width="80"
+                                height="80"
+                                className="d-inline-block align-top"
+                                alt="React Bootstrap logo"
+                            />{' '}
+                            <h4 className="d-inline-block pt-4 text-success" >Celuantioquia</h4>
+                        </Navbar.Brand>
+                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                        <Navbar.Collapse id="responsive-navbar-nav">
+                            <Nav className="me-auto">
+                                <Nav.Link href="#features" className="fs-5">Catalogo</Nav.Link>
+                                <Nav.Link href="#pricing" className="fs-5">Pricing</Nav.Link>
+                            </Nav>
+                            <Nav>
+                                <Button variant="outline-success" className="m-3" size="lg">Iniciar sesion</Button>
+                                <Button variant="success" className="m-3" size="lg">Registrarse</Button>
+                            </Nav>
+                        </Navbar.Collapse>
                     </Container>
-                </NavBar>
-                ))} 
+                </Navbar>
+                <Navbar collapseOnSelect expand="lg" bg="light" color='success' style={{padding:'0px'}}>                    
+                        <ListGroup horizontal className='container-fluid  list-group-flush'  style={{padding:'0px'}} >
+                            <ListGroup.Item action variant="success">This</ListGroup.Item>
+                            <ListGroup.Item action variant="success">ListGroup</ListGroup.Item>
+                            <ListGroup.Item action variant="success">renders</ListGroup.Item>
+                            <ListGroup.Item action variant="success">horizontally!</ListGroup.Item>
+                            <ListGroup.Item action variant="success">horizontally!</ListGroup.Item>
+                            <ListGroup.Item action variant="success">horizontally!</ListGroup.Item>
+                            <ListGroup.Item action variant="success">horizontally!</ListGroup.Item>
+                            <ListGroup.Item action variant="success">horizontally!</ListGroup.Item>
+                            <ListGroup.Item action variant="success">horizontally!</ListGroup.Item>
+                        </ListGroup>               
+                </Navbar>
+            </div>
         </>
+    
     );
 }
 
-export default Navbar;
+export default NavbarHome;

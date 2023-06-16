@@ -1,7 +1,7 @@
-
-.stylenav {
-    padding: 1rem 2rem;
-    border-radius: 0rem 0rem 0.5rem 0.5rem ;
-
-
+.shadowNav{  
+    box-shadow: 
+    3px 3px 3px #49b349,
+    7px 7px 7px #5cd55c
+    
+    !important;
 }

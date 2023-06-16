@@ -4,10 +4,10 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import Login from "../Pages/Login";
+// import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Home from "../Pages/Home";
-
+// Home del cliente
 import CrearProducto from '../Pages/Productos/CrearProducto';
 import NuestrosProductos from '../Pages/Productos/NuestrosProductos';
 
@@ -21,7 +21,9 @@ import CrearCategoria  from '../Pages/Categoria/CrearCategoria';
 import MostrarCategoria from '../Pages/Categoria/MostrarCategoria';
 import MostrarCliente from '../Pages/Clientes/MostrarCliente';
 
+//Home del empleado 
 
+import HomeCliente from '../Pages/HomeCliente/HomeCliente';
 
 
 function RoutesIndex() {
@@ -30,7 +32,8 @@ function RoutesIndex() {
       <Routes>
 
 
-        <Route exact path="/" element={<Login />} />
+        {/* <Route exact path="/" element={<Login />} /> */}
+        <Route exact path="/" element={<HomeCliente />} />
         <Route exact path="/Registro" element={<Register />} />
         <Route exact path="/Home" element={<Home />} />
         
