@@ -15,13 +15,8 @@ const CrearCliente = () => {
 
         console.log("Cliente registrado");
         Axios.post("https://celuantioqueno.onrender.com/cliente/crearCliente", {
-            
 
-        
-
-        },
-
-        )
+        },)
             .then(function (res) {
                 console.log(res);
 
@@ -86,13 +81,13 @@ const CrearCliente = () => {
                                     <input type="number" min="1" className="form-control" id="telefono_empleado" placeholder="Número de teléfono o celular" {...register('telefono_empleado', { required: true })} />
                                 </div>
                             </div>
-                            <div className="row text-success d-flex  mb-3">
+                            {/* <div className="row text-success d-flex  mb-3">
                                 <span>Rol del empleado</span>
                                 <select htmlFor="rol_empleado" className="form-select" {...register('rol_empleado', { required: true })}>
                                     <option className="form-control" id="rol_empleado" value="1">Administrador</option>
                                     <option className="form-control" id="rol_empleado" value="0">Empleado</option>
                                 </select>
-                            </div>
+                            </div> */}
                             <div className="row text-success d-flex  mb-3">
                                 <label htmlFor="direccion_empleado" className="form-label">Dirección del empleado</label>
                                 <input type="text" className="form-control" id="direccion_empleado" {...register('direccion_empleado', { required: true })} />
@@ -105,8 +100,8 @@ const CrearCliente = () => {
 
                             <br />
                             <div className='d-flex justify-content-center'>
-                                <input type="submit" className="btn btn-success col-6" value="Registrar Empleado"/>
-                            </div>                     
+                                <input type="submit" className="btn btn-success col-6" value="Registrar Empleado" />
+                            </div>
                         </form>
                         <br />
                     </div>

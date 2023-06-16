@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
-
+import { Link } from 'react-router-dom';
 import Logo from '../../Logo.png';
 import "../../Css/Navbar.css";
 
@@ -31,7 +31,7 @@ function NavbarHome() {
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link href="#features" className="fs-5">Catalogo</Nav.Link>
-                                <Nav.Link href="#pricing" className="fs-5">Pricing</Nav.Link>
+                                <Nav.Link href="#pricing" className="fs-5">Carrito de compra</Nav.Link>
                             </Nav>
                             <Nav>
                                 <Button variant="outline-success" className="m-3" size="lg">Iniciar sesion</Button>
@@ -40,7 +40,7 @@ function NavbarHome() {
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
-                <Navbar collapseOnSelect expand="lg" bg="light" color='success' style={{padding:'0px'}}>                    
+                {/* <Navbar collapseOnSelect expand="lg" bg="light" color='success' style={{padding:'0px'}}>                    
                         <ListGroup horizontal className='container-fluid  list-group-flush'  style={{padding:'0px'}} >
                             <ListGroup.Item action variant="success">This</ListGroup.Item>
                             <ListGroup.Item action variant="success">ListGroup</ListGroup.Item>
@@ -52,7 +52,7 @@ function NavbarHome() {
                             <ListGroup.Item action variant="success">horizontally!</ListGroup.Item>
                             <ListGroup.Item action variant="success">horizontally!</ListGroup.Item>
                         </ListGroup>               
-                </Navbar>
+                </Navbar> */}
             </div>
         </>
     

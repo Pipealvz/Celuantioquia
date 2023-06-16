@@ -85,6 +85,28 @@ router.post('/nuestrosProductos', async (req, res) => {
     });
 });
 
+//Mostar Inventario
+router.post('/inventario', async (req, res) => {
+    db.query('SELECT prd.nombre_producto, cat.nombre_categoria, prd.precio, prd.descripcion, inv.cantidad_producto, prv.nombre_proveedor, prv.correo_proveedor, prv.contacto_proveedor, prv.nit_proveedor FROM inventario inv INNER JOIN producto prd ON inv.id_producto_fk = prd.id_producto INNER JOIN proveedor prv ON inv.id_proveedor_fk = prv.id_proveedor INNER JOIN categoria cat ON prd.tipo_producto = cat.id_categoria', (err, rows, result) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
+        }
+    });
+});
+
+//Mostar Catalogo
+router.post('/catalogo', async (req, res) => {
+    db.query('SELECT prd.nombre_producto, cat.nombre_categoria, prd.precio, prd.descripcion, inv.cantidad_producto FROM inventario inv INNER JOIN producto prd ON inv.id_producto_fk = prd.id_producto INNER JOIN categoria cat ON prd.tipo_producto = cat.id_categoria', (err, rows, result) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
+        }
+    });
+});
+
 //Eliminar producto
 router.post('/eliminarProducto', async (req, res) => {
 

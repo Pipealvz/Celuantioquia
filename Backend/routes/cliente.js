@@ -8,10 +8,10 @@ const db = require("../database/connection");
 //Crear Categoria
 router.post('/crearCliente', async (req, res) => {
     const { nombre_cliente, documento_cliente, tipo_documento_cliente, direccion_vivienda, telefono_contacto, correo_cliente,
-        contraseña_cliente, rol_cliente } = req.body;
+        contraseña_cliente } = req.body;
 
     if (!nombre_cliente || !documento_cliente || !tipo_documento_cliente || !direccion_vivienda || !telefono_contacto || !correo_cliente ||
-        !contraseña_cliente || !rol_cliente) return res.status(400).json({ status: "error", error: "Por favor envía datos" });
+        !contraseña_cliente) return res.status(400).json({ status: "error", error: "Por favor envía datos" });
 
     else {
         db.query("SELECT documento_cliente FROM cliente WHERE documento_cliente = ?", [documento_cliente], async (err, result) => {
@@ -26,8 +26,7 @@ router.post('/crearCliente', async (req, res) => {
                     direccion_vivienda: direccion_vivienda,
                     telefono_contacto: telefono_contacto,
                     correo_cliente: correo_cliente,
-                    contraseña_cliente: contraseña_cliente,
-                    rol_cliente: 0
+                    contraseña_cliente: contraseña_cliente
                 }, (error, result) => {
                     if (error) return error;
                     return res.json({ status: "success", success: "El cliente se ha registrado correctamente" });

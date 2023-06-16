@@ -36,34 +36,79 @@ router.post("/login", async (req, res) => {
     }
 });
 
-// Register
+// Register administrador/Empleado
 router.post("/register", async (req, res) => {
 
-    const { nombre, correo, contrasena } = req.body;
+    const { nombre_empleado, documento_identidad, tipo_documento, direccion_empleado, telefono_empleado,
+        fecha_nacimiento_empleado, correo_empleado, contraseña_empleado } = req.body;
 
-    if (!nombre || !correo || !contrasena) return   res.status(400).json({ status: "error", error: "Por favor envia datos" });
+    if (!nombre_empleado  || !documento_identidad || !tipo_documento || !direccion_empleado || !telefono_empleado
+        || !fecha_nacimiento_empleado || !correo_empleado || !contraseña_empleado) return   res.status(400).json({ status: "error", error: "Por favor envia datos" });
     else {
-        db.query("SELECT correo FROM Usuario WHERE correo = ?", [correo], async (err, result) => {
+        db.query("SELECT correo FROM usuario WHERE correo = ?", [correo_empleado], async (err, result) => {
             if (err) return err;
             if (result[0]) return   res.status(400).json({ status: "error", error: "El correo ya ha sido registrado" })
             else {
                 bcrypt.genSalt(10, function(err, salt) {
-                    bcrypt.hash(contrasena, salt, function(err, hash) {
-                        db.query("INSERT INTO Usuario SET ?", { nombre: nombre, correo: correo, contrasena: hash, rol_usuario:  "admin" }, (error, result) => {
-                            if (error) return error;
-                            return res.json({ status: "success", success: "El usuario ha sido registrado" });
-                        })
+                    bcrypt.hash(contraseña_empleado, salt, function(err, hash) {
+                        db.query("INSERT INTO usuario SET ?", { nombre: nombre_empleado, correo: correo_empleado, contrasena: hash, rol_usuario: 5 }, (error, result) => {
+                            if (err) {
+                                return res.json({ status: "error", error: "El usuario no ha sido registrado" });
+                            } else {
+                                db.query("INSERT INTO empleado SET ?", {
+                                    nombre_empleado: nombre_empleado,
+                                    documento_identidad: documento_identidad,
+                                    tipo_documento: tipo_documento,
+                                    direccion_empleado: direccion_empleado,
+                                    telefono_empleado: telefono_empleado,
+                                    fecha_nacimiento_empleado: fecha_nacimiento_empleado,
+                                    correo_empleado: correo_empleado,
+                                    contraseña_empleado: contraseña_empleado
+                                }, (error, result) => {
+                                    if (error) return error;
+                                    return   res.json({ status: "success", success: "La Empleado se ha registrado" });
+                                }); 
+                            }                           
+                        });
                     });
                 });
-                // const salt = await bcrypt.genSalt(10);
-                // const contrasena = bcrypt.hash(contrasenaU, salt);
-                // console.log(contrasena)
             }
         });
     }
 });
 
 
+
+// Register cliente/Usuario
+router.post("/registerCli", async (req, res) => {
+
+    const { nombre, documento, tipo_documento ,direccion, telefono , correo, contrasena } = req.body;
+
+    if ( !nombre || !documento || !tipo_documento || !direccion||  !telefono  || !correo || !contrasena ) return res.status(400).json({ status: "error", error: "Por favor envia datos" });
+    else {
+        db.query("SELECT correo FROM usuario WHERE correo = ?", [correo], async (err, result) => {
+            if (err) return err;
+            if (result[0]) return   res.status(400).json({ status: "error", error: "El correo ya ha sido registrado" })
+            else {
+                bcrypt.genSalt(10, function(err, salt) {
+                    bcrypt.hash(contrasena, salt, function(err, hash) {
+                        db.query("INSERT INTO cliente SET ?", { nombre_cliente: nombre, documento_cliente: documento,tipo_documento_cliente: tipo_documento ,direccion_vivienda: direccion,telefono_contacto: telefono, correo_cliente: correo, contrasena_cliente: hash, rol_usuario: 0 }, (error, result) => {
+                            if (err) {
+                                return res.json({ status: "success", success: "El cliente ha sido registrado" });
+                            } else {
+                                db.query("INSERT INTO usuario SET ?", { nombre: nombre, correo: correo, contrasena: hash, rol_usuario: 0 }, (error, result) => {
+                                    if (error) return error;
+                                    return res.json({ status: "success", success: "El usuario ha sido registrado" });
+                                });
+                            }                            
+                        })                   
+                    });
+                }); 
+                
+            }
+        });
+    }
+});
 
 
 module.exports = router;
