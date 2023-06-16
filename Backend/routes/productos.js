@@ -8,16 +8,14 @@ const db = require("../database/connection");
 
 //Crear producto
 router.post('/crearProducto', async (req, res) => {
-    const { nombre_producto, tipo_producto, precio, descripcion, producto_destacado } = req.body;
-    const { cantidad, id_producto_fk } = req.body;
+    const { nombre_producto, tipo_producto, precio, descripcion, producto_destacado, cantidad} = req.body;
 
-    
 
-    if (!nombre_producto || !tipo_producto || !precio || !descripcion || !producto_destacado) {
-        return res
-            .status(400)
-            .json({ status: 'error', error: 'Por favor envía datos' });
-    } else {
+    // if (!nombre_producto || !tipo_producto || !precio || !descripcion || !producto_destacado) {
+    //     return res
+    //         .status(400)
+    //         .json({ status: 'error', error: 'Por favor envía datos' });
+    // } else {
 
         db.query(
             'SELECT nombre_producto FROM producto WHERE nombre_producto = ?;',
@@ -48,10 +46,10 @@ router.post('/crearProducto', async (req, res) => {
                                 return res
                                     .status(500)
                                     .json({ status: 'error', error: 'Ha ocurrido un error en el servidor' });
-                            }
-                        });
+                            } else {
 
-
+                        var ultimo_id = ultimoidProducto();  
+                        var id_producto_fk =  ultimo_id.ultimoId;    
                     db.query(
                         'INSERT INTO inventario SET ?;',
                         {
@@ -69,10 +67,31 @@ router.post('/crearProducto', async (req, res) => {
                                 success: 'El producto se ha registrado'
                             });
                         });
+                            }
+                        });
                 }
             });
-    }
+    // }
 });
+
+
+function ultimoidProducto() {
+    db.query(
+        'SELECT MAX(id_producto) AS ultimo_id FROM producto',
+        (err, result) => {
+            if (err) {
+                return res.status(500).json({ status: 'error', error: 'Ha ocurrido un error en el servidor' });
+            }
+
+            const ultimoId = result[0].ultimo_id;
+            return res.json({
+                status: 'success',
+                ultimoId: ultimoId
+            });
+        }
+    );
+}
+
 
 //Mostar Productos
 router.post('/nuestrosProductos', async (req, res) => {
@@ -133,7 +152,7 @@ router.post('/actualizarProducto', async (req, res) => {
     const { id_producto, nombre_producto, tipo_producto, precio, descripcion,
         producto_destacado } = req.body;
 
-    const {id_inventario, cantidad } = req.body;
+    const { id_inventario, cantidad } = req.body;
 
     db.query('UPDATE producto SET nombre_producto = ?, tipo_producto = ?, precio = ?, descripcion = ?, producto_destacado = ?  WHERE id_producto = ?',
         [nombre_producto, tipo_producto, precio, descripcion, producto_destacado, id_producto],
@@ -144,7 +163,7 @@ router.post('/actualizarProducto', async (req, res) => {
                 res.status(400).json({ status: "error", error: "Error al actualizar" });
             }
         });
-        db.query('UPDATE inventario SET cantidad = ?,  WHERE id_inventario = ?',
+    db.query('UPDATE inventario SET cantidad = ?,  WHERE id_inventario = ?',
         [cantidad],
         async (err, result) => {
             if (!err) {
