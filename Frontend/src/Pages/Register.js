@@ -54,8 +54,8 @@ const Login = () => {
 
     const onRegister = values => {
 
-        console.log("Esregister");
-        Axios.post("https://celuantioqueno.onrender.com/auth/register", {
+        
+        Axios.post("https://celuantioqueno.onrender.com/auth/registerCli", {
             nombre: values.nombreR,
             correo: values.correoR,
             contrasena: values.contraseñaR
@@ -76,6 +76,7 @@ const Login = () => {
                         window.location.reload(true);
                     }
                 });
+                console.log("Esregister");
             })
             .catch(function (error) {
                 console.log(error);

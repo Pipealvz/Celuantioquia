@@ -40,7 +40,7 @@ router.post('/crearEmpleado', async (req, res) => {
 
 //Mostar Empleado
 router.post('/nuestrosEmpleados', async (req, res) => {
-    db.query('SELECT * FROM Empleado;', (err, rows, fields) => {
+    db.query('SELECT * FROM empleado;', (err, rows, fields) => {
         if (!err) {
             res.json(rows);
         } else {
@@ -55,7 +55,7 @@ router.post('/empleadoPorId', async (req, res) => {
 
     const { id_empleado } = req.body;
 
-    db.query('SELECT * FROM Empleado  WHERE id_empleado = ?', [id_empleado], async (err, rows, result) => {
+    db.query('SELECT * FROM empleado  WHERE id_empleado = ?', [id_empleado], async (err, rows, result) => {
         if (!err) {
             res.json(rows);
         } else {
@@ -68,11 +68,11 @@ router.post('/empleadoPorId', async (req, res) => {
 router.post('/eliminarEmpleado', async (req, res) => {
 
     const { id_empleado } = req.body;
-    db.query('SELECT id_empleado FROM Empleado WHERE id_empleado = ?', [id_empleado], async (err, result) => {
+    db.query('SELECT id_empleado FROM empleado WHERE id_empleado = ?', [id_empleado], async (err, result) => {
         if (err) return err;
         if (!result[0]) return res.json({ status: "error", error: "No existe un empleado con este Id" })
         else {
-            db.query('DELETE FROM Empleado WHERE id_empleado = ? ', [id_empleado], async (err, result) => {
+            db.query('DELETE FROM empleado WHERE id_empleado = ? ', [id_empleado], async (err, result) => {
                 if (!err) {
                     res.json({ status: "success", error: "Se Elimino Correctamente el empleado" });
                 } else {
@@ -88,7 +88,7 @@ router.post('/actualizarEmpleado', async (req, res) => {
     const { id_empleado, rol_empleado,direccion_empleado, telefono_empleado, correo_empleado, contraseña_empleado } =
         req.body;
 
-    db.query('UPDATE Empleado SET  rol_empleado = ?,  direccion_empleado = ? ,telefono_empleado = ?, correo_empleado = ? , contraseña_empleado = ?  WHERE id_empleado = ?',
+    db.query('UPDATE empleado SET  rol_empleado = ?,  direccion_empleado = ? ,telefono_empleado = ?, correo_empleado = ? , contraseña_empleado = ?  WHERE id_empleado = ?',
         [rol_empleado,  direccion_empleado, telefono_empleado, correo_empleado, contraseña_empleado, id_empleado],
         async (err, result) => {
             if (!err) {

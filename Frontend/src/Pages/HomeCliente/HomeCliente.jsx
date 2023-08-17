@@ -1,7 +1,8 @@
 import Navbar from '../Componets/Navbar';
 import React from 'react';
 import { useEffect } from 'react';
-import { Container, Row, Col, Card, Form, Button  } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Container, Row, Col, Card, Button  } from "react-bootstrap";
 
 
 export default function HomeCliente() {
@@ -49,7 +50,7 @@ export default function HomeCliente() {
                     </div>
                     <Row className="mb-5">
                         <Col md={6} lg={3}>
-                            <a href="#">
+                            <Link href="#">
                                 <Card className="card card-background align-items-start mb-4 mb-lg-0 undefined">
 
                                     <Card.Body className="card-body text-center w-100 pt-8">
@@ -58,10 +59,10 @@ export default function HomeCliente() {
                                         </div>
                                     </Card.Body>
                                 </Card>
-                            </a>
+                            </Link>
                         </Col>
                         <Col md={6} lg={3}>
-                            <a href="#">
+                            <Link href="#">
                                 <div className="card card-background align-items-start mb-4 mb-lg-0 undefined">
                                 
                                     <div className="card-body text-center w-100 pt-8">
@@ -70,10 +71,10 @@ export default function HomeCliente() {
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </Col>
                         <Col md={6} lg={3}>
-                            <a href="#">
+                            <Link href="#">
                                 <div className="card card-background align-items-start mb-4 mb-lg-0 undefined">
                         
                                     <div className="card-body text-center w-100 pt-8">
@@ -82,10 +83,10 @@ export default function HomeCliente() {
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </Col>
                         <Col md={6} lg={3}>
-                            <a href="#">
+                            <Link href="#">
                                 <div className="card card-background align-items-start mb-4 mb-lg-0 undefined">
               
                                     <div className="card-body text-center w-100 pt-8">
@@ -94,7 +95,7 @@ export default function HomeCliente() {
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </Col>
                     </Row>
 
