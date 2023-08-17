@@ -4,7 +4,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-// import Login from "../Pages/Login";
+import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Home from "../Pages/Home";
 // Home del cliente
@@ -24,6 +24,7 @@ import MostrarCliente from '../Pages/Clientes/MostrarCliente';
 //Home del empleado 
 
 import HomeCliente from '../Pages/HomeCliente/HomeCliente';
+import MostrarInventario from '../Pages/Productos/Inventario';
 
 
 function RoutesIndex() {
@@ -35,6 +36,7 @@ function RoutesIndex() {
         {/* <Route exact path="/" element={<Login />} /> */}
         <Route exact path="/" element={<HomeCliente />} />
         <Route exact path="/Registro" element={<Register />} />
+        <Route exact path="/Login" element={<Login />} />
         <Route exact path="/Home" element={<Home />} />
         
         <Route exact path="/CrearProducto" element={<CrearProducto />} />
@@ -50,6 +52,8 @@ function RoutesIndex() {
         <Route exact path="/CrearCategoria" element={<CrearCategoria/>} />
 
         <Route exact path="/NuestrosClientes" element={<MostrarCliente />} />
+        
+        <Route exact path="/inventario" element={<MostrarInventario />} />
       </Routes>
 
     </BrowserRouter>

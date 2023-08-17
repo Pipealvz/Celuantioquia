@@ -14,7 +14,7 @@ router.post("/login", async (req, res) => {
     if (!correo || !contrasena) return res.json({ status: "error", error: "Por favor envia datos" });
     else {
         try {
-            db.query("SELECT * FROM Usuario WHERE correo = ?", [correo], async (err, result) => {
+            db.query("SELECT * FROM usuario WHERE correo = ?", [correo], async (err, result) => {
                 console.log(result)
                 if (err) return err;
                 if (!result[0]) return res.status(400).json({ status: "error", error: "Correo o contraseña incorrectos" })

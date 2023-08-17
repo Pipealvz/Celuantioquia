@@ -34,8 +34,8 @@ function NavbarHome() {
                                 <Nav.Link href="#pricing" className="fs-5">Carrito de compra</Nav.Link>
                             </Nav>
                             <Nav>
-                                <Button variant="outline-success" className="m-3" size="lg">Iniciar sesion</Button>
-                                <Button variant="success" className="m-3" size="lg">Registrarse</Button>
+                                <Link to="/Login" className="m-3 btn btn-outline-success text-success" type="button" id="link" size="lg">Iniciar sesion</Link>
+                                <Link to="/Registro" className="m-3 btn btn-success text-light" type="button" id="link" size="lg">Iniciar sesion</Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

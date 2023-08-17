@@ -2,14 +2,14 @@ import React from 'react';
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import Navbar from '../Componets/sidebar';
-import * as FaIcons from "react-icons/md";
+// import * as FaIcons from "react-icons/md";
 
 
 const MostrarInventario = () => {
 
 
     const [inventario, setInventario] = useState();
-    const [modalData, setModalData] = useState(null);
+    // const [modalData, setModalData] = useState(null);
 
     // const setDatosEditarEmpleados = (item) => {
     //     estableceDatos(item);
@@ -23,14 +23,14 @@ const MostrarInventario = () => {
             });
     }
 
-    function deleteCliente(id) {
-        Axios.post('https://celuantioqueno.onrender.com/cliente/eliminarCliente', {
-            id_inventario: id
-        })
-            .then(() => {
-                window.location.reload(true);
-            });
-    }
+    // function deleteCliente(id) {
+    //     Axios.post('https://celuantioqueno.onrender.com/cliente/eliminarCliente', {
+    //         id_inventario: id
+    //     })
+    //         .then(() => {
+    //             window.location.reload(true);
+    //         });
+    // }
 
     useEffect(() => {
         getInventory();
@@ -60,7 +60,7 @@ const MostrarInventario = () => {
     //     })
     // }
 
-    if (!cliente) return null;
+    if (!inventario) return null;
 
     return (
         <div className='d-flex'>
@@ -68,7 +68,7 @@ const MostrarInventario = () => {
 
             <div className='container p-4 vh-auto border rounded shadow' style={{ margin: '5rem 4rem 5rem 4rem' }}>
 
-                <h2 className='text-success text-center text-uppercase fs-1' >Lista de Clientes </h2>
+                <h2 className='text-success text-center text-uppercase fs-1' >Inventario</h2>
 
                 {/* <div className="container">
                     <div className="row-fluid mt-4 justify-content-center d-flex">
@@ -87,38 +87,41 @@ const MostrarInventario = () => {
                 <table className="table text-success">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre cliente</th>
-                            <th scope="col">Tipo documento</th>
-                            <th scope="col">Número documento</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">Dirección</th>
-                            <th scope="col">Acciones</th>
+                            <th scope="col">Nombre producto</th>
+                            <th scope="col">Nombre categoría</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Proveedor</th>
+                            <th scope="col">Correo proveedor</th>
+                            <th scope="col">Correo proveedor</th>
+                            <th scope="col">NIT proveedor</th>
                         </tr>
                     </thead>
                     <tbody className="table-group-divider ">
 
-                        {cliente.map((item) => {
+                        {inventario.map((item) => {
                             return (
 
                                 <tr className="table-light text-success ">
-                                    <td key={item.id_cliente}></td>
-                                    <td>{item.nombre_cliente} </td>
-                                    <td>{item.tipo_documento_cliente}</td>
-                                    <td>{item.documento_cliente}</td>
-                                    <td>{item.telefono_contacto}</td>
-                                    <td>{item.correo_cliente}</td>
-                                    <td>{item.direccion_vivienda}</td>
-                                    <td>
+                                    <td key={item.nombre_producto}></td>
+                                    <td>{item.nombre_categoria} </td>
+                                    <td>{item.precio}</td>
+                                    <td>{item.descripcion}</td>
+                                    <td>{item.cantidad_producto}</td>
+                                    <td>{item.nombre_proveedor}</td>
+                                    <td>{item.correo_proveedor}</td>
+                                    <td>{item.nit_proveedor}</td>
+                                    <td>{item.contacto_proveedor}</td>
+                                    {/* <td>
                                         <button className='btn btn-success bg-' data-bs-toggle="modal" data-bs-target="#deleteCustomer" onClick={() => { setModalData(item) }}>
                                             <span><FaIcons.MdDelete></FaIcons.MdDelete></span>
                                         </button>
-                                    </td>
+                                    </td> */}
                                 </tr>
                             )
                         })}
-                        <div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        {/* <div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -134,7 +137,7 @@ const MostrarInventario = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                     </tbody>
                 </table>
