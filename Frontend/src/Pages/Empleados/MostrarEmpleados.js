@@ -5,19 +5,20 @@ import { useEffect, useState } from 'react';
 import CrearEmpleado from './CrearEmpleado';
 import EditarEmpleado from './EditarEmpleado';
 import Navbar from '../Componets/sidebar';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import * as FaIcons from "react-icons/md";
+import Swal from 'sweetalert2';
+//import SpinnerGrow from '../SpinnerGrow';
+import SpinnerBorder from '../SpinnerBorder';
 
 
 
-export default function  MostrarEmpleados  () {
+export default function MostrarEmpleados() {
 
     const [empleados, setEmpleados] = useState();
 
-    const [deleteShow, setDeletehow] = React.useState(false);
-    const [modalData, setModalData] = React.useState(null);
-    const [ datosE, estableceDatos] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const [datosE, estableceDatos] = useState(null);
 
 
 
@@ -26,126 +27,135 @@ export default function  MostrarEmpleados  () {
     }
 
     const getEmpleados = () => {
-        Axios.post('https://celuantioqueno.onrender.com/empleado/nuestrosEmpleados')
+        Axios.post('http://localhost:3306/empleado/nuestrosEmpleados')
             .then((response) => {
                 setEmpleados(response.data);
                 console.log(response.data);
+                setIsLoading(false);
             });
     }
 
     function deleteEmpleado(id) {
-        Axios.post('https://celuantioqueno.onrender.com/empleado/eliminarEmpleado', {
-            id_empleado: id
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
         })
-            .then(() => {
-                window.location.reload(true);
-            });
+
+        swalWithBootstrapButtons.fire({
+            title: '¿Estás seguro?',
+            text: "Si se elimina este empleado, no podrá ser recuperado",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Axios.post('http://localhost:3306/empleado/eliminarEmpleado', {
+                    id_empleado: id
+                })
+                    .then(() => {
+                        swalWithBootstrapButtons.fire({
+                            title: 'Realizado',
+                            text: "Empleado eliminado!",
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: 'green'
+                        }).then(() => {
+                            window.location.reload();
+                        })
+                    });
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire({
+                    title: 'Cancelado',
+                    text: "No se eliminó ningún empleado",
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar',
+                    confirmButtonColor: 'green'
+                })
+            }
+        })
     }
 
     useEffect(() => {
         getEmpleados();
     }, []);
 
-    if (!empleados) return null;
-
     return (
-        <div className='d-flex'>
-            <Navbar />
+        <>
+            {
+                isLoading === true ?
+                    <SpinnerBorder />
+                    :
+                    <div className='d-flex'>
+                        <Navbar />
+                        <div className='container vh-auto' style={{ margin: '5rem 0rem 0rem 0rem' }}>
+                            <h2 className='text-success text-center text-uppercase fs-1' >Lista de Empleado </h2>
+                            <hr />
+                            <div className="d-flex mb-3">
+                                <form className="d-flex me-1">
+                                    <input className="form-control me-2" type="search" placeholder="Buscar empleado..." aria-label="Search" />
+                                    <button className="btn btn-outline-success" type="submit">Buscar</button>
+                                </form>
+                                <button type="button" className="col-2 btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Registrar Empleado
+                                </button>
+                            </div>
+                            <table className='container table table-hover'>
+                                <thead className='bg-success text-light'>
+                                    <tr>
+                                        <th className='text-center' scope="col">Cód.</th>
+                                        <th className='text-start col-2' scope="col">Nombre Empleado</th>
+                                        <th scope="col-3">Tipo</th>
+                                        <th className='text-start col' scope="col">Documento</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Correo</th>
+                                        <th scope="col">Fecha nacimiento</th>
+                                        <th scope="col">Aciones</th>
+                                    </tr>
+                                </thead>
+                                {empleados.map((item) => {
+                                    return (
+                                        <>
+                                            <tbody className='text-center text-capitalize' key={item.id_empleado}>
+                                                <tr>
+                                                    <td className='text-start' id='tdId'>{item.id_empleado}</td>
+                                                    <td className='text-start' id='tdName'>{item.nombre_empleado}</td>
+                                                    <td className='text-start' id='tdType'>{item.nombre_documento}</td>
+                                                    <td className='text-start' id='tdDocument'>{item.documento_identidad}</td>
+                                                    <td className='text-end' id='tdTelephone'>{item.telefono_empleado}</td>
+                                                    <td className='text-start' id='tdEmail'>{item.correo_empleado}</td>
+                                                    <td className='text-end' id='tdDate'>{item.fecha_nacimiento_empleado}</td>
+                                                    <td id='tdActions'>
+                                                        <div className='d-flex'>
+                                                            <button className="btn btn-danger me-1" onClick={() => { deleteEmpleado(item.id_empleado) }} ><FaIcons.MdDelete /> </button>
+                                                            <button className="btn btn-warning" id="btn-editEmpleado"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#modal-editEmpleado"
+                                                                onClick={() => { setDatosEditarEmpleados(item.id_empleado); }}> <FaIcons.MdModeEdit /></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </>
+                                    )
+                                })}
+                            </table>
 
-            <div className='container p-4 vh-auto border rounded shadow' style={{ margin: '5rem 4rem 5rem 4rem' }}>
+                            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <CrearEmpleado />
+                            </div>
 
-                <h2 className='text-success text-center text-uppercase fs-1' >Lista de Empleado </h2>
-
-                <div className="container">
-                    <div className="row-fluid mt-4 justify-content-center d-flex">
-                        <div
-                            id="btn-crelote"
-                            className="btn btn-success col-lg-4 col-12"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modal-empleado"
-                            style={{ marginBottom: '1rem' }}
-                        >
-                            Agregar empleado
+                            <EditarEmpleado setDatosEditarEmpleados={datosE} />
                         </div>
-                    </div>
-                </div>
-                <table className="table text-success">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre Empleado</th>
-                            <th scope="col">Tipo Documento</th>
-                            <th scope="col">Documento</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">Cumpleaños</th>
-                            <th scope="col">aciones</th>
-                        </tr>
-                    </thead>
-                    <tbody className="table-group-divider ">
-
-                        {empleados.map((item) => {
-                            return (
-
-                                <tr className="table-light text-success ">
-                                    <th scope="row" key={item.id_empleado}></th>
-                                    <td>{item.nombre_empleado} </td>
-                                    <td>{item.tipo_documento}</td>
-                                    <td>{item.documento_identidad}</td>
-                                    <td>{item.telefono_empleado}</td>
-                                    <td>{item.correo_empleado}</td>
-                                    <td>{item.fecha_nacimiento_empleado}</td>
-                                    <td>
-                                        <div className="row d-flex">
-                                            <div
-                                                id="btn-editEmpleado"
-                                                className="btn btn-outline-success  col-5"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#modal-editEmpleado"
-                                                onClick={() => { setDatosEditarEmpleados(item.id_empleado); }}
-                                            >
-                                                <FaIcons.MdModeEdit className="" />
-                                            </div>
-                                            
-                                            <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setDeletehow(true); }} ><FaIcons.MdDelete className="" /></Button>
-                                        </div>
-                                    </td>
-
-                                </tr>
-                            )
-
-                        })}
-                    </tbody> 
-                </table>
-                
-                <EditarEmpleado setDatosEditarEmpleados={datosE} />
-                <Modal
-                    show={deleteShow}
-                    onHide={() => setDeletehow(false)}
-                    aria-labelledby="contained-modal-title-vcenter"
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-vcenter">
-                            Advertencia
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>¿Estas seguro de queres eliminar este producto?</Modal.Body>
-
-                    <Modal.Footer>
-                        <Button variant="success" onClick={() => setDeletehow(false)}>
-                            No
-                        </Button>
-                        <Button variant="success" onClick={() => { deleteEmpleado(modalData.id_empleado) }}>
-                            si
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-
-                
-
-                <CrearEmpleado />
-            </div>
-        </div>
+                    </div >
+            }
+        </>
     )
-
 }

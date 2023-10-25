@@ -12,7 +12,7 @@ export default function EditarEmpleado({ setDatosEditarEmpleados }) {
 
     const EditarEmpleado = values => {
 
-        Axios.post('https://celuantioqueno.onrender.com/empleado/actualizarEmpleado', {
+        Axios.post('http://localhost:3306/empleado/actualizarEmpleado', {
             id_empleado: setDatosEditarEmpleados,
             rol_empleado: values.rol_empleado,
             direccion_empleado: values.direccion_empleado,

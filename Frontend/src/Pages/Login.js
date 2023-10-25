@@ -55,11 +55,11 @@ const Login = () => {
     const onLogin = values => {
 
         console.log("EsLogin");
-        Axios.post("https://celuantioqueno.onrender.com/auth/login", {
+        Axios.post("http://localhost:3306/auth/login", {
             correo: values.correo,
             contrasena: values.contrasena
         },
-        // , { headers: { 'Content-Type': 'application/x-www-form-urlencoded' },}
+            // , { headers: { 'Content-Type': 'application/x-www-form-urlencoded' },}
         )
             .then(function (res) {
                 console.log(res);
@@ -69,7 +69,7 @@ const Login = () => {
                     icon: "success",
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
-                    if (res.isConfirmed === true || res !== null || res !== []) {
+                    if (res.isConfirmed === true || res !== null) {
                         window.location.assign("/Home");
                     }
                 });
@@ -108,12 +108,12 @@ const Login = () => {
                                 <input type="email" className="form-control mt-4 mb-4" maxlength="50" placeholder="Correo" {...register('correo', { required: true })} />
                             </div>
                             <div className="input-field">
-                                <input type="password" className="form-control mt-4 mb-4"  maxlength="50" placeholder="Contraseña" {...register('contrasena', { required: true })} />
+                                <input type="password" className="form-control mt-4 mb-4" maxlength="50" placeholder="Contraseña" {...register('contrasena', { required: true })} />
                             </div>
 
                             <div className="row w-100 align-items-center">
                                 <div className="col text-center">
-                                    <input type="submit" value="Iniciar Sesión"  className="btn btn-success mt-4 mb-4" />
+                                    <input type="submit" value="Iniciar Sesión" className="btn btn-success mt-4 mb-4" />
                                 </div>
                                 <div className="col text-center">
                                     <Link id="register_button" className="text-success mb-2" to="/Registro">

@@ -1,33 +1,70 @@
 import Navbar from '../Componets/Navbar';
-import React from 'react';
-import { useEffect } from 'react';
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Card, Button  } from "react-bootstrap";
+import React, { memo } from 'react';
+import { useState, useEffect } from 'react';
+// import { Link } from "react-router-dom";
+// import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import Slider from 'react-slick';
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { Axios } from 'axios';
+
+const HomeCliente = memo(() => {
+
+    const [productos, setProductos] = useState();
 
 
-export default function HomeCliente() {
+    const getAllProductos = () => {
+        Axios.post('http://localhost:3306/producto/nuestrosProductos')
+            .then((response) => {
+                setProductos(response.data)
+                console.log(response);
+            });
+    }
 
     useEffect(() => {
-
-
+        getAllProductos();
     }, []);
+
+    useEffect(() => {
+        // Realiza la solicitud a la API aquí
+        fetch('URL_DE_LA_API')
+            .then((response) => response.json())
+            .then((data) => {
+                // Aplica el filtro a los datos recibidos
+                const productosFiltrados = data.filter((producto) => producto.precio > filterFavorite);
+
+                // Establece los datos filtrados en el estado del componente
+                setProductos(productosFiltrados);
+            })
+            .catch((error) => {
+                console.error('Error al obtener datos de la API:', error);
+            });
+    }, [filterFavorite]);
+
+    const settings = {
+        infinite: true, // Carrusel infinito
+        slidesToShow: 3, // Cantidad de productos a mostrar en cada slide
+        slidesToScroll: 1, // Cantidad de productos a mover al hacer clic en las flechas de navegación
+    };
+
     return (
         <div>
             <Navbar />
             <div style={{
-                    background: '#D1E7DD',
-                    padding: '2rem',
-                    margin: '4rem',
-                    borderRadius: '5rem'
+                background: '#D1E7DD',
+                padding: '2rem',
+                margin: '4rem',
+                borderRadius: '5rem'
             }}>
                 <section
                     className="page-header py-5 py-md-0"
                     style={{
                         backgroundImage: "url(https://i.pinimg.com/originals/ab/ae/be/abaebe13ccbca48c8561cd573e7bf947.jpg)",
-                        backgroundSize:"contain",
+                        backgroundSize: "contain",
                         borderRadius: "1rem",
                         minHeight: "80vh",
-                        opacity:'0.6',
+                        opacity: '0.6',
                         backgroundColor: 'gray'
 
                     }}
@@ -46,7 +83,7 @@ export default function HomeCliente() {
 
                 <Container className="my-5">
                     <div className="d-flex justify-content-between align-items-center mb-4">
-                        <h4>Categorias</h4>                        
+                        <h4>Categorias</h4>
                     </div>
                     <Row className="mb-5">
                         <Col md={6} lg={3}>
@@ -64,7 +101,7 @@ export default function HomeCliente() {
                         <Col md={6} lg={3}>
                             <Link href="#">
                                 <div className="card card-background align-items-start mb-4 mb-lg-0 undefined">
-                                
+
                                     <div className="card-body text-center w-100 pt-8">
                                         <div className="d-block mt-8">
                                             <h4 className="text-black">Audifonos</h4>
@@ -76,7 +113,7 @@ export default function HomeCliente() {
                         <Col md={6} lg={3}>
                             <Link href="#">
                                 <div className="card card-background align-items-start mb-4 mb-lg-0 undefined">
-                        
+
                                     <div className="card-body text-center w-100 pt-8">
                                         <div className="d-block mt-8">
                                             <h4 className="text-black">Accesorios</h4>
@@ -88,7 +125,7 @@ export default function HomeCliente() {
                         <Col md={6} lg={3}>
                             <Link href="#">
                                 <div className="card card-background align-items-start mb-4 mb-lg-0 undefined">
-              
+
                                     <div className="card-body text-center w-100 pt-8">
                                         <div className="d-block mt-8">
                                             <h4 className="text-black">Tabletas</h4>
@@ -120,7 +157,23 @@ export default function HomeCliente() {
                     </section>
                 </Container>
             </div>
+
+            <div className="carrusel-destacado">
+                <h2>Productos Destacados</h2>
+                <Slider {...settings}>
+                    {productos.map((producto) => (
+                        <div key={producto.id_producto} className="producto">
+                            <h3>{producto.nombre}</h3>
+                            <p>{producto.precio}</p>
+                            <p>{producto.descripcion}</p>
+                        </div>
+                    ))}
+                </Slider>
+            </div>
+
         </div>
     );
 
-}
+});
+
+export default HomeCliente;

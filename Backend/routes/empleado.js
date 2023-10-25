@@ -40,7 +40,7 @@ router.post('/crearEmpleado', async (req, res) => {
 
 //Mostar Empleado
 router.post('/nuestrosEmpleados', async (req, res) => {
-    db.query('SELECT * FROM empleado;', (err, rows, fields) => {
+    db.query('SELECT emp.*, tdc.nombre_documento FROM empleado emp INNER JOIN tipo_documento tdc ON emp.tipo_documento = tdc.id_documento;', (err, rows, fields) => {
         if (!err) {
             res.json(rows);
         } else {

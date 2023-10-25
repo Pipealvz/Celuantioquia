@@ -110,5 +110,33 @@ router.post("/registerCli", async (req, res) => {
     }
 });
 
+// PRUEBA PARA REGISTRO DE USUARIOS
+router.post("/registerUsers", async (req, res) => {
+
+    const { nombre, correo, contrasena } = req.body;
+
+    if ( !nombre || !correo || !contrasena ) return res.status(400).json({ status: "error", error: "Por favor envia datos" });
+    else {
+        db.query("SELECT correo FROM usuario WHERE correo = ?", [correo], async (err, result) => {
+            if (err) return err;
+            if (result[0]) return   res.status(400).json({ status: "error", error: "El correo ya ha sido registrado" })
+            else {
+                bcrypt.genSalt(10, function(err, salt) {
+                    bcrypt.hash(contrasena, salt, function(err, hash) {
+                        db.query("INSERT INTO usuario SET ?", { nombre: nombre, correo: correo, contrasena: hash, rol_usuario: 0 }, (error, result) => {
+                            if (err) {
+                                return res.json({ status: "error", success: "El usuario no fue registrado" });
+                            } else {
+                                return res.json({ status: "success", success: "El usuario ha sido registrado" });
+                            }                            
+                        })                   
+                    });
+                }); 
+                
+            }
+        });
+    }
+});
+
 
 module.exports = router;

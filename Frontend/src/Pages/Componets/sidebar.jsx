@@ -24,7 +24,7 @@ const App = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item active">
-                            <Link class="btn btn-light text-success" type="button" id="link" to="/">
+                            <Link className="btn btn-light text-success" type="button" id="link" to="/">
                                 <i className="fas fa-sign-out-alt"></i>
                             Cerrar sesion<span className="sr-only"></span></Link>
                         </li>
@@ -45,9 +45,7 @@ const App = () => {
                         <li>
                             <NavDropdown className="py-2 w-100 d-inline-block option"
                                 title="Acciones Productos">
-                                <NavDropdown.Item > <Link to="/CrearProducto"><FaIcons.MdCreateNewFolder className="me-2" />Crear Producto</Link> </NavDropdown.Item>
                                 <NavDropdown.Item >  <Link to="/NuestrosProductos"><i className="fas fa-clipboard"></i>Nuestros Productos</Link></NavDropdown.Item>
-
                             </NavDropdown>
                         </li>
 

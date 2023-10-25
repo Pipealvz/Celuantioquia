@@ -12,7 +12,7 @@ const proveedor = require("./routes/proveedor");
 const categoria = require("./routes/categoria");
 const empleado = require("./routes/empleado");
 const cliente = require("./routes/cliente");
-
+const uploadImage = require("./routes/uploadImage");
 
 
 
@@ -28,6 +28,7 @@ app.use('/proveedor', proveedor);
 app.use('/categoria', categoria);
 app.use('/empleado', empleado);
 app.use("/cliente", cliente);
+app.use("/uploadImage", uploadImage);
 
 
 

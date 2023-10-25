@@ -19,8 +19,6 @@ const NuestrosProveedores = memo(() => {
     const [post, setPost] = React.useState(null);
     const [modalData, setModalData] = React.useState(null);
 
-
-    const [deleteShow, setDeletehow] = React.useState(false);
     const [editShow, setEditShow] = React.useState(false);
 
     const { register, handleSubmit } = useForm();
@@ -32,18 +30,18 @@ const NuestrosProveedores = memo(() => {
 
 
     const getAllProveedor = () => {
-        Axios.post('https://celuantioqueno.onrender.com/proveedor/nuestrosProveedores')
+        Axios.post('http://localhost:3306/proveedor/nuestrosProveedores')
             .then((response) => {
                 setPost(response.data)
             });
     }
-
+    
 
     const editProveedor = values => {
 
         console.log(modalData);
 
-        Axios.post('https://celuantioqueno.onrender.com/proveedor/actualizarProveedor', {
+        Axios.post('http://localhost:3306/proveedor/actualizarProveedor', {
             id_proveedor: modalData.id_proveedor,
             nombre_proveedor: values.nombre_proveedor,
             correo_proveedor: values.correo_proveedor,
@@ -56,7 +54,7 @@ const NuestrosProveedores = memo(() => {
                 //             Alerta si se crea el producto correctamente
                 Swal.fire({
                     title: "Proceso exitoso",
-                    text: "Producto actualizado con exito",
+                    text: "Proveedor actualizado con exito",
                     icon: "success",
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
@@ -71,26 +69,56 @@ const NuestrosProveedores = memo(() => {
 
                 Swal.fire({
                     title: "Error",
-                    text: "No se pudo actualizar el producto",
+                    text: "No se pudo actualizar el proveedor",
                     icon: "error",
                     confirmButtonText: "Aceptar",
                 });
             });
     }
 
-
-
-
-
     function deleteProveedor(id) {
-        Axios.post('https://celuantioqueno.onrender.com/proveedor/eliminarProveedores', {
-            id_proveedor: id
-        })
-            .then(() => {
-                window.location.reload(true);
-            });
-    }
 
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: '¿Estás seguro?',
+            text: "Si se elimina el proveedor, no podrá ser recuperado",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Axios.post('http://localhost:3306/proveedor/eliminarProveedores', {
+                    id_proveedor: id
+                })
+                    .then(() => {
+                        swalWithBootstrapButtons.fire(
+                            'Eliminado!',
+                            'El proveedor fue eliminado',
+                            'success'
+                        ).then(() => {
+                            window.location.reload();
+                        })
+                    });
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'No se eliminó ningún archivo',
+                    'error'
+                )
+            }
+        })
+    }
 
 
 
@@ -100,14 +128,14 @@ const NuestrosProveedores = memo(() => {
         <div className='d-flex'>
 
             <Navbar />
-            <div className='container'style={{  margin: '8rem 4rem 5rem 4rem'}}>
+            <div className='container' style={{ margin: '8rem 4rem 5rem 4rem' }}>
 
                 <h2 className='text-success text-center text-uppercase fs-1'>Proveedores</h2>
-                <br/>
+                <br />
                 <div className="d-grid gap-2 col-6 mx-auto">
                     <Link className="btn btn-success" type="button" to="/CrearProveedor">Crear Proveedor</Link>
                 </div>
-                <br/>
+                <br />
                 <table className="table text-success">
                     <thead>
                         <tr>
@@ -134,7 +162,7 @@ const NuestrosProveedores = memo(() => {
                                     <td>{item.direccion_proveedor}</td>
                                     <td>
                                         <div className='row d-flex'>
-                                            <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setDeletehow(true); }} ><FaIcons.MdDelete className="" /></Button>
+                                            <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { deleteProveedor(item.id_proveedor); }} ><FaIcons.MdDelete className="" /></Button>
                                             <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setEditShow(true); }}><FaIcons.MdModeEdit className="" /></Button>
                                         </div>
                                     </td>
@@ -147,29 +175,6 @@ const NuestrosProveedores = memo(() => {
                     </tbody>
                 </table>
 
-                <Modal
-                    show={deleteShow}
-                    onHide={() => setDeletehow(false)}
-                    aria-labelledby="contained-modal-title-vcenter"
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-vcenter">
-                            Advertencia
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>¿Estas seguro de queres eliminar este producto?</Modal.Body>
-
-                    <Modal.Footer>
-                        <Button variant="success" onClick={() => setDeletehow(false)}>
-                            No
-                        </Button>
-                        <Button variant="success" onClick={() => { deleteProveedor(modalData.id_proveedor) }}>
-                            si
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-
-
                 <Modal show={editShow}
                     onHide={() => setEditShow(false)}
                     aria-labelledby="contained-modal-title-vcenter"
@@ -181,13 +186,13 @@ const NuestrosProveedores = memo(() => {
                     </Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={handleSubmit(editProveedor)}>
-                            <label for="nombre_producto" className="form-label" >Proveedor</label>
+                            <label for="proveedor" className="form-label" >Proveedor</label>
 
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label>Nombre del proveedor</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder="..."
+                                    placeholder="Samsung..."
                                     // value={modalData.nombre_producto}
                                     autoFocus
                                     {...register('nombre_proveedor', { required: true })}
@@ -197,7 +202,7 @@ const NuestrosProveedores = memo(() => {
                                 <Form.Label>Correo Proveedor</Form.Label>
                                 <Form.Control
                                     type="email"
-                                    placeholder=""
+                                    placeholder="Example@gmail.com"
                                     //value={modalData.tipo_producto}
                                     autoFocus
                                     {...register('correo_proveedor', { required: true })}

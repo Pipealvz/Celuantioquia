@@ -35,7 +35,7 @@ function NavbarHome() {
                             </Nav>
                             <Nav>
                                 <Link to="/Login" className="m-3 btn btn-outline-success text-success" type="button" id="link" size="lg">Iniciar sesion</Link>
-                                <Link to="/Registro" className="m-3 btn btn-success text-light" type="button" id="link" size="lg">Iniciar sesion</Link>
+                                <Link to="/Registro" className="m-3 btn btn-success text-light" type="button" id="link" size="lg">Registrarse</Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

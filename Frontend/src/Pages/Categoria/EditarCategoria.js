@@ -11,11 +11,9 @@ export default function EditarCategory  ({setDatosEditarCategoria})  {
     const categoryRegister = values => {
 
         console.log("Category register");
-        Axios.post("https://celuantioqueno.onrender.com/categoria/actualizarCategoria", {
+        Axios.post("http://localhost:3306/categoria/actualizarCategoria", {
             id_categoria: setDatosEditarCategoria,
-            nombre_categoria: values.nombre_categoria,
-            tipo_categoria: values.tipo_categoria,
-            prioridad_categoria: values.prioridad_categoria
+            nombre_categoria: values.nombre_categoria
 
         },
 
@@ -56,21 +54,6 @@ export default function EditarCategory  ({setDatosEditarCategoria})  {
                             <div className="row text-success d-flex mb-3">
                                 <label htmlFor="nombre_categoria" className="form-label">Nombre de la categoría</label>
                                 <input type="text" className="form-control" id="nombre_categoria" maxlength="30" {...register('nombre_categoria', { required: true })} />
-                            </div>
-                            <div className="row text-success d-flex  mb-3">
-                                <label htmlFor="tipo_categoria" className="form-label">Tipo de categoría</label>
-                                <select htmlFor="tipo_categoria" className="form-select"  {...register('tipo_categoria', { required: true })} >
-                                    <option className="form-control" id="tipo_categoria" value="Dispositivos móviles">Dispositivos móviles</option>
-                                    <option className="form-control" id="tipo_categoria" value="Computadores">Computadores</option>
-                                    <option className="form-control" id="tipo_categoria" value="Perifericos">Perifericos</option>
-                                </select>                            </div>
-                            <div className="row text-success d-flex  mb-3">
-                                <span>Prioridad de la categoría</span>
-                                <select htmlFor="prioridad_categoria" className="form-select" {...register('prioridad_categoria', { required: true })}>
-                                    <option className="form-control" id="prioridad_categoria" value="1">Alta</option>
-                                    <option className="form-control" id="prioridad_categoria" value="2">Media</option>
-                                    <option className="form-control" id="prioridad_categoria" value="3">Baja</option>
-                                </select>
                             </div>
                             <br />
                             <div className='d-flex justify-content-center'>

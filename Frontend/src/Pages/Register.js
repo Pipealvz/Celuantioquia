@@ -55,7 +55,7 @@ const Login = () => {
     const onRegister = values => {
 
         
-        Axios.post("https://celuantioqueno.onrender.com/auth/registerCli", {
+        Axios.post("http://localhost:3306/auth/registerUsers", {
             nombre: values.nombreR,
             correo: values.correoR,
             contrasena: values.contraseñaR
@@ -123,9 +123,9 @@ const Login = () => {
                                 <input type="email" className="form-control mt-4 mb-4"  maxlength="50" required placeholder="Correo" {...register('correoR', { required: true })} />
                             </div>
                             <div className="input-field">
-                                <input type="password" className="form-control mt-4 mb-4" maxlength="50" placeholder="contraseña" {...register('contraseñaR', { required: true })} />
+                                <input type="password" className="form-control mt-4 mb-4" maxlength="50" placeholder="Contraseña" {...register('contraseñaR', { required: true })} />
                             </div>
-
+                                    {/*Button register*/}
                             <div className="row w-100 align-items-center">
                                 <div className="col text-center">
                                     <input type="submit" value="Registro"  className="btn btn-success mt-4 mb-4" />

@@ -25,7 +25,7 @@ export default function MostrarCategoria() {
 
     const getCategory = () => {
         // nombre_categoria, tipo_categoria, prioridad_categoria
-        Axios.post('https://celuantioqueno.onrender.com/categoria/nuestrasCategorias')
+        Axios.post('http://localhost:3306/categoria/nuestrasCategorias')
             .then((res) => {
                 setCategory(res.data)
                 console.log(res.data);
@@ -34,7 +34,7 @@ export default function MostrarCategoria() {
     }
 
     function deleteCategoria(id) {
-        Axios.post('https://celuantioqueno.onrender.com/categoria/eliminarCategorias', {
+        Axios.post('http://localhost:3306/categoria/eliminarCategorias', {
             id_categoria: id
         })
             .then(() => {
@@ -75,7 +75,6 @@ export default function MostrarCategoria() {
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nombre Categoria</th>
-                                <th scope="col">Tipo Categoria</th>
                                 <th scope="col">Acciones</th>
 
                             </tr>
@@ -85,8 +84,7 @@ export default function MostrarCategoria() {
                                 return (
                                     <tr className="table-light text-success ">
                                         <th scope="row" key={item.id_Categoria}></th>
-                                        <td>{item.nombre_categoria} </td>
-                                        <td>{item.tipo_categoria}</td>                                      
+                                        <td>{item.nombre_categoria} </td>                                  
                                         <td>
                                             <div className="row d-flex">
                                                 <div

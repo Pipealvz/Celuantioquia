@@ -1,0 +1,11 @@
+#nombre_empleado,
+#rol_empleado,
+#documento_identidad,
+#tipo_documento,
+#direccion_empleado,
+#telefono_empleado,
+#fecha_nacimiento_empleado,
+#correo_empleado,
+#contraseña_empleado {
+    width: 100% !important;
+}

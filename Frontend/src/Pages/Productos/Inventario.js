@@ -16,7 +16,7 @@ const MostrarInventario = () => {
     // }
 
     const getInventory = () => {
-        Axios.post('https://celuantioqueno.onrender.com/producto/inventario')
+        Axios.post('http://localhost:3306/producto/inventario')
             .then((response) => {
                 setInventario(response.data);
                 console.log(response.data);
