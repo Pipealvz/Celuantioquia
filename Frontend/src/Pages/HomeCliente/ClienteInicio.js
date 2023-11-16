@@ -1,62 +1,81 @@
 import Navbar from '../Componets/Navbar';
-import React, { memo } from 'react';
+import React from 'react';
 import { useState, useEffect } from 'react';
 // import { Link } from "react-router-dom";
 // import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import './Cliente.css';
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Axios } from 'axios';
+import Axios from 'axios';
+import Loader from '../SpinnerGrow';
+import CardImage from './cardImage';
 
+const ClienteInicio = () => {
 
-const ClienteInicio = memo(() => {
-
-    const [post, setPost] = useState(null);
-
-    useEffect(() => {
-        getAllProductos();
-    }, []);
-
-    if (!post) return null;
+    const [post, setPost] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [url, setUrl] = useState({ title: '', url_image: '' });
 
     const getAllProductos = () => {
         Axios.post('http://localhost:3306/producto/nuestrosProductos')
             .then((response) => {
-                setPost(response.data)
+                setPost(response.data);
+                console.log(response.data);
+                setIsLoading(false);
             });
     }
+    useEffect(() => {
+        getAllProductos();
+    }, []);
+
+    const handleUrlImage = (title, url_image) => {
+        setUrl({title, url_image });
+    }
+
+    if (!post) return null;
+
 
     return (
         <>
-            <Navbar />
-            <hr>
-            </hr>
-            <div className='container bg-success vh-100 d-flex p-3'>
-                {post.map((item) => {
-                    return (
-                        <div className="card" id="card-image">
-                            <img className="card-img-top" src="https://res.cloudinary.com/dvk7c5rot/image/upload/v1695274321/replit/nnouifjtqvtmedbidcaj.png" alt="..." />
-                            <div className="card-body">
-                                <h5 className="card-title">{item.nombre_producto}</h5>
-                                <p className="card-text">{item.descripcion}.</p>
-                            </div>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">An item</li>
-                                <li className="list-group-item">A second item</li>
-                                <li className="list-group-item">A third item</li>
-                            </ul>
-                            {/* <div className="card-body">
-                                    <a href="#" className="card-link">Card link</a>
-                                    <a href="#" className="card-link">Another link</a>
-                                </div> */}
-                        </div>
-                    )
-                })}
+            {
+                isLoading === true
+                    ? <Loader />
+                    :
+                    <>
+                        <Navbar />
+                        <div className='fs-1 text-center mt-3 text-uppercase'> ¡Conoce todos nuestros productos!</div>
+                        <hr />
+                        <div className='m-auto row d-flex w-100 justify-content-between p-3'>
+                            {post.map((item) => {
+                                return (
+                                    <div id='card-product' className="shadow card p-2 mb-3 m-3" key={item.id_producto}>
+                                        <img src={item.url_image} className="card-img-top" alt='Cargando...' />
+                                        <div className="card-body">
+                                            <div className='justify-content-between d-flex'>
+                                                <div className="text-break fs-6 fs-bold card-title fw-bold h-50">{item.nombre_producto}</div>
+                                                <p className='badge bg-success text-break fs-6'>Disponibles: {item.cantidad}</p>
+                                            </div>
+                                            <hr />
+                                            <p className="card-text text-break">{item.descripcion}</p>
+                                            <div className='justify-content-between d-flex text-uppercase'>
+                                                <button className="fs-6 btn btn-success col-5">Comprar</button>
+                                                <button className="fs-6 btn btn-outline-info col-5" data-bs-toggle="modal" data-bs-target="#cardModalImage" onClick={() => { handleUrlImage(item.nombre_producto, item.url_image) }}>Ver más</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div >
+                    </>
+            }
+
+            <div className="modal fade" id="cardModalImage" data-bs-backdrop="static" data-bs-keyboard="true"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <CardImage item={url} />
             </div>
         </>
     );
 
-});
+};
 
 export default ClienteInicio;

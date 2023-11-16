@@ -1,10 +1,10 @@
 import Axios from 'axios';
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
 import './producto.css'
 
-const CrearProducto = memo(({ }) => {
+const CrearProducto = () => {
 
     const { register, handleSubmit } = useForm();
     const [category, setCategory] = useState([]);
@@ -13,7 +13,7 @@ const CrearProducto = memo(({ }) => {
         cantidad: '',
         precio: '',
         descripcion: ''
-    })
+    });
 
     const handleCheckInputs = ({ target }) => {
         setCheckForm({ ...checkForm, [target.name]: target.value });
@@ -136,6 +136,6 @@ const CrearProducto = memo(({ }) => {
             </div >
         </>
     );
-});
+};
 
 export default CrearProducto;

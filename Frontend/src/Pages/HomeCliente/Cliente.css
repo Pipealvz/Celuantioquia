@@ -8,3 +8,23 @@
     width: 15em;
     margin: auto;
 }
+
+#card-product{
+    width: 30%;
+}
+
+.btn-outline-info:hover{
+    color: white !important;
+}
+
+.card-img-top{
+    width: 70%;
+    height: 70%;
+    border: none;
+}
+
+.img-fluid{
+    width: 65%;
+    height: 65%;
+    display: block;
+}

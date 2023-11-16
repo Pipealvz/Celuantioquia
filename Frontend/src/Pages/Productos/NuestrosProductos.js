@@ -12,6 +12,7 @@ import CrearProducto from './CrearProducto';
 import EditarProducto from './EditarProducto';
 //import SpinnerGrow from '../SpinnerGrow';
 import SpinnerBorder from '../SpinnerGrow';
+import Compras from '../Compras/Compras';
 
 
 
@@ -172,7 +173,7 @@ const NuestrosProductos = () => {
                                 <button type="button" className="col-2 btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Crear Producto
                                 </button>
-                                <button type="button" className="col-2 btn btn-success ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button type="button" className="col-2 btn btn-success ms-auto" data-bs-toggle="modal" data-bs-target="#modalPurchase">
                                     Registrar compra
                                 </button>
                             </div>
@@ -223,6 +224,9 @@ const NuestrosProductos = () => {
                                     <EditarProducto data={editShow} />
                                 </div>
 
+                                <div className="modal fade" id="modalPurchase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    {/* <Compras /> */}
+                                </div>
                                 {/* <Modal
                         show={deleteShow}
                         onHide={() => setDeletehow(false)}

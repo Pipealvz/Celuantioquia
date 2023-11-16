@@ -8,7 +8,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Home from "../Pages/Home";
 // Home del cliente
-import CrearProducto from '../Pages/Productos/CrearProducto';
+// import CrearProducto from '../Pages/Productos/CrearProducto';
 import NuestrosProductos from '../Pages/Productos/NuestrosProductos';
 
 import CrearProveedor from '../Pages/Proveedor/CrearProveedor';
@@ -23,10 +23,14 @@ import MostrarCliente from '../Pages/Clientes/MostrarCliente';
 
 //Home del empleado 
 
-// import HomeCliente from '../Pages/HomeCliente/HomeCliente';
-import MostrarInventario from '../Pages/Productos/Inventario';
+// // import HomeCliente from '../Pages/HomeCliente/HomeCliente';
+// import MostrarInventario from '../Pages/Productos/Inventario';
 import ClienteInicio from '../Pages/HomeCliente/ClienteInicio';
 import EditarProducto from '../Pages/Productos/EditarProducto';
+import CrearRol from '../Pages/Roles/CrearRol';
+import NuestrosRoles from '../Pages/Roles/NuestrosRoles';
+import NuestrosDocumentos from '../Pages/Documentos/nuestrosDocumentos';
+import CrearDocumento from '../Pages/Documentos/crearDocumento';
 
 
 function RoutesIndex() {
@@ -56,7 +60,12 @@ function RoutesIndex() {
 
         <Route exact path="/NuestrosClientes" element={<MostrarCliente />} />
         
-        <Route exact path="/inventario" element={<MostrarInventario />} />
+        <Route exact path="/CrearRol" element={<CrearRol />} />
+        <Route exact path="/ActualizarRol" element={<CrearRol />} />
+        <Route exact path="/NuestrosRoles" element={<NuestrosRoles />} />
+        
+        <Route exact path="/CrearDocumento" element={<CrearDocumento />} />
+        <Route exact path="/NuestrosDocumentos" element={<NuestrosDocumentos />} />
       </Routes>
 
     </BrowserRouter>

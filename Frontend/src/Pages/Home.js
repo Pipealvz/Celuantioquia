@@ -5,11 +5,12 @@ import Navbar from '../Pages/Componets/sidebar';
 
 
 const Home = () => {
-    return (<>
-
-        <Navbar />
-        
-    </>
+    return (
+        <>
+            {
+                <Navbar />
+            }
+        </>
     );
 }
 

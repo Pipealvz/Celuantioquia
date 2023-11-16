@@ -1,8 +1,3 @@
-#icon-error-vsc{
-    color: red !important;
-
-}
-
-.form-control{
-    width: 90vh !important;
+#contacto_proveedor, #correo_proveedor, #nombre_proveedor,#direccion_proveedor ,#nit_proveedor{
+    width: 100% !important;
 }

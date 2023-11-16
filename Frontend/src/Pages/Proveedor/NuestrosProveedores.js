@@ -10,6 +10,7 @@ import Form from 'react-bootstrap/Form';
 
 import Navbar from '../Componets/sidebar';
 import * as FaIcons from "react-icons/md";
+import CrearProveedor from './CrearProveedor';
 
 
 
@@ -35,7 +36,7 @@ const NuestrosProveedores = memo(() => {
                 setPost(response.data)
             });
     }
-    
+
 
     const editProveedor = values => {
 
@@ -133,7 +134,9 @@ const NuestrosProveedores = memo(() => {
                 <h2 className='text-success text-center text-uppercase fs-1'>Proveedores</h2>
                 <br />
                 <div className="d-grid gap-2 col-6 mx-auto">
-                    <Link className="btn btn-success" type="button" to="/CrearProveedor">Crear Proveedor</Link>
+                    <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Crear proveedor
+                    </button>
                 </div>
                 <br />
                 <table className="table text-success">
@@ -166,14 +169,16 @@ const NuestrosProveedores = memo(() => {
                                             <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setEditShow(true); }}><FaIcons.MdModeEdit className="" /></Button>
                                         </div>
                                     </td>
-
                                 </tr>
-
                             )
 
                         })}
                     </tbody>
                 </table>
+
+                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <CrearProveedor />
+                </div>
 
                 <Modal show={editShow}
                     onHide={() => setEditShow(false)}

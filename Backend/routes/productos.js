@@ -56,15 +56,17 @@ const db = require("../database/connection");
 router.post('/crearProducto', async (req, res) => {
     const { nombre_producto, tipo_producto, cantidad, precio, descripcion, producto_destacado } = req.body;
 
-    if (!nombre_producto || !tipo_producto || !cantidad || !precio || !descripcion || !producto_destacado) return res.status(400).json({ status: "error", error: "Por favor envia datos" });
+    const newDate = new Date();
+    const fecha = newDate.toLocaleDateString();
+    const hora = newDate.toLocaleTimeString();
+    
+    if (!nombre_producto || !tipo_producto || !cantidad || !precio || !descripcion || !producto_destacado ) return res.status(400).json({ status: "error", error: "Por favor envia datos" });
 
     else {
         db.query("SELECT nombre_producto FROM producto WHERE nombre_producto = ?;", [nombre_producto], async (err, result) => {
             if (err) return console.log(err, result);
             if (result[0]) return res.status(400).json({ status: "error", error: "Ya existe un producto con este nombre" })
-
             else {
-
                 db.query("INSERT INTO producto SET ?", {
                     nombre_producto: nombre_producto,
                     tipo_producto: tipo_producto,
@@ -189,26 +191,32 @@ router.post('/productoPorId', async (req, res) => {
 router.post('/agregarCompra', async (req, res) => {
     const { id_producto, id_proveedor, fecha_compra, precio_compra, cantidad_compra, detalle_compra } = req.body;
 
+    const newDate = new Date();
+    const fecha = newDate.toLocaleDateString();
+    const hora = newDate.toLocaleTimeString();
+
     if (!id_producto || !id_proveedor || !fecha_compra || !precio_compra || !cantidad_compra || !detalle_compra) return res.status(400).json({ status: "error", error: "Por favor envia datos" });
 
     else {
         db.query("INSERT INTO movimiento_producto SET ?", {
             id_producto: id_producto,
             id_proveedor: id_proveedor,
-            fecha_compra: fecha_compra,
+            fecha_compra: `${fecha} ${hora}`,
             precio_compra: precio_compra,
             cantidad_compra: cantidad_compra,
             detalle_compra: detalle_compra
 
-        }, (error, result) => {
+        }, (error, result, rows) => {
             if (error) return console.log(error, result);
+            console.log(rows);
             return res.json({ status: "success", success: "El movimiento se registró correctamente" }).status(200);
+
         });
     }
 });
 
 router.post('/mostrarCompras', async (req, res) => {
-    db.query("SELECT * FROM movimiento_producto", (err, rows, result) => {
+    db.query("SELECT mvp.*, prd.nombre_producto FROM movimiento_producto mvp INNER JOIN producto prd ON mvp.id_producto = prd.id_producto;", (err, rows, result) => {
         if (!err) {
             res.json(rows);
         } else {

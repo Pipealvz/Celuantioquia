@@ -4,14 +4,15 @@ import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
 import './producto.css'
 
-const EditarProducto = memo((data) => {
+const EditarProducto = (data) => {
 
     const { register, handleSubmit } = useForm();
     const [category, setCategory] = useState([]);
-    const [array, setArray] = useState(data);
+    const [array, setArray] = useState({data});
     const [checkForm, setCheckForm] = useState({
         id_producto: array.id_producto,
         nombre_producto: array.nombre_producto,
+        tipo_producto: array.tipo_producto,
         cantidad: array.cantidad,
         precio: array.precio,
         descripcion: array.descripcion
@@ -95,7 +96,7 @@ const EditarProducto = memo((data) => {
                                         category.map((item) => {
 
                                             return (
-                                                <option key={item.id_categoria} value={item.id_categoria}>{item.nombre_categoria}</option>
+                                                <option key={item.id_categoria} defaultValue={array.tipo_producto} value={item.id_categoria}>{item.nombre_categoria}</option>
                                             )
                                         })}
                                 </select>
@@ -136,6 +137,6 @@ const EditarProducto = memo((data) => {
             </div >
         </div >
     );
-});
+};
 
 export default EditarProducto;
