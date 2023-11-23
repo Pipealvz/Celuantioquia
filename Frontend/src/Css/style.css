@@ -151,3 +151,13 @@ a[data-toggle="collapse"] {
         display: none;
     }
 }
+
+#accordion-body {
+    width: 100%;
+    text-align: left;
+}
+#accordion-body:hover{
+    background-color: #1E8449;
+    color: white;
+    border-radius: 0px;
+}

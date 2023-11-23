@@ -7,8 +7,7 @@ import EditarEmpleado from './EditarEmpleado';
 import Navbar from '../Componets/sidebar';
 import * as FaIcons from "react-icons/md";
 import Swal from 'sweetalert2';
-//import SpinnerGrow from '../SpinnerGrow';
-import SpinnerBorder from '../SpinnerBorder';
+import SpinnerGrow from '../SpinnerGrow';
 
 
 
@@ -91,7 +90,7 @@ export default function MostrarEmpleados() {
         <>
             {
                 isLoading === true ?
-                    <SpinnerBorder />
+                    <SpinnerGrow />
                     :
                     <div className='d-flex'>
                         <Navbar />

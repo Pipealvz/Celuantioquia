@@ -201,7 +201,7 @@ router.post('/agregarCompra', async (req, res) => {
         db.query("INSERT INTO movimiento_producto SET ?", {
             id_producto: id_producto,
             id_proveedor: id_proveedor,
-            fecha_compra: `${fecha} ${hora}`,
+            fecha_compra: fecha_compra,
             precio_compra: precio_compra,
             cantidad_compra: cantidad_compra,
             detalle_compra: detalle_compra
@@ -216,12 +216,25 @@ router.post('/agregarCompra', async (req, res) => {
 });
 
 router.post('/mostrarCompras', async (req, res) => {
-    db.query("SELECT mvp.*, prd.nombre_producto FROM movimiento_producto mvp INNER JOIN producto prd ON mvp.id_producto = prd.id_producto;", (err, rows, result) => {
+    db.query("SELECT mvp.*, prd.nombre_producto, prv.nombre_proveedor FROM movimiento_producto mvp INNER JOIN producto prd ON mvp.id_producto = prd.id_producto INNER JOIN proveedor prv on mvp.id_proveedor = prv.id_proveedor;", (err, rows, result) => {
         if (!err) {
             res.json(rows);
         } else {
             res.status(400).json({ status: "error", error: "Error al consultar datos" });
             console.log(err);
+        }
+    });
+});
+
+router.post('/comprasPorId/:id', async (req, res) => {
+
+    const { id } = req.params;
+
+    db.query('SELECT mvp.*, prd.nombre_producto, prv.nombre_proveedor FROM movimiento_producto mvp INNER JOIN producto prd ON mvp.id_producto = prd.id_producto INNER JOIN proveedor prv on mvp.id_proveedor = prv.id_proveedor WHERE prd.id_producto = ?;', [id], async (err, rows, result) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
         }
     });
 });

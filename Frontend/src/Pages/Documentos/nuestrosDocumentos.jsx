@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../Componets/sidebar';
 import * as FaIcons from "react-icons/md";
 import CrearDocumento from "./crearDocumento";
-import SpinnerBorder from '../SpinnerBorder';
+import SpinnerGrow from '../SpinnerGrow';
 
 const NuestrosDocumentos = () => {
     const [post, setPost] = React.useState(null);
@@ -14,7 +14,6 @@ const NuestrosDocumentos = () => {
         Axios.post('http://localhost:3306/documento/nuestrosDocumentos')
             .then((response) => {
                 setPost(response.data);
-                console.log(response.data);
                 setIsLoading(false);
             });
     }
@@ -72,7 +71,7 @@ const NuestrosDocumentos = () => {
         <>
             {
                 isLoading === true ?
-                    <SpinnerBorder />
+                    <SpinnerGrow />
                     :
                     <div className='d-flex'>
                         <Navbar />

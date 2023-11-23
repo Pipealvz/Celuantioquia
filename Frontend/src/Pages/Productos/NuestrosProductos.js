@@ -12,12 +12,12 @@ import CrearProducto from './CrearProducto';
 import EditarProducto from './EditarProducto';
 //import SpinnerGrow from '../SpinnerGrow';
 import SpinnerBorder from '../SpinnerGrow';
-import Compras from '../Compras/Compras';
+import Compras from './Compras';
+import { Link } from 'react-router-dom';
 
 
 
 const NuestrosProductos = () => {
-
 
     const [post, setPost] = React.useState(null);
     //const [modalData, setModalData] = React.useState(null);
@@ -40,7 +40,7 @@ const NuestrosProductos = () => {
         //console.log(id_producto);
         const arrayPost = [...post];
         //console.log(arrayPost);
-        const todo = arrayPost.find(array => array.id_producto === id_producto);
+        const todo = arrayPost.filter(array => id_producto === array.id_producto);
         setEditShow({ id_producto: todo.id_producto, nombre_producto: todo.nombre_producto, tipo_producto: todo.tipo_producto, cantidad: todo.cantidad, precio: todo.precio, descripcion: todo.descripcion, producto_destacado: todo.producto_destacado, });
         //console.log(todo);
     }
@@ -162,7 +162,7 @@ const NuestrosProductos = () => {
                     <div className='d-flex'>
                         <Navbar />
                         <div className='container' style={{ margin: '8rem 0px 0px 0px' }}>
-                            <h2 className='text-success text-center text-uppercase fs-1'>productos</h2>
+                            <h2 className='text-success text-center text-uppercase fs-1'>Lista de productos</h2>
                             <hr />
                             <br />
                             <div className="d-flex">
@@ -173,9 +173,9 @@ const NuestrosProductos = () => {
                                 <button type="button" className="col-2 btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Crear Producto
                                 </button>
-                                <button type="button" className="col-2 btn btn-success ms-auto" data-bs-toggle="modal" data-bs-target="#modalPurchase">
-                                    Registrar compra
-                                </button>
+                                <Link to={"/HistorialCompras"} className="col-2 btn btn-success ms-auto">
+                                    Historial de compras
+                                </Link>
                             </div>
                             <br />
                             <table className='container table table-hover'>
@@ -197,7 +197,11 @@ const NuestrosProductos = () => {
                                         <>
                                             <tbody className='text-center text-capitalize' key={item.id_producto}>
                                                 <tr>
-                                                    <td className='text-center' id='tdName'>{item.id_producto}</td>
+                                                    <td className='text-center' id='tdName'>
+                                                        <button type="button" className="btn ms-auto" data-bs-toggle="modal" data-bs-target="#modalPurchase2" onClick={() => { alert("En construcción.") }}>
+                                                            {item.id_producto}
+                                                        </button>
+                                                    </td>
                                                     <td className='text-start' id='tdName'>{item.nombre_producto}</td>
                                                     <td id='tdStock'>{item.cantidad}</td>
                                                     <td className='text-break text-start' id='tdDescription'>{item.descripcion}</td>
@@ -215,6 +219,8 @@ const NuestrosProductos = () => {
                                         </>
                                     )
                                 })}
+                                {/* <div className='row'> Total de productos: {post.length} </div> */}
+
 
                                 <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <CrearProducto />
@@ -225,7 +231,7 @@ const NuestrosProductos = () => {
                                 </div>
 
                                 <div className="modal fade" id="modalPurchase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    {/* <Compras /> */}
+                                    <Compras />
                                 </div>
                                 {/* <Modal
                         show={deleteShow}

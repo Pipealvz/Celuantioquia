@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
 import './producto.css'
@@ -8,14 +8,14 @@ const EditarProducto = (data) => {
 
     const { register, handleSubmit } = useForm();
     const [category, setCategory] = useState([]);
-    const [array, setArray] = useState({data});
+    const [array, setArray] = useState({ data });
     const [checkForm, setCheckForm] = useState({
-        id_producto: array.id_producto,
-        nombre_producto: array.nombre_producto,
-        tipo_producto: array.tipo_producto,
-        cantidad: array.cantidad,
-        precio: array.precio,
-        descripcion: array.descripcion
+            id_producto: array.id_producto,
+            nombre_producto: array.nombre_producto,
+            tipo_producto: array.tipo_producto,
+            cantidad: array.cantidad,
+            precio: array.precio,
+            descripcion: array.descripcion
     });
     const handleCheckInputs = ({ target }) => {
         console.log(checkForm);
@@ -79,7 +79,7 @@ const EditarProducto = (data) => {
         <div className="modal-dialog bg-light modal-lg rounded">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h2 className='text-success text-center text-uppercase fs-1'>Editar producto {data.id_producto ? '1' : '0'}</h2>
+                    <h2 className='text-success text-center text-uppercase fs-1'>Editar producto {array.id_producto}</h2>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">

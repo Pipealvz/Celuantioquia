@@ -31,6 +31,8 @@ import CrearRol from '../Pages/Roles/CrearRol';
 import NuestrosRoles from '../Pages/Roles/NuestrosRoles';
 import NuestrosDocumentos from '../Pages/Documentos/nuestrosDocumentos';
 import CrearDocumento from '../Pages/Documentos/crearDocumento';
+import Compras from '../Pages/Productos/Compras';
+import DetalleCompra from '../Pages/Productos/DetalleCompra';
 
 
 function RoutesIndex() {
@@ -48,6 +50,9 @@ function RoutesIndex() {
         {/* <Route exact path="/CrearProducto" element={<CrearProducto />} /> */}
         <Route exact path='EditarPRoductos' element={<EditarProducto />}/>
         <Route exact path="/NuestrosProductos" element={<NuestrosProductos />} />
+        <Route exact path="/Compras" element={<Compras />} />
+        <Route exact path="/HistorialCompras" element={<DetalleCompra />} />
+
         
         <Route exact path="/CrearProveedor" element={<CrearProveedor />} />
         <Route exact path="/NuestrosProveedores" element={<NuestrosProveedores />} />

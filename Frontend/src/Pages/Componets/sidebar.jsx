@@ -32,8 +32,8 @@ const App = () => {
                 </div>
             </nav>
 
-            <div className="wrapper fixed-left d-flex"
-                style={{ width: '25%' }}>
+            <div className="wrapper fixed-left d-flex vm-100"
+                style={{ width: '25%'}}>
                 <nav id="sidebar">
                     <div className="sidebar-header">
                         <img src={Logo} className=" img-fluid inline-block" style={{ margin: '1rem 2rem', height: '10rem', weight: '10rem' }} alt="..." />
@@ -95,20 +95,23 @@ const App = () => {
                         </li>
                     </ul> */}
                     <div className="accordion accordion-flush" id="accordionFlushExample">
-                        <div className="accordion-item">
+                        <div className="accordion-item text-center">
                             <h2 className="accordion-header" id="flush-headingOne">
                                 <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                     Administración Web
                                 </button>
                             </h2>
                             <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <Link to="/NuestrosProductos" className='accordion-body'><i className="fas fa-clipboard"></i>Nuestros Productos</Link>
+                                <Link to="/NuestrosProductos" className='accordion-body btn' id='accordion-body'>Nuestros Productos</Link>
                             </div>
                             <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <Link to="/NuestrosEmpleados" className='accordion-body'><i className="fas fa-info"></i>Nuestros Empleados</Link>
+                                <Link to="/NuestrosEmpleados" className='accordion-body btn' id='accordion-body'>Nuestros Empleados</Link>
                             </div>
                             <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <Link to="/NuestrosClientes" className='accordion-body'><i className="fas fa-info"></i>Nuestros Cliente</Link>
+                                <Link to="/NuestrosClientes" className='accordion-body btn' id='accordion-body'>Nuestros Cliente</Link>
+                            </div>
+                            <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <Link to="/NuestrosProveedores" className='accordion-body btn' id='accordion-body'>Nuestros Proveedores</Link>
                             </div>
                         </div>
                         <div className="accordion-item">
@@ -118,13 +121,10 @@ const App = () => {
                                 </button>
                             </h2>
                             <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                <Link to="/NuestrosRoles" className='accordion-body'><i className="fas fa-info"></i>Nuestros Roles</Link>
+                                <Link to="/NuestrosRoles" className='accordion-body btn' id='accordion-body'>Nuestros Roles</Link>
                             </div>
                             <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                <Link to="/NuestrosDocumentos" className='accordion-body'><i className="fas fa-info"></i>Nuestros Documentos</Link>
-                            </div>
-                            <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                <Link to="/NuestrosProveedores" className='accordion-body'><i className="fas fa-hands-helping"></i>Nuestros Proveedores</Link>
+                                <Link to="/NuestrosDocumentos" className='accordion-body btn' id='accordion-body'>Nuestros Documentos</Link>
                             </div>
                         </div>
                     </div>

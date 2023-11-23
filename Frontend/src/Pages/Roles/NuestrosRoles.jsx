@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../Componets/sidebar';
 import * as FaIcons from "react-icons/md";
 import CrearRol from "./CrearRol";
-import SpinnerBorder from '../SpinnerBorder';
+import SpinnerGrow from '../SpinnerGrow';
 
 
 const NuestrosRoles = () => {
@@ -75,7 +75,7 @@ const NuestrosRoles = () => {
         <>
             {
                 isLoading === true ?
-                    <SpinnerBorder />
+                    <SpinnerGrow />
                     :
                     <div className='d-flex'>
                         <Navbar />
