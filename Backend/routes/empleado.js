@@ -7,10 +7,10 @@ const db = require("../database/connection");
 
 //Crear Empleado
 router.post('/crearEmpleado', async (req, res) => {
-    const { nombre_empleado, documento_identidad, tipo_documento, direccion_empleado, telefono_empleado,
+    const { nombre_empleado, rol_empleado, documento_identidad, tipo_documento, direccion_empleado, telefono_empleado,
         fecha_nacimiento_empleado, correo_empleado, contraseña_empleado } = req.body;
 
-    if (!nombre_empleado  || !documento_identidad || !tipo_documento || !direccion_empleado || !telefono_empleado
+    if (!nombre_empleado  || !rol_empleado || !documento_identidad || !tipo_documento || !direccion_empleado || !telefono_empleado
         || !fecha_nacimiento_empleado || !correo_empleado || !contraseña_empleado) return   res.status(400).json({ status: "error", error: "Por favor envia datos" });
 
     else {
@@ -21,6 +21,7 @@ router.post('/crearEmpleado', async (req, res) => {
             else {
                 db.query("INSERT INTO empleado SET ?", {
                     nombre_empleado: nombre_empleado,
+                    rol_empleado: rol_empleado,
                     documento_identidad: documento_identidad,
                     tipo_documento: tipo_documento,
                     direccion_empleado: direccion_empleado,
@@ -85,7 +86,7 @@ router.post('/eliminarEmpleado', async (req, res) => {
 
 //Actualizar Empleado
 router.post('/actualizarEmpleado', async (req, res) => {
-    const { id_empleado, rol_empleado,direccion_empleado, telefono_empleado, correo_empleado, contraseña_empleado } =
+    const { id_empleado, rol_empleado, direccion_empleado, telefono_empleado, correo_empleado, contraseña_empleado } =
         req.body;
 
     db.query('UPDATE empleado SET  rol_empleado = ?,  direccion_empleado = ? ,telefono_empleado = ?, correo_empleado = ? , contraseña_empleado = ?  WHERE id_empleado = ?',

@@ -59,6 +59,8 @@ const CrearEmpleado = () => {
     }
 
     const empleadoRegister = values => {
+
+        console.log(values);
         Axios.post('http://localhost:3306/empleado/crearEmpleado', {
             nombre_empleado: values.nombre_empleado,
             rol_empleado: values.rol_empleado,
