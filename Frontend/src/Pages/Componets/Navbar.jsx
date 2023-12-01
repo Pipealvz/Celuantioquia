@@ -33,11 +33,7 @@ function NavbarHome() {
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
-                            <Nav className="me-auto">
-                                <Nav.Link href="#features" className="fs-5">Catalogo</Nav.Link>
-                                <Nav.Link href="#pricing" className="fs-5">Carrito de compra</Nav.Link>
-                            </Nav>
-                            <Nav>
+                            <Nav className='ms-auto'>
                                 <Link to="/Login" className="m-3 btn btn-outline-success text-success" type="button" id="link" size="lg">Iniciar sesion</Link>
                                 <Link to="/Registro" className="m-3 btn btn-success text-light" type="button" id="link" size="lg">Registrarse</Link>
                             </Nav>

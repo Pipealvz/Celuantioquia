@@ -53,9 +53,10 @@ const DetalleVenta = () => {
                                 <tr className='text-light text-center'>
                                     <th className='text-center' scope="col">#</th>
                                     <th className='text-start col-4' scope="col">Nombre Producto</th>
-                                    <th className='text-start col-3' scope="col">Nombre Cliente</th>
+                                    <th className='text-start col-2' scope="col">Nombre Cliente</th>
                                     <th className='text-center' scope="col">Cantidad</th>
                                     <th className='text-end' scope="col">Precio Unitario</th>
+                                    <th className='text-center' scope="col">Precio Total</th>
                                     <th className='text-center' scope="col">Fecha de compra</th>
                                 </tr>
                             </thead>
@@ -70,6 +71,7 @@ const DetalleVenta = () => {
                                                     <td className='text-start' id='tdName'>{item.nombre_cliente}</td>
                                                     <td className='text-center' id='tdName'>{item.cantidad_venta}</td>
                                                     <td className='text-end' id='tdName'>{Math.trunc(item.precio).toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}</td>
+                                                    <td className='text-end' id='tdName'>{Math.trunc(item.cantidad_venta * item.precio).toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}</td>
                                                     <td className='text-end' id='tdName'>{item.fecha_venta}</td>
                                                 </tr>
                                             </tbody>

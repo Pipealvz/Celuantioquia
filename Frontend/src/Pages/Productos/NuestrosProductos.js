@@ -15,6 +15,7 @@ import SpinnerBorder from '../SpinnerGrow';
 import Compras from './Compras';
 import { Link } from 'react-router-dom';
 import UploadImageFile from './UploadImageFile';
+import Ventas from './Ventas';
 
 
 
@@ -178,6 +179,9 @@ const NuestrosProductos = () => {
                                 <Link to={"/HistorialCompras"} className="col-2 btn btn-success ms-auto">
                                     Historial de compras
                                 </Link>
+                                <Link to={"/HistorialVentas"} className="col-2 btn btn-success ms-auto">
+                                    Historial de ventas
+                                </Link>
                             </div>
                             <br />
                             <table className='container table table-hover'>
@@ -214,7 +218,7 @@ const NuestrosProductos = () => {
                                                         <div className='d-flex'>
                                                             <button className="btn btn-danger me-1" onClick={() => { deleteProducto(item.id_producto); }} ><FaIcons.MdDelete /> </button>
                                                             <button className="btn btn-warning me-1" data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => { handleSubmitEdit(item.id_producto) }}> <FaIcons.MdModeEdit /></button>
-                                                            <Link className="btn btn-warning"  to={`/UploadFile/${item.id_producto}`}> <FaIcons.MdUploadFile /></Link>
+                                                            <Link className="btn btn-warning" to={`/UploadFile/${item.id_producto}`}> <FaIcons.MdUploadFile /></Link>
                                                         </div>
                                                     </td>
                                                 </tr>
