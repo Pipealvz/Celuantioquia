@@ -18,14 +18,14 @@ const Ventas = () => {
     });
 
     const getProducts = () => {
-        Axios.post('http://localhost:3306/producto/nuestrosProductos')
+        Axios.post('https://celuantioqueno.onrender.com/producto/nuestrosProductos')
             .then((response) => {
                 setProducts(response.data);
             });
     }
 
     const getcliente = () => {
-        Axios.post('http://localhost:3306/cliente/nuestrosClientes')
+        Axios.post('https://celuantioqueno.onrender.com/cliente/nuestrosClientes')
             .then((response) => {
                 if (!response) {
                     setCliente('0');
@@ -36,7 +36,7 @@ const Ventas = () => {
     }
 
     const createVenta = (values) => {
-        Axios.post("http://localhost:3306/producto/agregarVenta", {
+        Axios.post("https://celuantioqueno.onrender.com/producto/agregarVenta", {
             id_producto: values.id_producto,
             id_cliente: values.id_cliente,
             cantidad_venta: values.cantidad_venta,

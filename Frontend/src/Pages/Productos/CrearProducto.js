@@ -21,7 +21,7 @@ const CrearProducto = () => {
     }
 
     const getCategory = () => {
-        Axios.post('http://localhost:3306/categoria/nuestrasCategorias')
+        Axios.post('https://celuantioqueno.onrender.com/categoria/nuestrasCategorias')
             .then((res) => {
                 setCategory(res.data)
                 console.log(res.data);
@@ -37,7 +37,7 @@ const CrearProducto = () => {
         //Se llama el enlace del servicio y se le asiganan los valores al 
         //objeto que se con datos ingresasos en el formulario
 
-        Axios.post("http://localhost:3306/producto/crearProducto", {
+        Axios.post("https://celuantioqueno.onrender.com/producto/crearProducto", {
             nombre_producto: values.nombre_producto,
             tipo_producto: values.tipo_producto,
             cantidad: values.cantidad,

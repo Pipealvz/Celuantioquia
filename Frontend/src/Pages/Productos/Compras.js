@@ -24,14 +24,14 @@ const Compras = () => {
     });
 
     const getProducts = () => {
-        Axios.post('http://localhost:3306/producto/nuestrosProductos')
+        Axios.post('https://celuantioqueno.onrender.com/producto/nuestrosProductos')
             .then((response) => {
                 setProducts(response.data);
             });
     }
 
     const getProveedor = () => {
-        Axios.post('http://localhost:3306/proveedor/nuestrosProveedores')
+        Axios.post('https://celuantioqueno.onrender.com/proveedor/nuestrosProveedores')
             .then((response) => {
                 if (!response) {
                     setProveedor('0');
@@ -42,7 +42,7 @@ const Compras = () => {
     }
 
     const createPurchase = (values) => {
-        Axios.post("http://localhost:3306/producto/agregarCompra", {
+        Axios.post("https://celuantioqueno.onrender.com/producto/agregarCompra", {
             id_producto: values.id_producto,
             id_proveedor: values.id_proveedor,
             fecha_compra: `${fecha} - ${hora}`,

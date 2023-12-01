@@ -14,7 +14,7 @@ const NuestrosRoles = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const getRoles = () => {
-        Axios.post('http://localhost:3306/rol/nuestrosRol')
+        Axios.post('https://celuantioqueno.onrender.com/rol/nuestrosRol')
             .then((response) => {
                 setPost(response.data)
                 setIsLoading(false);
@@ -41,7 +41,7 @@ const NuestrosRoles = () => {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                Axios.post('http://localhost:3306/rol/eliminarRol', {
+                Axios.post('https://celuantioqueno.onrender.com/rol/eliminarRol', {
                     id_rol: id
                 })
                     .then(() => {

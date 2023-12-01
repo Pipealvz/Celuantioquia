@@ -11,7 +11,7 @@ const NuestrosDocumentos = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const getDocumentos = () => {
-        Axios.post('http://localhost:3306/documento/nuestrosDocumentos')
+        Axios.post('https://celuantioqueno.onrender.com/documento/nuestrosDocumentos')
             .then((response) => {
                 setPost(response.data);
                 setIsLoading(false);
@@ -38,7 +38,7 @@ const NuestrosDocumentos = () => {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                Axios.post('http://localhost:3306/documento/eliminarDocumento', {
+                Axios.post('https://celuantioqueno.onrender.com/documento/eliminarDocumento', {
                     id_documento: id
                 })
                     .then(() => {

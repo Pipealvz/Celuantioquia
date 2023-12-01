@@ -33,7 +33,7 @@ const NuestrosProveedores = memo(() => {
 
 
     const getAllProveedor = () => {
-        Axios.post('http://localhost:3306/proveedor/nuestrosProveedores')
+        Axios.post('https://celuantioqueno.onrender.com/proveedor/nuestrosProveedores')
             .then((response) => {
                 setPost(response.data)
                 setIsLoading(false);
@@ -45,7 +45,7 @@ const NuestrosProveedores = memo(() => {
 
         console.log(modalData);
 
-        Axios.post('http://localhost:3306/proveedor/actualizarProveedor', {
+        Axios.post('https://celuantioqueno.onrender.com/proveedor/actualizarProveedor', {
             id_proveedor: modalData.id_proveedor,
             nombre_proveedor: values.nombre_proveedor,
             correo_proveedor: values.correo_proveedor,
@@ -102,7 +102,7 @@ const NuestrosProveedores = memo(() => {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                Axios.post(`http://localhost:3306/proveedor/eliminarProveedores/${id}`)
+                Axios.post(`https://celuantioqueno.onrender.com/proveedor/eliminarProveedores/${id}`)
                     .then(() => {
                         swalWithBootstrapButtons.fire(
                             'Eliminado!',

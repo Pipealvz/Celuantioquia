@@ -25,7 +25,7 @@ export default function MostrarCategoria() {
 
     const getCategory = () => {
         // nombre_categoria, tipo_categoria, prioridad_categoria
-        Axios.post('http://localhost:3306/categoria/nuestrasCategorias')
+        Axios.post('https://celuantioqueno.onrender.com/categoria/nuestrasCategorias')
             .then((res) => {
                 setCategory(res.data)
                 console.log(res.data);

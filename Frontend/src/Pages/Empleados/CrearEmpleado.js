@@ -45,14 +45,14 @@ const CrearEmpleado = () => {
     }
 
     const getRoles = () => {
-        Axios.post('http://localhost:3306/rol/nuestrosRol')
+        Axios.post('https://celuantioqueno.onrender.com/rol/nuestrosRol')
             .then((response) => {
                 setRol(response.data);
             })
     }
 
     const getDocumentos = () => {
-        Axios.post('http://localhost:3306/documento/nuestrosDocumentos')
+        Axios.post('https://celuantioqueno.onrender.com/documento/nuestrosDocumentos')
             .then((response) => {
                 setDocumento(response.data);
             })
@@ -61,7 +61,7 @@ const CrearEmpleado = () => {
     const empleadoRegister = values => {
 
         console.log(values);
-        Axios.post('http://localhost:3306/empleado/crearEmpleado', {
+        Axios.post('https://celuantioqueno.onrender.com/empleado/crearEmpleado', {
             nombre_empleado: values.nombre_empleado,
             rol_empleado: values.rol_empleado,
             documento_identidad: values.documento_identidad,

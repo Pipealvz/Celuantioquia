@@ -22,7 +22,7 @@ const CrearDocumento = () => {
         //Se llama el enlace del servicio y se le asignan los valores al 
         //objeto que se con datos ingresasos en el formulario
 
-        Axios.post("http://localhost:3306/documento/crearDocumento", {
+        Axios.post("https://celuantioqueno.onrender.com/documento/crearDocumento", {
             nombre_documento: values.nombre_documento,
             estado_documento: values.estado_documento
         },

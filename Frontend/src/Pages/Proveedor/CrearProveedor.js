@@ -26,7 +26,7 @@ const CrearProveedor = memo(() => {
         //Se llama el enlace del servicio y se le asignan los valores al 
         //objeto que se con datos ingresasos en el formulario
 
-        Axios.post("http://localhost:3306/proveedor/crearProveedor", {
+        Axios.post("https://celuantioqueno.onrender.com/proveedor/crearProveedor", {
             nombre_proveedor: values.nombre_proveedor,
             correo_proveedor: values.correo_proveedor,
             contacto_proveedor: values.contacto_proveedor,

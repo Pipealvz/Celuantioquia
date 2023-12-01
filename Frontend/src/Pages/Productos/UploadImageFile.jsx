@@ -16,7 +16,7 @@ const UploadImageFile = () => {
 
     const uploadFile = () => {
 
-        Axios.post('http://localhost:3306/uploadImage/product', {
+        Axios.post('https://celuantioqueno.onrender.com/uploadImage/product', {
             id_producto: id
         },)
             .then((res) => {

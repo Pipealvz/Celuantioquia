@@ -63,7 +63,7 @@ const NuestrosProductos = () => {
     }, []);
 
     const getAllProductos = () => {
-        Axios.post('http://localhost:3306/producto/nuestrosProductos')
+        Axios.post('https://celuantioqueno.onrender.com/producto/nuestrosProductos')
             .then((response) => {
                 setPost(response.data);
                 setIsLoading(false);
@@ -130,7 +130,7 @@ const NuestrosProductos = () => {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                Axios.post('http://localhost:3306/producto/eliminarProducto', {
+                Axios.post('https://celuantioqueno.onrender.com/producto/eliminarProducto', {
                     id_producto: id
                 })
                     .then(() => {

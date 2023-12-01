@@ -21,7 +21,7 @@ const MostrarCliente = () => {
     // }
 
     const getCliente = () => {
-        Axios.post('http://localhost:3306/cliente/nuestrosClientes')
+        Axios.post('https://celuantioqueno.onrender.com/cliente/nuestrosClientes')
             .then((response) => {
                 setCliente(response.data);
                 console.log(response.data);
@@ -48,7 +48,7 @@ const MostrarCliente = () => {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                Axios.post('http://localhost:3306/cliente/eliminarCliente', {
+                Axios.post('https://celuantioqueno.onrender.com/cliente/eliminarCliente', {
                     id_cliente: id
                 })
                     .then(() => {

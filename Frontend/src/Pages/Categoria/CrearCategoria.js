@@ -10,11 +10,9 @@ const CrearCategoria = () => {
     const categoriaRegister = values => {
 
         console.log("Category register");
-        Axios.post("http://localhost:3306/categoria/crearCategoria", {
+        Axios.post("https://celuantioqueno.onrender.com/categoria/crearCategoria", {
             // nombre_categoria
-            nombre_categoria: values.nombre_categoria,
-            tipo_categoria: values.tipo_categoria
-
+            nombre_categoria: values.nombre_categoria
         },
 
         )

@@ -40,7 +40,7 @@ const EditarProducto = (data) => {
         //Se llama el enlace del servicio y se le asiganan los valores al 
         //objeto que se con datos ingresasos en el formulario
 
-        Axios.post('http://localhost:3306/producto/actualizarProducto', {
+        Axios.post('https://celuantioqueno.onrender.com/producto/actualizarProducto', {
             id_producto: checkForm.id_producto,
             nombre_producto: values.nombre_producto,
             tipo_producto: values.tipo_producto,

@@ -12,7 +12,7 @@ const DetalleCompra = () => {
     const [post, setPost] = useState([]);
 
     const getPurchases = () => {
-        Axios.post('http://localhost:3306/producto/mostrarCompras')
+        Axios.post('https://celuantioqueno.onrender.com/producto/mostrarCompras')
             .then((response) => {
                 setPost(response.data);
                 console.log(response.data);

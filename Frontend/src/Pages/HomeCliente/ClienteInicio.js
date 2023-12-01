@@ -18,7 +18,7 @@ const ClienteInicio = () => {
     const [url, setUrl] = useState({ title: '', url_image: '' });
 
     const getAllProductos = () => {
-        Axios.post('http://localhost:3306/producto/nuestrosProductos')
+        Axios.post('https://celuantioqueno.onrender.com/producto/nuestrosProductos')
             .then((response) => {
                 setPost(response.data);
                 console.log(response.data);

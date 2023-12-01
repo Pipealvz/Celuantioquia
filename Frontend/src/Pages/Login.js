@@ -55,7 +55,7 @@ const Login = () => {
     const onLogin = values => {
 
         console.log("EsLogin");
-        Axios.post("http://localhost:3306/auth/login", {
+        Axios.post("https://celuantioqueno.onrender.com/auth/login", {
             correo: values.correo,
             contrasena: values.contrasena
         },

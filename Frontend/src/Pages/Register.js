@@ -55,7 +55,7 @@ const Login = () => {
     const onRegister = values => {
 
         
-        Axios.post("http://localhost:3306/auth/registerUsers", {
+        Axios.post("https://celuantioqueno.onrender.com/auth/registerUsers", {
             nombre: values.nombreR,
             correo: values.correoR,
             contrasena: values.contraseñaR

@@ -26,7 +26,7 @@ export default function MostrarEmpleados() {
     }
 
     const getEmpleados = () => {
-        Axios.post('http://localhost:3306/empleado/nuestrosEmpleados')
+        Axios.post('https://celuantioqueno.onrender.com/empleado/nuestrosEmpleados')
             .then((response) => {
                 setEmpleados(response.data);
                 console.log(response.data);
@@ -54,7 +54,7 @@ export default function MostrarEmpleados() {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                Axios.post('http://localhost:3306/empleado/eliminarEmpleado', {
+                Axios.post('https://celuantioqueno.onrender.com/empleado/eliminarEmpleado', {
                     id_empleado: id
                 })
                     .then(() => {

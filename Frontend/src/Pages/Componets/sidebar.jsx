@@ -127,6 +127,9 @@ const App = () => {
                             <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                 <Link to="/NuestrosDocumentos" className='accordion-body btn' id='accordion-body'>Nuestros Documentos</Link>
                             </div>
+                            <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <Link to="/NuestrasCategorias" className='accordion-body btn' id='accordion-body'>Nuestras Categorías</Link>
+                            </div>
                         </div>
                     </div>
                 </nav>

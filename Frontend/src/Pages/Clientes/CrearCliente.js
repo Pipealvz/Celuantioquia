@@ -23,14 +23,14 @@ const CrearCliente = () => {
     const [document, setDocument] = useState([]);
 
     const getDocs = () => {
-        Axios.post('http://localhost:3306/documento/nuestrosDocumentos')
+        Axios.post('https://celuantioqueno.onrender.com/documento/nuestrosDocumentos')
             .then((res) => {
                 setDocument(res.data);
                 console.log(res.data);
             });
     };
     const getCategory = () => {
-        Axios.post('http://localhost:3306/rol/nuestrosRol')
+        Axios.post('https://celuantioqueno.onrender.com/rol/nuestrosRol')
             .then((res) => {
                 setRol(res.data);
                 console.log(res.data);
@@ -45,7 +45,7 @@ const CrearCliente = () => {
     const clienteRegister = values => {
 
         console.log(values);
-        Axios.post("http://localhost:3306/cliente/crearCliente", {
+        Axios.post("https://celuantioqueno.onrender.com/cliente/crearCliente", {
             nombre_cliente: values.nombre_cliente,
             documento_cliente: values.documento_cliente,
             tipo_documento_cliente: values.tipo_documento_cliente,
