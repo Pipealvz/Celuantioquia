@@ -4,30 +4,19 @@ import { useEffect, useState } from 'react';
 //import * as FaIcons from "react-icons/md";
 import SpinnerGrow from '../SpinnerGrow';
 import Navbar from '../../Pages/Componets/sidebar';
-import Compras from './Compras';
+import Ventas from './Ventas';
 
-const DetalleCompra = () => {
+const DetalleVenta = () => {
 
     const [isLoading, setIsLoading] = useState(true);
     const [post, setPost] = useState([]);
 
     const getPurchases = () => {
-        Axios.post('http://localhost:3306/producto/mostrarCompras')
+        Axios.post('http://localhost:3306/producto/mostrarVentas')
             .then((response) => {
                 setPost(response.data);
                 console.log(response.data);
                 setIsLoading(false);
-            });
-    }
-    const handleSubmitFilter = (e) => {
-        e.preventDefault();
-    }
-    const filterPurchase = (id) => {
-        console.log(id);
-        Axios.post(`http://localhost:3306/producto/comprasPorId/${id}`, { id: id })
-            .then((response) => {
-                setPost(response.data);
-                console.log(response.data);
             });
     }
 
@@ -40,7 +29,7 @@ const DetalleCompra = () => {
                 <div className='d-flex'>
                     <Navbar />
                     <div className='container' style={{ margin: '8rem 0px 0px 0px' }}>
-                        <h2 className='text-success text-center text-uppercase fs-1'>Historial de compras</h2>
+                        <h2 className='text-success text-center text-uppercase fs-1'>Historial de ventas</h2>
                         <hr />
                         {/* <form onSubmit={handleSubmitFilter}>
                             <select className="col-3" id="">
@@ -57,16 +46,16 @@ const DetalleCompra = () => {
                             <button type="submit" className='btn btn-success'>Buscar</button>
                         </form> */}
                         <button type="button" className="col-2 btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Agregar Compra
+                            Agregar venta
                         </button>
                         <table className='container table table-hover'>
                             <thead className='bg-success'>
                                 <tr className='text-light text-center'>
                                     <th className='text-center' scope="col">#</th>
                                     <th className='text-start col-4' scope="col">Nombre Producto</th>
-                                    <th className='text-start col-3' scope="col">Nombre Proveedor</th>
+                                    <th className='text-start col-3' scope="col">Nombre Cliente</th>
                                     <th className='text-center' scope="col">Cantidad</th>
-                                    <th className='text-end' scope="col">Precio</th>
+                                    <th className='text-end' scope="col">Precio Unitario</th>
                                     <th className='text-center' scope="col">Fecha de compra</th>
                                 </tr>
                             </thead>
@@ -74,14 +63,14 @@ const DetalleCompra = () => {
                                 post.map((item) => {
                                     return (
                                         <>
-                                            <tbody className='text-center text-capitalize' key={item.id_movimiento}>
+                                            <tbody className='text-center text-capitalize' key={item.id_venta}>
                                                 <tr>
-                                                    <td className='text-center' id='tdName'>{item.id_producto}</td>
+                                                    <td className='text-center' id='tdName'>{item.id_venta}</td>
                                                     <td className='text-start' id='tdName'>{item.nombre_producto}</td>
-                                                    <td className='text-start' id='tdName'>{item.nombre_proveedor}</td>
-                                                    <td className='text-center' id='tdName'>{item.cantidad_compra}</td>
-                                                    <td className='text-end' id='tdName'>{Math.trunc(item.precio_compra).toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}</td>
-                                                    <td className='text-end' id='tdName'>{item.fecha_compra}</td>
+                                                    <td className='text-start' id='tdName'>{item.nombre_cliente}</td>
+                                                    <td className='text-center' id='tdName'>{item.cantidad_venta}</td>
+                                                    <td className='text-end' id='tdName'>{Math.trunc(item.precio).toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}</td>
+                                                    <td className='text-end' id='tdName'>{item.fecha_venta}</td>
                                                 </tr>
                                             </tbody>
                                         </>
@@ -89,7 +78,7 @@ const DetalleCompra = () => {
                                 })}
                         </table>
                         <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <Compras />
+                            <Ventas />
                         </div>
                     </div>
                 </div>
@@ -98,4 +87,4 @@ const DetalleCompra = () => {
     )
 }
 
-export default DetalleCompra;
+export default DetalleVenta;

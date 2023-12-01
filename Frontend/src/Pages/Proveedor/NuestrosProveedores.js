@@ -2,7 +2,7 @@ import Axios from 'axios';
 import React, { memo } from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -11,6 +11,7 @@ import Form from 'react-bootstrap/Form';
 import Navbar from '../Componets/sidebar';
 import * as FaIcons from "react-icons/md";
 import CrearProveedor from './CrearProveedor';
+import SpinnerBorder from '../SpinnerGrow';
 
 
 
@@ -19,6 +20,7 @@ const NuestrosProveedores = memo(() => {
 
     const [post, setPost] = React.useState(null);
     const [modalData, setModalData] = React.useState(null);
+    const [isLoading, setIsLoading] = React.useState(true);
 
     const [editShow, setEditShow] = React.useState(false);
 
@@ -34,6 +36,7 @@ const NuestrosProveedores = memo(() => {
         Axios.post('http://localhost:3306/proveedor/nuestrosProveedores')
             .then((response) => {
                 setPost(response.data)
+                setIsLoading(false);
             });
     }
 
@@ -79,6 +82,8 @@ const NuestrosProveedores = memo(() => {
 
     function deleteProveedor(id) {
 
+        console.log(id);
+
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -97,9 +102,7 @@ const NuestrosProveedores = memo(() => {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                Axios.post('http://localhost:3306/proveedor/eliminarProveedores', {
-                    id_proveedor: id
-                })
+                Axios.post(`http://localhost:3306/proveedor/eliminarProveedores/${id}`)
                     .then(() => {
                         swalWithBootstrapButtons.fire(
                             'Eliminado!',
@@ -126,136 +129,144 @@ const NuestrosProveedores = memo(() => {
     if (!post) return null;
 
     return (
-        <div className='d-flex'>
+        <>
+            {
+                isLoading === true ?
+                    <SpinnerBorder />
+                    :
 
-            <Navbar />
-            <div className='container' style={{ margin: '8rem 4rem 5rem 4rem' }}>
+                    <div className='d-flex'>
 
-                <h2 className='text-success text-center text-uppercase fs-1'>Proveedores</h2>
-                <br />
-                <div className="d-grid gap-2 col-6 mx-auto">
-                    <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Crear proveedor
-                    </button>
-                </div>
-                <br />
-                <table className="table text-success">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre Proveedor</th>
-                            <th scope="col">Correo Proveedor</th>
-                            <th scope="col">Contacto</th>
-                            <th scope="col">Nit</th>
-                            <th scope="col">Dirección</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody className="table-group-divider ">
+                        <Navbar />
+                        <div className='container' style={{ margin: '8rem 4rem 5rem 4rem' }}>
 
-                        {post.map((item) => {
+                            <h2 className='text-success text-center text-uppercase fs-1'>Proveedores</h2>
+                            <br />
+                            <div className="d-grid gap-2 col-6 mx-auto">
+                                <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Crear proveedor
+                                </button>
+                            </div>
+                            <br />
+                            <table className="table text-success">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre Proveedor</th>
+                                        <th scope="col">Correo Proveedor</th>
+                                        <th scope="col">Contacto</th>
+                                        <th scope="col">Nit</th>
+                                        <th scope="col">Dirección</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="table-group-divider ">
 
-                            return (
-                                <tr className="table-light text-success ">
-                                    <th scope="row" key={item.id_proveedor}></th>
-                                    <td>{item.nombre_proveedor}</td>
-                                    <td>{item.correo_proveedor}</td>
-                                    <td>{item.contacto_proveedor}</td>
-                                    <td>{item.nit_proveedor}</td>
-                                    <td>{item.direccion_proveedor}</td>
-                                    <td>
-                                        <div className='row d-flex'>
-                                            <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { deleteProveedor(item.id_proveedor); }} ><FaIcons.MdDelete className="" /></Button>
-                                            <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setEditShow(true); }}><FaIcons.MdModeEdit className="" /></Button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
+                                    {post.map((item) => {
 
-                        })}
-                    </tbody>
-                </table>
+                                        return (
+                                            <tr className="table-light text-success ">
+                                                <th scope="row" key={item.id_proveedor}></th>
+                                                <td>{item.nombre_proveedor}</td>
+                                                <td>{item.correo_proveedor}</td>
+                                                <td>{item.contacto_proveedor}</td>
+                                                <td>{item.nit_proveedor}</td>
+                                                <td>{item.direccion_proveedor}</td>
+                                                <td>
+                                                    <div className='row d-flex'>
+                                                        <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { deleteProveedor(item.id_proveedor); }} ><FaIcons.MdDelete className="" /></Button>
+                                                        <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setEditShow(true); }}><FaIcons.MdModeEdit className="" /></Button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        )
 
-                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <CrearProveedor />
-                </div>
+                                    })}
+                                </tbody>
+                            </table>
 
-                <Modal show={editShow}
-                    onHide={() => setEditShow(false)}
-                    aria-labelledby="contained-modal-title-vcenter"
-                >
-                    <Modal.Header closeButton>
-                        <Modal.Title id="contained-modal-title-vcenter">
-                            Editar producto
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form onSubmit={handleSubmit(editProveedor)}>
-                            <label for="proveedor" className="form-label" >Proveedor</label>
+                            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <CrearProveedor />
+                            </div>
 
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Nombre del proveedor</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Samsung..."
-                                    // value={modalData.nombre_producto}
-                                    autoFocus
-                                    {...register('nombre_proveedor', { required: true })}
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                                <Form.Label>Correo Proveedor</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    placeholder="Example@gmail.com"
-                                    //value={modalData.tipo_producto}
-                                    autoFocus
-                                    {...register('correo_proveedor', { required: true })}
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                                <Form.Label>Contacto</Form.Label>
-                                <Form.Control
-                                    type="number"
-                                    placeholder="50"
-                                    // value={modalData.cantidad}
-                                    autoFocus
-                                    {...register('contacto_proveedor', { required: true })}
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                                <Form.Label>Nit</Form.Label>
-                                <Form.Control
-                                    type="number"
-                                    placeholder="50"
-                                    // value={modalData.precio}
-                                    autoFocus
-                                    {...register('nit_proveedor', { required: true })}
-                                />
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                <Form.Label>Dirección</Form.Label>
-                                <Form.Control as="textarea" rows={3}
-                                    // value={modalData.descripcion}
-                                    {...register('direccion_proveedor', { required: true })}
-                                />
-                            </Form.Group>
+                            <Modal show={editShow}
+                                onHide={() => setEditShow(false)}
+                                aria-labelledby="contained-modal-title-vcenter"
+                            >
+                                <Modal.Header closeButton>
+                                    <Modal.Title id="contained-modal-title-vcenter">
+                                        Editar producto
+                                    </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <Form onSubmit={handleSubmit(editProveedor)}>
+                                        <label for="proveedor" className="form-label" >Proveedor</label>
 
-                            <Modal.Footer>
-                                <Button variant="success" onClick={() => setEditShow(false)}>
-                                    Cancelar
-                                </Button>
-                                <Button type="submit" variant="success" >
-                                    Guardar cambios
-                                </Button>
-                            </Modal.Footer>
-                        </Form>
-                    </Modal.Body>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                            <Form.Label>Nombre del proveedor</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Samsung..."
+                                                // value={modalData.nombre_producto}
+                                                autoFocus
+                                                {...register('nombre_proveedor', { required: true })}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+                                            <Form.Label>Correo Proveedor</Form.Label>
+                                            <Form.Control
+                                                type="email"
+                                                placeholder="Example@gmail.com"
+                                                //value={modalData.tipo_producto}
+                                                autoFocus
+                                                {...register('correo_proveedor', { required: true })}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+                                            <Form.Label>Contacto</Form.Label>
+                                            <Form.Control
+                                                type="number"
+                                                placeholder="50"
+                                                // value={modalData.cantidad}
+                                                autoFocus
+                                                {...register('contacto_proveedor', { required: true })}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+                                            <Form.Label>Nit</Form.Label>
+                                            <Form.Control
+                                                type="number"
+                                                placeholder="50"
+                                                // value={modalData.precio}
+                                                autoFocus
+                                                {...register('nit_proveedor', { required: true })}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                                            <Form.Label>Dirección</Form.Label>
+                                            <Form.Control as="textarea" rows={3}
+                                                // value={modalData.descripcion}
+                                                {...register('direccion_proveedor', { required: true })}
+                                            />
+                                        </Form.Group>
 
-                </Modal>
-            </div>
-        </div>
+                                        <Modal.Footer>
+                                            <Button variant="success" onClick={() => setEditShow(false)}>
+                                                Cancelar
+                                            </Button>
+                                            <Button type="submit" variant="success" >
+                                                Guardar cambios
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Form>
+                                </Modal.Body>
 
+                            </Modal>
+                        </div>
+                    </div>
+
+            }
+        </>
     );
 });
 

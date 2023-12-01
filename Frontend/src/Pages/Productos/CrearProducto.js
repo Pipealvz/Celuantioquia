@@ -44,14 +44,13 @@ const CrearProducto = () => {
             precio: values.precio,
             descripcion: values.descripcion,
             producto_destacado: values.producto_destacado
-        },
-        )
+        },)
             .then(function (res) {
                 console.log(res);
-                // Alerta si se crea el producto correctamente
+                // Alerta si se crea el cliente correctamente
                 Swal.fire({
                     title: "Proceso exitoso",
-                    text: "Producto creado con exito",
+                    text: "Cliente creado con exito",
                     icon: "success",
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
@@ -62,10 +61,10 @@ const CrearProducto = () => {
             })
             .catch(function (error) {
                 console.log(error);
-                //Alerta si ocurre algun error al crea el producto 
+                //Alerta si ocurre algun error al crea el cliente 
                 Swal.fire({
                     title: "Error",
-                    text: "No se pudo crear el producto",
+                    text: "No se pudo crear el cliente",
                     icon: "error",
                     confirmButtonText: "Aceptar",
                 });

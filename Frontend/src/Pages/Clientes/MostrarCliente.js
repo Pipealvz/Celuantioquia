@@ -4,13 +4,17 @@ import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import Navbar from '../Componets/sidebar';
 import * as FaIcons from "react-icons/md";
+import CrearCliente from './CrearCliente';
+import SpinnerBorder from '../SpinnerGrow';
+import Swal from 'sweetalert2';
 
 
 const MostrarCliente = () => {
 
 
     const [cliente, setCliente] = useState();
-    const [modalData, setModalData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
 
     // const setDatosEditarEmpleados = (item) => {
     //     estableceDatos(item);
@@ -21,126 +25,125 @@ const MostrarCliente = () => {
             .then((response) => {
                 setCliente(response.data);
                 console.log(response.data);
+                setIsLoading(false);
             });
     }
 
-    function deleteCliente(id) {
-        Axios.post('http://localhost:3306/cliente/eliminarCliente', {
-            id_cliente: id
+    function deleteCustomer(id) {
+        console.log(id)
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
         })
-            .then(() => {
-                window.location.reload(true);
-            });
+        swalWithBootstrapButtons.fire({
+            title: '¿Estás seguro?',
+            text: "Si se elimina el cliente, no podrá ser recuperado",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Axios.post('http://localhost:3306/cliente/eliminarCliente', {
+                    id_cliente: id
+                })
+                    .then(() => {
+                        swalWithBootstrapButtons.fire({
+                            title: 'Eliminado!',
+                            text: "El cliente fue eliminado",
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar'
+                        }).then(() => {
+                            window.location.reload();
+                        })
+                    });
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire({
+                    title: 'Cancelado',
+                    text: "No se eliminó ningún cliente",
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                })
+            }
+        })
     }
 
     useEffect(() => {
         getCliente();
     }, []);
 
-    // const eliminar = (id) => {
-
-    //     Swal.fire({
-    //         title: '¡Espera!',
-    //         text: "¿Estás seguro de eliminar este cliente?",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: 'green',
-    //         cancelButtonColor: 'red',
-    //         confirmButtonText: 'Sí, eliminar',
-    //         cancelButtonText: 'Cancelar'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             deleteCliente();
-    //             Swal.fire(
-    //                 'Eliminado!',
-    //                 'Este cliente fue eliminado.',
-    //                 'success'
-    //             )
-    //             deleteCliente(id);
-    //         }
-    //     })
-    // }
-
-    if (!cliente) return null;
-
     return (
-        <div className='d-flex'>
-            <Navbar />
+        <>
+            {
+                isLoading === true
+                    ?
+                    <SpinnerBorder />
+                    :
+                    <div className='d-flex'>
+                        <Navbar />
+                        <div className='container p-4 vh-auto border rounded shadow' style={{ margin: '8rem 0px 0px 0px' }}>
+                            <h2 className='text-success text-center text-uppercase fs-1'>Lista de productos</h2>
+                            <hr />
+                            <br />
+                            <div className="d-flex">
+                                <form className="d-flex me-1">
+                                    <input className="form-control me-2" type="search" placeholder="Buscar cliente..." aria-label="Search" />
+                                    <button className="btn btn-outline-success" type="submit">Buscar</button>
+                                </form>
+                                <button type="button" className="col-2 btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Crear Cliente
+                                </button>
+                            </div>
+                            <br />
+                            <table className="container table table-hover">
+                                <thead className='bg-success'>
+                                    <tr className='text-light text-center'>
+                                        <th scope="col">Cód.</th>
+                                        <th scope="col">Nombre cliente</th>
+                                        <th scope="col">Tipo documento</th>
+                                        <th scope="col">Número documento</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Correo</th>
+                                        <th scope="col">Dirección</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                {cliente.map((item) => {
+                                    return (
 
-            <div className='container p-4 vh-auto border rounded shadow' style={{ margin: '5rem 4rem 5rem 4rem' }}>
-
-                <h2 className='text-success text-center text-uppercase fs-1' >Lista de Clientes </h2>
-
-                {/* <div className="container">
-                    <div className="row-fluid mt-4 justify-content-center d-flex">
-                        <div
-                            id="btn-crelote"
-                            className="btn btn-success col-lg-4 col-12"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modal-cliente"
-                            style={{ marginBottom: '1rem' }}
-                        >
-                            Agregar cliente
+                                        <tbody className="text-center text-capitalize">
+                                            <tr key={item.id_cliente}>
+                                                <td >{item.id_cliente}</td>
+                                                <td>{item.nombre_cliente} </td>
+                                                <td>{item.nombre_documento}</td>
+                                                <td>{item.documento_cliente}</td>
+                                                <td>{item.telefono_contacto}</td>
+                                                <td>{item.correo_cliente}</td>
+                                                <td>{item.direccion_vivienda}</td>
+                                                <td>
+                                                    <button className='btn btn-danger' data-bs-toggle="modal" data-bs-target="#deleteCustomer" onClick={() => { deleteCustomer(item.id_cliente) }}>
+                                                        <span><FaIcons.MdDelete></FaIcons.MdDelete></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    )
+                                })}
+                            </table>
+                        </div>
+                        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <CrearCliente />
                         </div>
                     </div>
-                </div> */}
+            }
+        </>
 
-                <table className="table text-success">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre cliente</th>
-                            <th scope="col">Tipo documento</th>
-                            <th scope="col">Número documento</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">Dirección</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody className="table-group-divider ">
-
-                        {cliente.map((item) => {
-                            return (
-
-                                <tr className="table-light text-success ">
-                                    <td key={item.id_cliente}></td>
-                                    <td>{item.nombre_cliente} </td>
-                                    <td>{item.tipo_documento_cliente}</td>
-                                    <td>{item.documento_cliente}</td>
-                                    <td>{item.telefono_contacto}</td>
-                                    <td>{item.correo_cliente}</td>
-                                    <td>{item.direccion_vivienda}</td>
-                                    <td>
-                                        <button className='btn btn-success bg-' data-bs-toggle="modal" data-bs-target="#deleteCustomer" onClick={() => { setModalData(item) }}>
-                                            <span><FaIcons.MdDelete></FaIcons.MdDelete></span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                        <div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Advertencia</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ¿Estás seguro de eliminar este cliente?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-success" onClick={() => { deleteCliente(modalData.id_cliente) }}>Sí, eliminar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
     )
 
 }

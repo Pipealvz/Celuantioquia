@@ -1,25 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from "axios";
 import { useForm } from 'react-hook-form';
 //import React, { useState } from 'react';
 import Swal from "sweetalert2";
+import './cliente.css'
 
 
 
 const CrearCliente = () => {
 
     const { register, handleSubmit } = useForm();
-    //const { empleados, setEmpleados } = useState();
+    const [checkForm, setCheckForm] = useState({
+        nombre_cliente: '',
+        documento_cliente: '',
+        direccion_vivienda: '',
+        telefono_contacto: '',
+        correo_cliente: '',
+        contraseña_cliente: ''
+    });
+
+    const [rol, setRol] = useState([]);
+    const [document, setDocument] = useState([]);
+
+    const getDocs = () => {
+        Axios.post('http://localhost:3306/documento/nuestrosDocumentos')
+            .then((res) => {
+                setDocument(res.data);
+                console.log(res.data);
+            });
+    };
+    const getCategory = () => {
+        Axios.post('http://localhost:3306/rol/nuestrosRol')
+            .then((res) => {
+                setRol(res.data);
+                console.log(res.data);
+            });
+    }
+
+    const handleCheckInputs = ({ target }) => {
+        setCheckForm({ ...checkForm, [target.name]: target.value });
+        //console.log(target.value);
+    }
 
     const clienteRegister = values => {
 
-        console.log("Cliente registrado");
-        Axios.post("https://celuantioqueno.onrender.com/cliente/crearCliente", {
-
+        console.log(values);
+        Axios.post("http://localhost:3306/cliente/crearCliente", {
+            nombre_cliente: values.nombre_cliente,
+            documento_cliente: values.documento_cliente,
+            tipo_documento_cliente: values.tipo_documento_cliente,
+            direccion_vivienda: values.direccion_vivienda,
+            telefono_contacto: values.telefono_contacto,
+            correo_cliente: values.correo_cliente,
+            contraseña_cliente: values.contraseña_cliente,
+            rol_cliente: values.rol_cliente
         },)
             .then(function (res) {
                 console.log(res);
-
                 Swal.fire({
                     title: "Empleado registrado",
                     text: "Se registró el cliente exitosamente",
@@ -42,73 +79,87 @@ const CrearCliente = () => {
                 });
             });
     };
+
+    useEffect(() => {
+        getDocs();
+        getCategory();
+    }, []);
     return (
-        <div className="modal fade" id="modal-cliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog">
+        <>
+            <div className="modal-dialog bg-light modal-lg rounded">
                 <div className="modal-content">
-                    <div className='container p-4 vh-auto border rounded shadow'>
-                        <h2 className='text-success text-center text-uppercase fs-1'>Registrar Empleado</h2>
-                        <hr />
-                        <form onSubmit={handleSubmit(empleadoRegister)}>
-                            <div className="row text-success d-flex  mb-3">
-                                <label htmlFor="documento_empleado" className="form-label">Documento de identidad</label>
-                                <div className="input-group">
-                                    <select className="input-group-text bg-success text-light" {...register('tipo_documento', { required: true })}>
-                                        <option className="form-control" id="tipo_documento">Cédula ciudadana</option>
-                                        <option className="form-control" id="tipo_documento">Cédula extranjera</option>
-                                    </select>
-                                    <input type="number" min="1" max="10000000000000" className="form-control" id="documento_identidad" {...register('documento_identidad', { required: true })} />
+                    <div className="modal-header">
+                        <h2 className='text-success text-center text-uppercase fs-1'>Crear cliente</h2>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="modal-body">
+                        <form className="producto-form" onSubmit={handleSubmit(clienteRegister)} onChange={handleCheckInputs}>
+                            <div className="row text-success d-flex mb-3">
+                                <div className='w-50'>
+                                    <label htmlFor="nombre_cliente" className="form-label">Nombre del cliente</label>
+                                    <input name='nombre_cliente' type="text" className={`form-control ${!checkForm.nombre_cliente ? 'is-invalid' : 'is-valid'}`} maxlength="60" id="nombre_producto" value={checkForm.nombre_cliente} {...register('nombre_cliente', { required: true })} />
+                                </div>
+                                <div className='w-50'>
+                                    <label htmlFor="documento_cliente" className="form-label">Documento de identidad</label>
+                                    <input type="number" className={`form-control ${checkForm.documento_cliente <= 0 ? 'is-invalid' : 'is-valid'}`} value={checkForm.documento_cliente} min="1" id="documento_cliente"{...register('documento_cliente', { required: true })} />
                                 </div>
                             </div>
                             <div className="row text-success d-flex mb-3">
-                                <label htmlFor="nombre_empleado" className="form-label">Nombre del empleado</label>
-                                <input type="text" className="form-control" id="nombre_empleado" {...register('nombre_empleado', { required: true })} />
-                            </div>
-                            <div className="row text-success d-flex  mb-3">
-                                <label htmlFor="correo_empleado" className="form-label">Correo del empleado</label>
-                                <input type="email" className="form-control" id="correo_empleado" {...register('correo_empleado', { required: true })} />
-                            </div>
-                            <div className="row text-success d-flex  mb-3">
-                                <label htmlFor="contraseña_empleado" className="form-label">Contraseña del empleado</label>
-                                <div className="input-group">
-                                    <input type="password" className="form-control" id="contraseña_empleado" {...register('contraseña_empleado', { required: true })} />
+                                <div className='w-50'>
+                                    <label htmlFor="tipo_documento_cliente" className="form-label">Tipo de documento</label>
+                                    <select className="form-select is-valid" aria-label="Default select example" id="tipo_documento_cliente" {...register('tipo_documento_cliente', { required: true })} >
+                                        {!document ? 'No hay documentos disponibles' :
+                                            document.map((item) => {
+
+                                                return (
+                                                    <option key={item.id_documento} value={item.id_documento}>{item.nombre_documento}</option>
+                                                )
+                                            })}
+                                    </select>
+                                </div>
+                                <div className='w-50'>
+                                    <label htmlFor="direccion_vivienda" className="form-label">Dirección de vivienda</label>
+                                    <input type="text" className={`form-control ${!checkForm.direccion_vivienda ? 'is-invalid' : 'is-valid'}`} value={checkForm.direccion_vivienda} id="direccion_vivienda" {...register('direccion_vivienda', { required: true })} />
                                 </div>
                             </div>
-                            <div className="row text-success d-flex  mb-3">
-                                <label htmlFor="telefono_empleado" className="form-label">Teléfono del empleado</label>
-                                <div className="input-group">
-                                    <span className="input-group-text bg-success text-light" role="img" aria-label='img'>📱 604 / +57</span>
-                                    <input type="number" min="1" className="form-control" id="telefono_empleado" placeholder="Número de teléfono o celular" {...register('telefono_empleado', { required: true })} />
+                            <div className="row text-success d-flex mb-3">
+                                <div className='w-50'>
+                                    <label htmlFor="telefono_contacto" className="form-label">Teléfono de contacto</label>
+                                    <input type="number" min='1' className={`form-control ${checkForm.telefono_contacto <= 0 ? 'is-invalid' : 'is-valid'}`} value={checkForm.telefono_contacto} id="telefono_contacto" {...register('telefono_contacto', { required: true })} />
+                                </div>
+                                <div className='w-50'>
+                                    <label htmlFor="correo_cliente" className="form-label">Correo</label>
+                                    <input type="email" className={`form-control ${!checkForm.correo_cliente ? 'is-invalid' : 'is-valid'}`} value={checkForm.correo_cliente} id="correo_cliente" {...register('correo_cliente', { required: true })} />
                                 </div>
                             </div>
-                            {/* <div className="row text-success d-flex  mb-3">
-                                <span>Rol del empleado</span>
-                                <select htmlFor="rol_empleado" className="form-select" {...register('rol_empleado', { required: true })}>
-                                    <option className="form-control" id="rol_empleado" value="1">Administrador</option>
-                                    <option className="form-control" id="rol_empleado" value="0">Empleado</option>
-                                </select>
-                            </div> */}
-                            <div className="row text-success d-flex  mb-3">
-                                <label htmlFor="direccion_empleado" className="form-label">Dirección del empleado</label>
-                                <input type="text" className="form-control" id="direccion_empleado" {...register('direccion_empleado', { required: true })} />
-                            </div>
+                            <div className="row text-success d-flex mb-3">
+                                <div className='w-50'>
+                                    <label htmlFor="rol_cliente" className="form-label">Rol del cliente</label>
+                                    <select className="form-select is-valid" aria-label="Default select example" id="rol_cliente" {...register('rol_cliente', { required: true })} >
+                                        {!rol ? 'No hay documentos disponibles' :
+                                            rol.map((item) => {
 
-                            <div className="row text-success d-flex  mb-3">
-                                <label htmlFor="fecha_nacimiento_empleado" className="form-label">Dirección del empleado</label>
-                                <input type="date" className="form-control" id="fecha_nacimiento_empleado" {...register('fecha_nacimiento_empleado', { required: true })} />
+                                                return (
+                                                    <option key={item.id_rol} value={item.id_rol}>{item.nombre_rol}</option>
+                                                )
+                                            })}
+                                    </select>
+                                </div>
+                                <div className='w-50'>
+                                    <label htmlFor="contraseña_cliente" className="form-label">Contraseña</label>
+                                    <input type="password" className={`form-control ${!checkForm.contraseña_cliente ? 'is-invalid' : 'is-valid'}`} value={checkForm.contraseña_cliente} id="contraseña_cliente" {...register('contraseña_cliente', { required: true })} />
+                                </div>
                             </div>
-
+                            <div className="text-center">
+                                <input type="submit" value="Crear" className="btn btn-success mt-4 w-50" />
+                            </div>
                             <br />
-                            <div className='d-flex justify-content-center'>
-                                <input type="submit" className="btn btn-success col-6" value="Registrar Empleado" />
-                            </div>
                         </form>
-                        <br />
                     </div>
-                </div>
-            </div>
-        </div>
-    )
+                </div >
+            </div >
+        </>
+    );
 
 }
 

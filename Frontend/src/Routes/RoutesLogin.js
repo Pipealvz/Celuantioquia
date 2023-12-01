@@ -33,6 +33,8 @@ import NuestrosDocumentos from '../Pages/Documentos/nuestrosDocumentos';
 import CrearDocumento from '../Pages/Documentos/crearDocumento';
 import Compras from '../Pages/Productos/Compras';
 import DetalleCompra from '../Pages/Productos/DetalleCompra';
+import UploadImageFile from '../Pages/Productos/UploadImageFile';
+import DetalleVenta from '../Pages/Productos/DetalleVenta';
 
 
 function RoutesIndex() {
@@ -52,6 +54,8 @@ function RoutesIndex() {
         <Route exact path="/NuestrosProductos" element={<NuestrosProductos />} />
         <Route exact path="/Compras" element={<Compras />} />
         <Route exact path="/HistorialCompras" element={<DetalleCompra />} />
+        <Route exact path="/UploadFile/:id" element={<UploadImageFile />} />
+        <Route exact path="/HistorialVentas" element={<DetalleVenta />} />
 
         
         <Route exact path="/CrearProveedor" element={<CrearProveedor />} />

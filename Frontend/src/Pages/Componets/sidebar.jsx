@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 // import * as FaIcons from "react-icons/md";
 import Logo from '../../Logo.png';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
+import Swal from 'sweetalert2';
 
 
 

@@ -14,6 +14,8 @@ import EditarProducto from './EditarProducto';
 import SpinnerBorder from '../SpinnerGrow';
 import Compras from './Compras';
 import { Link } from 'react-router-dom';
+import UploadImageFile from './UploadImageFile';
+
 
 
 
@@ -211,7 +213,8 @@ const NuestrosProductos = () => {
                                                     <td id='tdActions'>
                                                         <div className='d-flex'>
                                                             <button className="btn btn-danger me-1" onClick={() => { deleteProducto(item.id_producto); }} ><FaIcons.MdDelete /> </button>
-                                                            <button className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => { handleSubmitEdit(item.id_producto) }}> <FaIcons.MdModeEdit /></button>
+                                                            <button className="btn btn-warning me-1" data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => { handleSubmitEdit(item.id_producto) }}> <FaIcons.MdModeEdit /></button>
+                                                            <Link className="btn btn-warning"  to={`/UploadFile/${item.id_producto}`}> <FaIcons.MdUploadFile /></Link>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -220,7 +223,6 @@ const NuestrosProductos = () => {
                                     )
                                 })}
                                 {/* <div className='row'> Total de productos: {post.length} </div> */}
-
 
                                 <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <CrearProducto />
@@ -233,127 +235,9 @@ const NuestrosProductos = () => {
                                 <div className="modal fade" id="modalPurchase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <Compras />
                                 </div>
-                                {/* <Modal
-                        show={deleteShow}
-                        onHide={() => setDeletehow(false)}
-                        aria-labelledby="contained-modal-title-vcenter"
-                    >
-                        <Modal.Header closeButton>
-                            <Modal.Title id="contained-modal-title-vcenter">
-                                Advertencia
-                            </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>¿Estas seguro de querer eliminar este producto?</Modal.Body>
-
-                        <Modal.Footer>
-                            <Button variant="success" onClick={() => setDeletehow(false)}>
-                                No
-                            </Button>
-                            <Button variant="success" onClick={() => { deleteProducto(modalData.id_producto) }}>
-                                si
-                            </Button>
-                        </Modal.Footer>
-                    </Modal> */}
-
-
-                                {/* <Modal show={editShow}
-                        onHide={() => setEditShow(false)}
-                        aria-labelledby="contained-modal-title-vcenter"
-                    >
-                        <Modal.Header closeButton>
-                            <Modal.Title id="contained-modal-title-vcenter">
-                                Editar producto
-                            </Modal.Title>
-                        </Modal.Header>
-
-                        <Modal.Body>
-                            <Form onSubmit={handleSubmit(editProducto)}>
-                                <label for="nombre_producto" className="form-label" >Producto</label>
-
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                    <Form.Label>Nombre del producto</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Samsung..."
-                                        //value={modalData.nombre_producto}
-                                        autoFocus
-                                        {...register('nombre_producto', { required: false })}
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                                    <Form.Label>Tipo del produto</Form.Label>
-                                    <select
-                                        className='form-select'
-                                        as="select"
-                                        autoFocus
-                                        {...register('tipo_producto', { required: false })}
-                                    >
-                                        {category.map((item) => {
-
-                                            return (
-                                                <option key={item.id_categoria} value={item.id_categoria}>{item.nombre_categoria}</option>
-                                            )
-                                        })}
-
-                                    </select>
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                                    <Form.Label>Precio del producto</Form.Label>
-                                    <Form.Control
-                                        type="number"
-                                        placeholder="$50.000"
-                                        //defaultValue={modalData.precio}
-                                        // value={modalData.cantidad}
-                                        autoFocus
-                                        {...register('cantidad', { required: false })}
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                                    <Form.Label>Cantidad del producto</Form.Label>
-                                    <Form.Control
-                                        type="number"
-                                        placeholder="50"
-                                        //defaultValue={modalData.cantidad}
-                                        // value={modalData.precio}
-                                        autoFocus
-                                        {...register('precio', { required: false })}
-                                    />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                    <Form.Label>Descripción</Form.Label>
-                                    <Form.Control as="textarea" rows={3}
-                                        // value={modalData.descripcion}
-                                        {...register('descripcion', { required: false })}
-
-                                    />
-                                </Form.Group>
-                                <Form.Group>
-                                    <div className="form-check">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" value="1" id="flexRadioDefault1" {...register('producto_destacado', { required: true })} />
-                                        <label className="form-check-label" for="flexRadioDefault1">
-                                            Destacar producto.
-                                        </label>
-                                    </div>
-                                    <div className="form-check">
-                                        <input className="form-check-input" type="radio" name="flexRadioDefault" value="0" id="flexRadioDefault2" checked {...register('producto_destacado', { required: true })} />
-                                        <label className="form-check-label" for="flexRadioDefault2">
-                                            No destacar producto.
-                                        </label>
-                                    </div>
-                                </Form.Group>
-
-                                <Modal.Footer>
-                                    <Button variant="success" onClick={() => setEditShow(false)}>
-                                        Cancelar
-                                    </Button>
-                                    <Button type="submit" variant="success" >
-                                        Guardar cambios
-                                    </Button>
-                                </Modal.Footer>
-                            </Form>
-                        </Modal.Body>
-
-                    </Modal> */}
+                                <div className="modal fade" id="modalFile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <UploadImageFile />
+                                </div>
                             </table>
                         </div>
                     </div>

@@ -56,11 +56,7 @@ const db = require("../database/connection");
 router.post('/crearProducto', async (req, res) => {
     const { nombre_producto, tipo_producto, cantidad, precio, descripcion, producto_destacado } = req.body;
 
-    const newDate = new Date();
-    const fecha = newDate.toLocaleDateString();
-    const hora = newDate.toLocaleTimeString();
-    
-    if (!nombre_producto || !tipo_producto || !cantidad || !precio || !descripcion || !producto_destacado ) return res.status(400).json({ status: "error", error: "Por favor envia datos" });
+    if (!nombre_producto || !tipo_producto || !cantidad || !precio || !descripcion || !producto_destacado) return res.status(400).json({ status: "error", error: "Por favor envia datos" });
 
     else {
         db.query("SELECT nombre_producto FROM producto WHERE nombre_producto = ?;", [nombre_producto], async (err, result) => {
@@ -215,8 +211,42 @@ router.post('/agregarCompra', async (req, res) => {
     }
 });
 
+router.post('/agregarVenta', async (req, res) => {
+    const { id_producto, id_cliente, cantidad_venta, detalle_venta, fecha_venta } = req.body;
+
+
+    if (!id_producto || !id_cliente || !cantidad_venta || !detalle_venta || !fecha_venta ) return res.status(400).json({ status: "error", error: "Por favor envia datos" });
+
+    else {
+        db.query("INSERT INTO venta SET ?", {
+            id_producto: id_producto,
+            id_cliente: id_cliente,
+            cantidad_venta: cantidad_venta,
+            detalle_venta: detalle_venta,
+            fecha_venta: fecha_venta
+
+        }, (error, result, rows) => {
+            if (error) return console.log(error, result);
+            console.log(rows);
+            return res.json({ status: "success", success: "La venta se registró correctamente" }).status(200);
+
+        });
+    }
+});
+
 router.post('/mostrarCompras', async (req, res) => {
     db.query("SELECT mvp.*, prd.nombre_producto, prv.nombre_proveedor FROM movimiento_producto mvp INNER JOIN producto prd ON mvp.id_producto = prd.id_producto INNER JOIN proveedor prv on mvp.id_proveedor = prv.id_proveedor;", (err, rows, result) => {
+        if (!err) {
+            res.json(rows);
+        } else {
+            res.status(400).json({ status: "error", error: "Error al consultar datos" });
+            console.log(err);
+        }
+    });
+});
+
+router.post('/mostrarVentas', async (req, res) => {
+    db.query("SELECT vt.*, prd.nombre_producto, prd.precio, cli.nombre_cliente FROM venta vt INNER JOIN producto prd ON vt.id_producto = prd.id_producto INNER JOIN cliente cli ON vt.id_cliente = cli.id_cliente;", (err, rows, result) => {
         if (!err) {
             res.json(rows);
         } else {

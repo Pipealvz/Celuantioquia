@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Axios from 'axios';
 import Loader from '../SpinnerGrow';
 import CardImage from './cardImage';
+import BotonFlotante from './BotonFlotante';
 
 const ClienteInicio = () => {
 
@@ -29,8 +30,15 @@ const ClienteInicio = () => {
     }, []);
 
     const handleUrlImage = (title, url_image) => {
-        setUrl({title, url_image });
+        setUrl({ title, url_image });
     }
+
+    const customMessageWhatsapp = (name) => {
+        const names = name;
+        const enlaceWhatsapp = `https://wa.me/+573107275678?text=Hola, estoy interesado en el producto *${names}*.
+        ¿Tiene disponibilidad en el momento?`;
+        window.open(enlaceWhatsapp, '_blank');
+    };
 
     if (!post) return null;
 
@@ -58,7 +66,7 @@ const ClienteInicio = () => {
                                             <hr />
                                             <p className="card-text text-break">{item.descripcion}</p>
                                             <div className='justify-content-between d-flex text-uppercase'>
-                                                <button className="fs-6 btn btn-success col-5">Comprar</button>
+                                                <button className="fs-6 btn btn-success col-5" onClick={() => { customMessageWhatsapp(item.nombre_producto) }}>Comprar</button>
                                                 <button className="fs-6 btn btn-outline-info col-5" data-bs-toggle="modal" data-bs-target="#cardModalImage" onClick={() => { handleUrlImage(item.nombre_producto, item.url_image) }}>Ver más</button>
                                             </div>
                                         </div>
@@ -66,6 +74,7 @@ const ClienteInicio = () => {
                                 );
                             })}
                         </div >
+                        <BotonFlotante />
                     </>
             }
 
