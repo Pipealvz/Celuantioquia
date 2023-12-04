@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
+    "cloudinary": "^1.41.0",
     "formik": "^2.2.9",
     "install": "^0.13.0",
     "npm": "^8.19.2",

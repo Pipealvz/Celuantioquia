@@ -1,15 +1,19 @@
 // import { Axios } from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 import Axios from "axios";
 
 const CrearCategoria = () => {
     const { register, handleSubmit } = useForm();
+    const [checkForm, setCheckForm] = useState({ nombre_categoria: '' });
+    const handleCheckInputs = ({ target }) => {
+        setCheckForm({ ...checkForm, [target.name]: target.value });
+        //console.log(target.value);
+    }
 
     const categoriaRegister = values => {
-
-        console.log("Category register");
         Axios.post("https://celuantioqueno.onrender.com/categoria/crearCategoria", {
             // nombre_categoria
             nombre_categoria: values.nombre_categoria
@@ -48,14 +52,14 @@ const CrearCategoria = () => {
                     <div className='container p-4 vh-auto border rounded shadow'>
                         <h2 className='text-success text-center text-uppercase fs-1'>Registrar Empleado</h2>
                         <hr />
-                        <form onSubmit={handleSubmit(categoriaRegister)}>
+                        <form onSubmit={handleSubmit(categoriaRegister)} onChange={handleCheckInputs}>
                             <div className="row text-success d-flex mb-3">
                                 <label htmlFor="nombre_categoria" className="form-label">Nombre de la categoría</label>
-                                <input type="text" className="form-control" id="nombre_categoria" maxlength="30" {...register('nombre_categoria', { required: true })} />
+                                <input type="text" className={`form-control ${!checkForm.nombre_categoria ? 'is-invalid' : 'is-valid'}`} id="nombre_categoria" maxLength="30" value={checkForm.nombre_categoria}{...register('nombre_categoria', { required: true })} />
                             </div>
                             <br />
                             <div className='d-flex justify-content-center'>
-                            <input type="submit" className="btn btn-success col-6" value="Registrar Categoria"/>
+                                <input type="submit" className="btn btn-success col-6" value="Registrar Categoria" />
                             </div>
                         </form>
                         <br />

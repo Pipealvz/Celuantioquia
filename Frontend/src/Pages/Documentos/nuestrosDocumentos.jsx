@@ -103,7 +103,7 @@ const NuestrosDocumentos = () => {
                                         <>
                                             <tbody className='text-center text-capitalize' key={item.id_documento}>
                                                 <tr>
-                                                    <td className='text-center' id='tdName'>{item.nombre_documento}</td>
+                                                    <td className='text-start' id='tdName'>{item.nombre_documento}</td>
                                                     <td className='text-start' id='tdName'>{item.estado_documento === '0' ? 'Inactivo' : 'Activo'}</td>
                                                     <td id='tdActions'>
                                                         <div className='d-flex'>

@@ -50,7 +50,7 @@ function RoutesIndex() {
         <Route exact path="/Home" element={<Home />} />
         
         {/* <Route exact path="/CrearProducto" element={<CrearProducto />} /> */}
-        <Route exact path='EditarPRoductos' element={<EditarProducto />}/>
+        <Route exact path='/EditarProducto/:id' element={<EditarProducto />}/>
         <Route exact path="/NuestrosProductos" element={<NuestrosProductos />} />
         <Route exact path="/Compras" element={<Compras />} />
         <Route exact path="/HistorialCompras" element={<DetalleCompra />} />

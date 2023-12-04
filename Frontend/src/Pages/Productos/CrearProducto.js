@@ -89,6 +89,7 @@ const CrearProducto = () => {
                                 <div className='w-50'>
                                     <label htmlFor="tipo_producto" className="form-label">Tipo del produto</label>
                                     <select className="form-select is-valid" aria-label="Default select example" id="tipo_producto" {...register('tipo_producto', { required: true })} >
+                                        <option value=''>Seleccionar tipo de producto</option>
                                         {!category ? 'No hay categorías disponibles' :
                                             category.map((item) => {
 

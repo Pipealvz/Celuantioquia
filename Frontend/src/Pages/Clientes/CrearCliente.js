@@ -26,14 +26,14 @@ const CrearCliente = () => {
         Axios.post('https://celuantioqueno.onrender.com/documento/nuestrosDocumentos')
             .then((res) => {
                 setDocument(res.data);
-                console.log(res.data);
+                //console.log(res.data);
             });
     };
     const getCategory = () => {
         Axios.post('https://celuantioqueno.onrender.com/rol/nuestrosRol')
             .then((res) => {
                 setRol(res.data);
-                console.log(res.data);
+                //console.log(res.data);
             });
     }
 
@@ -97,7 +97,7 @@ const CrearCliente = () => {
                             <div className="row text-success d-flex mb-3">
                                 <div className='w-50'>
                                     <label htmlFor="nombre_cliente" className="form-label">Nombre del cliente</label>
-                                    <input name='nombre_cliente' type="text" className={`form-control ${!checkForm.nombre_cliente ? 'is-invalid' : 'is-valid'}`} maxlength="60" id="nombre_producto" value={checkForm.nombre_cliente} {...register('nombre_cliente', { required: true })} />
+                                    <input name='nombre_cliente' type="text" className={`form-control ${!checkForm.nombre_cliente ? 'is-invalid' : 'is-valid'}`} maxLength="60" id="nombre_producto" value={checkForm.nombre_cliente} {...register('nombre_cliente', { required: true })} />
                                 </div>
                                 <div className='w-50'>
                                     <label htmlFor="documento_cliente" className="form-label">Documento de identidad</label>
@@ -108,9 +108,9 @@ const CrearCliente = () => {
                                 <div className='w-50'>
                                     <label htmlFor="tipo_documento_cliente" className="form-label">Tipo de documento</label>
                                     <select className="form-select is-valid" aria-label="Default select example" id="tipo_documento_cliente" {...register('tipo_documento_cliente', { required: true })} >
+                                        <option value=''>Seleccione un documento</option>
                                         {!document ? 'No hay documentos disponibles' :
                                             document.map((item) => {
-
                                                 return (
                                                     <option key={item.id_documento} value={item.id_documento}>{item.nombre_documento}</option>
                                                 )
@@ -136,6 +136,7 @@ const CrearCliente = () => {
                                 <div className='w-50'>
                                     <label htmlFor="rol_cliente" className="form-label">Rol del cliente</label>
                                     <select className="form-select is-valid" aria-label="Default select example" id="rol_cliente" {...register('rol_cliente', { required: true })} >
+                                        <option value=''>Seleccione un rol</option>
                                         {!rol ? 'No hay documentos disponibles' :
                                             rol.map((item) => {
 

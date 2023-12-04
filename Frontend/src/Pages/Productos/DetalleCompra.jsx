@@ -19,17 +19,17 @@ const DetalleCompra = () => {
                 setIsLoading(false);
             });
     }
-    const handleSubmitFilter = (e) => {
-        e.preventDefault();
-    }
-    const filterPurchase = (id) => {
-        console.log(id);
-        Axios.post(`http://localhost:3306/producto/comprasPorId/${id}`, { id: id })
-            .then((response) => {
-                setPost(response.data);
-                console.log(response.data);
-            });
-    }
+    // const handleSubmitFilter = (e) => {
+    //     e.preventDefault();
+    // }
+    // const filterPurchase = (id) => {
+    //     console.log(id);
+    //     Axios.post(`http://localhost:3306/producto/comprasPorId/${id}`, { id: id })
+    //         .then((response) => {
+    //             setPost(response.data);
+    //             console.log(response.data);
+    //         });
+    // }
 
     useEffect(() => { getPurchases(); }, [])
 

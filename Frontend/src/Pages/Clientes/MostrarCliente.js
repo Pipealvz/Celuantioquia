@@ -24,13 +24,11 @@ const MostrarCliente = () => {
         Axios.post('https://celuantioqueno.onrender.com/cliente/nuestrosClientes')
             .then((response) => {
                 setCliente(response.data);
-                console.log(response.data);
                 setIsLoading(false);
             });
     }
 
     function deleteCustomer(id) {
-        console.log(id)
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -81,14 +79,11 @@ const MostrarCliente = () => {
     return (
         <>
             {
-                isLoading === true
-                    ?
-                    <SpinnerBorder />
-                    :
+                isLoading === true ? <SpinnerBorder /> :
                     <div className='d-flex'>
                         <Navbar />
-                        <div className='container p-4 vh-auto border rounded shadow' style={{ margin: '8rem 0px 0px 0px' }}>
-                            <h2 className='text-success text-center text-uppercase fs-1'>Lista de productos</h2>
+                        <div className='container' style={{ margin: '8rem 0px 0px 0px' }}>
+                            <h2 className='text-success text-center text-uppercase fs-1'>Lista de clientes</h2>
                             <hr />
                             <br />
                             <div className="d-flex">
@@ -114,10 +109,9 @@ const MostrarCliente = () => {
                                         <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
-                                {cliente.map((item) => {
-                                    return (
-
-                                        <tbody className="text-center text-capitalize">
+                                <tbody className="text-center text-capitalize">
+                                    {cliente.map((item) => {
+                                        return (
                                             <tr key={item.id_cliente}>
                                                 <td >{item.id_cliente}</td>
                                                 <td>{item.nombre_cliente} </td>
@@ -132,9 +126,9 @@ const MostrarCliente = () => {
                                                     </button>
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                    )
-                                })}
+                                        )
+                                    })}
+                                </tbody>
                             </table>
                         </div>
                         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

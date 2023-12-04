@@ -3,19 +3,14 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 // import { useForm } from "react-hook-form"
 // import { Link } from 'react-router-dom';
-// import Button from 'react-bootstrap/Button';
-// import Modal from 'react-bootstrap/Modal';
-// import Form from 'react-bootstrap/Form';
 import Navbar from '../../Pages/Componets/sidebar';
 import * as FaIcons from "react-icons/md";
 import CrearProducto from './CrearProducto';
-import EditarProducto from './EditarProducto';
 //import SpinnerGrow from '../SpinnerGrow';
 import SpinnerBorder from '../SpinnerGrow';
 import Compras from './Compras';
 import { Link } from 'react-router-dom';
 import UploadImageFile from './UploadImageFile';
-import Ventas from './Ventas';
 
 
 
@@ -30,23 +25,12 @@ const NuestrosProductos = () => {
     //     return deleteProducto(newId);
     // }
 
-
     //const [deleteShow, setDeletehow] = React.useState(false);
-    const [editShow, setEditShow] = React.useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     //const { register, handleSubmit } = useForm();
 
     //const [category, setCategory] = useState([]);
-
-    const handleSubmitEdit = (id_producto) => {
-        //console.log(id_producto);
-        const arrayPost = [...post];
-        //console.log(arrayPost);
-        const todo = arrayPost.filter(array => id_producto === array.id_producto);
-        setEditShow({ id_producto: todo.id_producto, nombre_producto: todo.nombre_producto, tipo_producto: todo.tipo_producto, cantidad: todo.cantidad, precio: todo.precio, descripcion: todo.descripcion, producto_destacado: todo.producto_destacado, });
-        //console.log(todo);
-    }
 
     // const getCategory = () => {
     //     // nombre_categoria
@@ -197,13 +181,13 @@ const NuestrosProductos = () => {
                                         <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
-                                {post.map((item) => {
+                                <tbody className='text-center text-capitalize'>
+                                    {post.map((item) => {
 
-                                    return (
-                                        <>
-                                            <tbody className='text-center text-capitalize' key={item.id_producto}>
-                                                <tr>
-                                                    <td className='text-center' id='tdName'>
+                                        return (
+                                            <>
+                                                <tr key={item.id_producto}>
+                                                    <td className='text-start' id='tdName'>
                                                         <button type="button" className="btn ms-auto" data-bs-toggle="modal" data-bs-target="#modalPurchase2" onClick={() => { alert("En construcción.") }}>
                                                             {item.id_producto}
                                                         </button>
@@ -217,23 +201,19 @@ const NuestrosProductos = () => {
                                                     <td id='tdActions'>
                                                         <div className='d-flex'>
                                                             <button className="btn btn-danger me-1" onClick={() => { deleteProducto(item.id_producto); }} ><FaIcons.MdDelete /> </button>
-                                                            <button className="btn btn-warning me-1" data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => { handleSubmitEdit(item.id_producto) }}> <FaIcons.MdModeEdit /></button>
-                                                            <Link className="btn btn-warning" to={`/UploadFile/${item.id_producto}`}> <FaIcons.MdUploadFile /></Link>
+                                                            <Link className="btn btn-warning me-1" to={`/EditarProducto/${item.id_producto}`}> <FaIcons.MdModeEdit /></Link>
+                                                            <Link className="btn btn-success" to={`/UploadFile/${item.id_producto}`}> <FaIcons.MdUploadFile /></Link>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            </tbody>
-                                        </>
-                                    )
-                                })}
+                                            </>
+                                        )
+                                    })}
+                                </tbody>
                                 {/* <div className='row'> Total de productos: {post.length} </div> */}
 
                                 <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <CrearProducto />
-                                </div>
-
-                                <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-                                    <EditarProducto data={editShow} />
                                 </div>
 
                                 <div className="modal fade" id="modalPurchase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

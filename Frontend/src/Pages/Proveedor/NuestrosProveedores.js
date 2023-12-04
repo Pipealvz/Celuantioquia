@@ -11,7 +11,8 @@ import Form from 'react-bootstrap/Form';
 import Navbar from '../Componets/sidebar';
 import * as FaIcons from "react-icons/md";
 import CrearProveedor from './CrearProveedor';
-import SpinnerBorder from '../SpinnerGrow';
+import SpinnerGrow from '../SpinnerGrow';
+
 
 
 
@@ -40,11 +41,7 @@ const NuestrosProveedores = memo(() => {
             });
     }
 
-
     const editProveedor = values => {
-
-        console.log(modalData);
-
         Axios.post('https://celuantioqueno.onrender.com/proveedor/actualizarProveedor', {
             id_proveedor: modalData.id_proveedor,
             nombre_proveedor: values.nombre_proveedor,
@@ -55,7 +52,7 @@ const NuestrosProveedores = memo(() => {
         })
             .then(function (res) {
                 console.log(res);
-                //             Alerta si se crea el producto correctamente
+                //             Alerta si se crea el proveedor correctamente
                 Swal.fire({
                     title: "Proceso exitoso",
                     text: "Proveedor actualizado con exito",
@@ -69,8 +66,7 @@ const NuestrosProveedores = memo(() => {
             })
             .catch(function (error) {
                 console.log(error);
-                //             Alerta si ocurre algun error al crea el producto 
-
+                //             Alerta si ocurre algun error al crea el proveedor 
                 Swal.fire({
                     title: "Error",
                     text: "No se pudo actualizar el proveedor",
@@ -81,9 +77,6 @@ const NuestrosProveedores = memo(() => {
     }
 
     function deleteProveedor(id) {
-
-        console.log(id);
-
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -91,7 +84,6 @@ const NuestrosProveedores = memo(() => {
             },
             buttonsStyling: false
         })
-
         swalWithBootstrapButtons.fire({
             title: '¿Estás seguro?',
             text: "Si se elimina el proveedor, no podrá ser recuperado",
@@ -102,56 +94,59 @@ const NuestrosProveedores = memo(() => {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                Axios.post(`https://celuantioqueno.onrender.com/proveedor/eliminarProveedores/${id}`)
+                Axios.post('https://celuantioqueno.onrender.com/proveedor/eliminarProveedores', { id_proveedor: id })
                     .then(() => {
                         swalWithBootstrapButtons.fire(
-                            'Eliminado!',
+                            'Eliminado',
                             'El proveedor fue eliminado',
                             'success'
                         ).then(() => {
                             window.location.reload();
                         })
                     });
-            } else if (
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
                 swalWithBootstrapButtons.fire(
                     'Cancelado',
-                    'No se eliminó ningún archivo',
+                    'No se eliminó ningún proveedor',
+                    'error'
+                )
+            }
+        }).catch((err) => {
+            if (err.response && err.response.status === 400) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'El proveedor fue usado en otro formulario',
                     'error'
                 )
             }
         })
     }
 
-
-
     if (!post) return null;
-
     return (
         <>
             {
-                isLoading === true ?
-                    <SpinnerBorder />
-                    :
-
+                isLoading === true ? <SpinnerGrow /> :
                     <div className='d-flex'>
-
                         <Navbar />
-                        <div className='container' style={{ margin: '8rem 4rem 5rem 4rem' }}>
+                        <div className='container' style={{ margin: '8rem 0rem 0rem 0rem' }}>
 
                             <h2 className='text-success text-center text-uppercase fs-1'>Proveedores</h2>
                             <br />
-                            <div className="d-grid gap-2 col-6 mx-auto">
+                            <div className="d-flex">
+                            <form className="d-flex me-1">
+                                    <input className="form-control me-2" type="search" placeholder="Buscar cliente..." aria-label="Search" />
+                                    <button className="btn btn-outline-success" type="submit">Buscar</button>
+                                </form>
                                 <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Crear proveedor
                                 </button>
                             </div>
                             <br />
-                            <table className="table text-success">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
+                            <table className="container table table-hover">
+                                <thead className='bg-success'>
+                                    <tr className='text-light text-center'>
+                                        <th scope="col">Cód.</th>
                                         <th scope="col">Nombre Proveedor</th>
                                         <th scope="col">Correo Proveedor</th>
                                         <th scope="col">Contacto</th>
@@ -160,12 +155,10 @@ const NuestrosProveedores = memo(() => {
                                         <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody className="table-group-divider ">
-
+                                <tbody className="text-center text-capitalize">
                                     {post.map((item) => {
-
                                         return (
-                                            <tr className="table-light text-success ">
+                                            <tr key={item.id_proveedor}>
                                                 <th scope="row" key={item.id_proveedor}></th>
                                                 <td>{item.nombre_proveedor}</td>
                                                 <td>{item.correo_proveedor}</td>
@@ -173,22 +166,19 @@ const NuestrosProveedores = memo(() => {
                                                 <td>{item.nit_proveedor}</td>
                                                 <td>{item.direccion_proveedor}</td>
                                                 <td>
-                                                    <div className='row d-flex'>
-                                                        <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { deleteProveedor(item.id_proveedor); }} ><FaIcons.MdDelete className="" /></Button>
-                                                        <Button variant="outline-success" style={{ margin: '1rem', width: 'auto' }} onClick={() => { setModalData(item); setEditShow(true); }}><FaIcons.MdModeEdit className="" /></Button>
+                                                    <div className='d-flex'>
+                                                        <button className="btn btn-danger me-1" onClick={() => { deleteProveedor(item.id_proveedor); }} ><FaIcons.MdDelete className="" /></button>
+                                                        <button className="btn btn-warning" onClick={() => { setModalData(item); setEditShow(true); }}><FaIcons.MdModeEdit className="" /></button>
                                                     </div>
                                                 </td>
                                             </tr>
                                         )
-
                                     })}
                                 </tbody>
                             </table>
-
-                            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <CrearProveedor />
                             </div>
-
                             <Modal show={editShow}
                                 onHide={() => setEditShow(false)}
                                 aria-labelledby="contained-modal-title-vcenter"
@@ -200,7 +190,7 @@ const NuestrosProveedores = memo(() => {
                                 </Modal.Header>
                                 <Modal.Body>
                                     <Form onSubmit={handleSubmit(editProveedor)}>
-                                        <label for="proveedor" className="form-label" >Proveedor</label>
+                                        <label htmlFor="proveedor" className="form-label" >Proveedor</label>
 
                                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                             <Form.Label>Nombre del proveedor</Form.Label>
@@ -260,11 +250,9 @@ const NuestrosProveedores = memo(() => {
                                         </Modal.Footer>
                                     </Form>
                                 </Modal.Body>
-
                             </Modal>
                         </div>
-                    </div>
-
+                    </div >
             }
         </>
     );

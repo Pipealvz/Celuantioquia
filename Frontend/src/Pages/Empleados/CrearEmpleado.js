@@ -59,8 +59,6 @@ const CrearEmpleado = () => {
     }
 
     const empleadoRegister = values => {
-
-        console.log(values);
         Axios.post('https://celuantioqueno.onrender.com/empleado/crearEmpleado', {
             nombre_empleado: values.nombre_empleado,
             rol_empleado: values.rol_empleado,
@@ -119,6 +117,7 @@ const CrearEmpleado = () => {
                                 <div className='w-50'>
                                     <label htmlFor="rol_empleado" className="form-label">Rol del Empleado</label>
                                     <select htmlFor="rol_empleado" className="form-select is-valid" {...register('rol_empleado', { required: true })}>
+                                        <option className="form-control" value='' id="rol_empleado">Seleccione un rol</option>
                                         {rol.map(roles => {
                                             return (
                                                 <option className="form-control" id="rol_empleado" key={roles.id_rol} value={roles.id_rol}>{roles.nombre_rol}</option>
@@ -134,7 +133,8 @@ const CrearEmpleado = () => {
                                 </div>
                                 <div className='w-50'>
                                     <label htmlFor="tipo_documento" className="form-label">Tipo de documento</label>
-                                    <select className="input-group-text bg-success text-light is-valid w-100 text-start" {...register('tipo_documento', { required: true })}>
+                                    <select className="form-select is-valid" {...register('tipo_documento', { required: true })}>
+                                        <option className="form-control" id="tipo_documento" value=''>Seleccione un documento</option>
                                         {documento.map((document) => {
                                             return (
                                                 <option className="form-control" id="tipo_documento" key={document.id_documento} value={document.id_documento}>{document.nombre_documento}</option>
