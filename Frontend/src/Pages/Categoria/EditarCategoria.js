@@ -48,7 +48,7 @@ export default function EditarCategory  ({setDatosEditarCategoria})  {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className='container p-4 vh-auto border rounded shadow'>
-                        <h2 className='text-success text-center text-uppercase fs-1'>Registrar Empleado</h2>
+                        <h2 className='text-success text-center text-uppercase fs-1'>Actualizar Categoría</h2>
                         <hr />
                         <form onSubmit={handleSubmit(categoryRegister)}>
                             <div className="row text-success d-flex mb-3">

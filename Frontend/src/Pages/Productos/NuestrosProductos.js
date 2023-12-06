@@ -10,7 +10,7 @@ import CrearProducto from './CrearProducto';
 import SpinnerBorder from '../SpinnerGrow';
 import Compras from './Compras';
 import { Link } from 'react-router-dom';
-import UploadImageFile from './UploadImageFile';
+//import UploadImageFile from './UploadImageFile';
 
 
 
@@ -171,14 +171,14 @@ const NuestrosProductos = () => {
                             <table className='container table table-hover'>
                                 <thead className='bg-success'>
                                     <tr className='text-light text-center'>
-                                        <th className='text-center' scope="col">Cód.</th>
-                                        <th className='text-start col-2' scope="col">Nombre Producto</th>
-                                        <th scope="col">Cantidad</th>
-                                        <th className='text-start col-3' scope="col">Descripción</th>
-                                        <th scope="col">Precio</th>
-                                        <th scope="col">Destacado</th>
-                                        <th scope="col">Categoría</th>
-                                        <th scope="col">Acciones</th>
+                                        <td className='text-center' scope="col">Cód.</td>
+                                        <td className='text-start col-2' scope="col">Nombre Producto</td>
+                                        <td scope="col">Cantidad</td>
+                                        <td className='text-start col-3' scope="col">Descripción</td>
+                                        <td scope="col">Precio</td>
+                                        <td scope="col">Destacado</td>
+                                        <td scope="col">Categoría</td>
+                                        <td scope="col">Acciones</td>
                                     </tr>
                                 </thead>
                                 <tbody className='text-center text-capitalize'>
@@ -202,7 +202,7 @@ const NuestrosProductos = () => {
                                                         <div className='d-flex'>
                                                             <button className="btn btn-danger me-1" onClick={() => { deleteProducto(item.id_producto); }} ><FaIcons.MdDelete /> </button>
                                                             <Link className="btn btn-warning me-1" to={`/EditarProducto/${item.id_producto}`}> <FaIcons.MdModeEdit /></Link>
-                                                            <Link className="btn btn-success" to={`/UploadFile/${item.id_producto}`}> <FaIcons.MdUploadFile /></Link>
+                                                            {/* <Link className="btn btn-success" to={`/UploadFile/${item.id_producto}`}> <FaIcons.MdUploadFile /></Link> */}
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -219,9 +219,9 @@ const NuestrosProductos = () => {
                                 <div className="modal fade" id="modalPurchase" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <Compras />
                                 </div>
-                                <div className="modal fade" id="modalFile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                {/* <div className="modal fade" id="modalFile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <UploadImageFile />
-                                </div>
+                                </div> */}
                             </table>
                         </div>
                     </div>
