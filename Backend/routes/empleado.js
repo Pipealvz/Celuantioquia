@@ -97,7 +97,7 @@ router.post('/actualizarEmpleado', async (req, res) => {
         contraseña_empleado } =
         req.body;
 
-    db.query('UPDATE empleado SET  nombre_empleado =?, rol_empleado =?, documento_identidad =?, tipo_documento =?, direccion_empleado =?, telefono_empleado =?, fecha_nacimiento_empleado =?, correo_empleado =?, contraseña_empleado =?  WHERE id_empleado = ?',
+    db.query('UPDATE empleado SET nombre_empleado= ?,rol_empleado=?,documento_identidad=?,tipo_documento =?,direccion_empleado=?,telefono_empleado=?,fecha_nacimiento_empleado=?,correo_empleado=?,contraseña_empleado=? WHERE id_empleado = ?',
         [nombre_empleado,
             rol_empleado,
             documento_identidad,

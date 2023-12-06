@@ -43,9 +43,13 @@ const EditarEmpleado = ({ id }) => {
 
         Axios.post('https://celuantioqueno.onrender.com/empleado/actualizarEmpleado', {
             id_empleado: id,
+            nombre_empleado: values.nombre_empleado,
             rol_empleado: values.rol_empleado,
+            documento_identidad: values.documento_identidad,
+            tipo_documento: values.tipo_documento,
             direccion_empleado: values.direccion_empleado,
             telefono_empleado: values.telefono_empleado,
+            fecha_nacimiento_empleado: values.fecha_nacimiento_empleado,
             correo_empleado: values.correo_empleado,
             contraseña_empleado: values.contraseña_empleado
         })
@@ -59,7 +63,7 @@ const EditarEmpleado = ({ id }) => {
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
                     if (res.isConfirmed === true) {
-                        window.location.reload(true);
+                        console.log(res.data);
                     }
                 });
             })

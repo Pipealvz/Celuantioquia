@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
 //import { Link } from 'react-router-dom';
@@ -27,11 +27,22 @@ const NuestrosProveedores = memo(() => {
 
     const { register, handleSubmit } = useForm();
 
+    const [checkForm, setCheckForm] = useState({
+        nombre_proveedor: '',
+        correo_proveedor: '',
+        contacto_proveedor: '',
+        nit_proveedor: '',
+        direccion_proveedor: ''
+    });
+
     React.useEffect(() => {
         getAllProveedor();
     }, []);
 
-
+    const handleCheckInputs = ({ target }) => {
+        setCheckForm({ ...checkForm, [target.name]: target.value });
+        console.log(target.value);
+    }
 
     const getAllProveedor = () => {
         Axios.post('https://celuantioqueno.onrender.com/proveedor/nuestrosProveedores')
@@ -134,7 +145,7 @@ const NuestrosProveedores = memo(() => {
                             <h2 className='text-success text-center text-uppercase fs-1'>Proveedores</h2>
                             <br />
                             <div className="d-flex">
-                            <form className="d-flex me-1">
+                                <form className="d-flex me-1">
                                     <input className="form-control me-2" type="search" placeholder="Buscar cliente..." aria-label="Search" />
                                     <button className="btn btn-outline-success" type="submit">Buscar</button>
                                 </form>
@@ -168,7 +179,7 @@ const NuestrosProveedores = memo(() => {
                                                 <td>
                                                     <div className='d-flex'>
                                                         <button className="btn btn-danger me-1" onClick={() => { deleteProveedor(item.id_proveedor); }} ><FaIcons.MdDelete className="" /></button>
-                                                        <button className="btn btn-warning" onClick={() => { setModalData(item); setEditShow(true); }}><FaIcons.MdModeEdit className="" /></button>
+                                                        <button className="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={() => { setModalData(item) }}><FaIcons.MdModeEdit className="" /></button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -179,6 +190,52 @@ const NuestrosProveedores = memo(() => {
                             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <CrearProveedor />
                             </div>
+
+                            <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal-dialog bg-light modal-lg rounded">
+                                    <div className="modal-content">
+                                        <div className="modal-header">
+                                            <h2 className='text-success text-center text-uppercase fs-1'>Crear proveedor</h2>
+                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div className="modal-body">
+                                            <form className="producto-form" onSubmit={handleSubmit(editProveedor)} onChange={handleCheckInputs}>
+                                                <div className="row text-success d-flex mb-3">
+                                                    <div className='w-50'>
+                                                        <label htmlFor="nombre_proveedor" className="form-label">Nombre del proveedor</label>
+                                                        <input name="nombre_proveedor" type="text" className={`form-control ${!checkForm.nombre_proveedor ? 'is-invalid' : 'is-valid'}`} maxlength="60" id="nombre_proveedor" value={checkForm.nombre_proveedor} {...register('nombre_proveedor', { required: true })} />
+                                                    </div>
+                                                    <div className='w-50'>
+                                                        <label htmlFor="correo_proveedor" className="form-label">Correo del proveedor</label>
+                                                        <input type="email" className={`form-control ${!checkForm.correo_proveedor ? 'is-invalid' : 'is-valid'}`} value={checkForm.correo_proveedor} id="correo_proveedor" {...register('correo_proveedor', { required: true })} />
+                                                    </div>
+                                                </div>
+                                                <div className="row text-success d-flex mb-3">
+                                                    <div className='w-50'>
+                                                        <label htmlFor="contacto_proveedor" className="form-label">Teléfono del proveedor</label>
+                                                        <input name="contacto_proveedor" type="number" className={`form-control ${!checkForm.contacto_proveedor ? 'is-invalid' : 'is-valid'}`} id="contacto_proveedor" value={checkForm.contacto_proveedor} {...register('contacto_proveedor', { required: true })} />
+                                                    </div>
+                                                    <div className='w-50'>
+                                                        <label htmlFor="nit_proveedor" className="form-label">Nit del proveedor</label>
+                                                        <input type="number" className={`form-control ${!checkForm.nit_proveedor ? 'is-invalid' : 'is-valid'}`} value={checkForm.nit_proveedor} min='1000000000' max='9999999999' id="nit_proveedor" {...register('nit_proveedor', { required: true })} />
+                                                    </div>
+                                                </div>
+                                                <div className="row text-success d-flex mb-3">
+                                                    <div className='w-100'>
+                                                        <label htmlFor="direccion_proveedor" className="form-label">Dirección del proveedor</label>
+                                                        <input type="text" className={`form-control ${!checkForm.direccion_proveedor ? 'is-invalid' : 'is-valid'}`} value={checkForm.direccion_proveedor} id="direccion_proveedor" {...register('direccion_proveedor', { required: true })} />
+                                                    </div>
+                                                </div>
+                                                <div className="text-center">
+                                                    <input type="submit" value="Actualizar" className="btn btn-success mt-4 w-50" />
+                                                </div>
+                                                <br />
+                                            </form>
+                                        </div>
+                                    </div >
+                                </div >
+                            </div>
+
                             <Modal show={editShow}
                                 onHide={() => setEditShow(false)}
                                 aria-labelledby="contained-modal-title-vcenter"
@@ -253,6 +310,7 @@ const NuestrosProveedores = memo(() => {
                             </Modal>
                         </div>
                     </div >
+
             }
         </>
     );

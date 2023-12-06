@@ -86,7 +86,7 @@ const CrearProveedor = memo(() => {
                                 </div>
                                 <div className='w-50'>
                                     <label htmlFor="nit_proveedor" className="form-label">Nit del proveedor</label>
-                                    <input type="number" className={`form-control ${!checkForm.nit_proveedor ? 'is-invalid' : 'is-valid'}`} value={checkForm.nit_proveedor} min='1000000000' max='9999999999' id="nit_proveedor" {...register('nit_proveedor', { required: true })} />
+                                    <input type="number" className={`form-control ${!checkForm.nit_proveedor ? 'is-invalid' : 'is-valid'}`} value={checkForm.nit_proveedor} min='1' id="nit_proveedor" {...register('nit_proveedor', { required: true })} />
                                 </div>
                             </div>
                             <div className="row text-success d-flex mb-3">
