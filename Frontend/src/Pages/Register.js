@@ -50,10 +50,9 @@ const Login = () => {
     // const esSingUp = () => login = false; SingUp = true; console.log("Es singUP")
 
     const { register, handleSubmit } = useForm();
-
-
+    const navigate = useNavigate();
     const onRegister = values => {
-        const navigate = useNavigate();
+        
 
         
         Axios.post("https://celuantioqueno.onrender.com/auth/registerUsers", {
