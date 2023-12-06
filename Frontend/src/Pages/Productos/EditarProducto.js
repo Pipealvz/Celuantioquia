@@ -8,9 +8,9 @@ import { useParams } from 'react-router-dom';
 const EditarProducto = () => {
 
     const { id } = useParams();
-    const { register, handleSubmit, reset  } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const [category, setCategory] = useState([]);
-    const [array, setArray] = useState([]);
+    //const [array, setArray] = useState([]);
     const [checkForm, setCheckForm] = useState({
         id_producto: id,
         nombre_producto: '',
@@ -33,20 +33,9 @@ const EditarProducto = () => {
             });
     }
 
-    const getEditUser = () => {
-        Axios.post('https://celuantioqueno.onrender.com/producto/productoPorId',
-            { id_producto: id })
-            .then((res) => {
-                setCheckForm(res.data);
-                reset(res.data)
-            });
-        console.log("datos", array);
-    }
-    
     useEffect(() => {
         console.log(checkForm);
         getCategory();
-        getEditUser();
     }, [id, reset]);
 
     const editarProducto = values => {
