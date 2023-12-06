@@ -170,17 +170,17 @@ const NuestrosProductos = () => {
                             <br />
                             <table className='container table table-hover'>
                                 <thead className='bg-success'>
-                                    <tr className='text-light text-center'>
-                                        <th className='text-center' scope="col">Cód.</th>
-                                        <th className='text-start col-2' scope="col">Nombre Producto</th>
-                                        <th scope="col">Cantidad</th>
-                                        <th className='text-start col-3' scope="col">Descripción</th>
-                                        <th scope="col">Precio</th>
-                                        <th scope="col">Destacado</th>
-                                        <th scope="col">Categoría</th>
-                                        <th scope="col">Acciones</th>
-                                    </tr>
-                                </thead>
+                                <tr className='text-light text-center'>
+                                    <th className='text-center' scope="col">Cód.</th>
+                                    <th className='text-start col-2' scope="col">Nombre Producto</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th className='text-start col-3' scope="col">Descripción</th>
+                                    <th className='text-end' scope="col">Precio</th>
+                                    <th className='text-center' scope="col">Destacado</th>
+                                    <th className='text-center' scope="col">Categoría</th>
+                                    <th className='text-center' scope="col">Acciones</th>
+                                </tr>
+                            </thead>
                                 <tbody className='text-center text-capitalize'>
                                     {post.map((item) => {
 
