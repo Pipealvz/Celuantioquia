@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 const EditarProducto = () => {
 
     const { id } = useParams();
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit } = useForm();
     const [category, setCategory] = useState([]);
     //const [array, setArray] = useState([]);
     const [checkForm, setCheckForm] = useState({
@@ -34,9 +34,8 @@ const EditarProducto = () => {
     }
 
     useEffect(() => {
-        console.log(checkForm);
         getCategory();
-    }, [id, reset]);
+    }, [id]);
 
     const editarProducto = values => {
 
