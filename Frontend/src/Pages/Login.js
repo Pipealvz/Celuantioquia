@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form"
 //import React, { useState } from 'react';
 // import { Formik, Form, Field } from "formik";
 //import Button from 'react-bootstrap/Button';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //import Modal from 'react-bootstrap/Modal';
 import Swal from "sweetalert2";
 //CSS
@@ -51,7 +51,7 @@ const Login = () => {
 
     const { register, handleSubmit } = useForm();
 
-
+    const navigate = useNavigate();
     const onLogin = values => {
 
         console.log("EsLogin");
@@ -70,7 +70,7 @@ const Login = () => {
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
                     if (res.isConfirmed === true || res !== null) {
-                        window.location.assign("/Home");
+                        navigate('/home');
                     }
                 });
             })
