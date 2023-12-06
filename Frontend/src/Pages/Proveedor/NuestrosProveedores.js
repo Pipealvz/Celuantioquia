@@ -170,7 +170,7 @@ const NuestrosProveedores = memo(() => {
                                     {post.map((item) => {
                                         return (
                                             <tr key={item.id_proveedor}>
-                                                <td scope="row">{item.id_proveedor}</td>
+                                                <td >{item.id_proveedor}</td>
                                                 <td>{item.nombre_proveedor}</td>
                                                 <td>{item.correo_proveedor}</td>
                                                 <td>{item.contacto_proveedor}</td>
