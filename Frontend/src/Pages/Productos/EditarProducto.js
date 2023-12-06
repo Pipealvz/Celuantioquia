@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 const EditarProducto = () => {
 
     const { id } = useParams();
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset  } = useForm();
     const [category, setCategory] = useState([]);
     const [array, setArray] = useState([]);
     const [checkForm, setCheckForm] = useState({
@@ -37,15 +37,17 @@ const EditarProducto = () => {
         Axios.post('https://celuantioqueno.onrender.com/producto/productoPorId',
             { id_producto: id })
             .then((res) => {
-                setArray(res.data);
-                console.log(res.data);
+                setCheckForm(res.data);
+                reset(res.data)
             });
-            console.log("datos", array);
+        console.log("datos", array);
     }
+    
     useEffect(() => {
+        console.log(checkForm);
         getCategory();
         getEditUser();
-    },[id]);
+    }, [id, reset]);
 
     const editarProducto = values => {
 
@@ -97,12 +99,12 @@ const EditarProducto = () => {
                     </div>
                     <div className="modal-body">
                         <form className="producto-form" onSubmit={handleSubmit(editarProducto)} onChange={handleCheckInputs}>
-                            
+
 
                             <div className="row text-success d-flex mb-3">
                                 <div className='w-50'>
                                     <label htmlFor="nombre_producto" className="form-label">Nombre del producto</label>
-                                    <input name="nombre_producto" type="text" className={`form-control ${!checkForm.nombre_producto ? 'is-invalid' : 'is-valid'}`} maxLength="60" id="nombre_producto" value={checkForm.nombre_producto} {...register('nombre_producto', { required: true })} />
+                                    <input defaultValue={checkForm.nombre_producto} name="nombre_producto" type="text" className={`form-control ${!checkForm.nombre_producto ? 'is-invalid' : 'is-valid'}`} maxLength="60" id="nombre_producto" value={checkForm.nombre_producto} {...register('nombre_producto', { required: true })} />
                                 </div>
                                 <div className='w-50'>
                                     <label htmlFor="tipo_producto" className="form-label">Tipo del produto</label>

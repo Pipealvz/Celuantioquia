@@ -10,13 +10,13 @@ router.post('/crearEmpleado', async (req, res) => {
     const { nombre_empleado, rol_empleado, documento_identidad, tipo_documento, direccion_empleado, telefono_empleado,
         fecha_nacimiento_empleado, correo_empleado, contraseña_empleado } = req.body;
 
-    if (!nombre_empleado  || !rol_empleado || !documento_identidad || !tipo_documento || !direccion_empleado || !telefono_empleado
-        || !fecha_nacimiento_empleado || !correo_empleado || !contraseña_empleado) return   res.status(400).json({ status: "error", error: "Por favor envia datos" });
+    if (!nombre_empleado || !rol_empleado || !documento_identidad || !tipo_documento || !direccion_empleado || !telefono_empleado
+        || !fecha_nacimiento_empleado || !correo_empleado || !contraseña_empleado) return res.status(400).json({ status: "error", error: "Por favor envia datos" });
 
     else {
         db.query("SELECT documento_identidad FROM empleado WHERE documento_identidad = ?", [documento_identidad], async (err, result) => {
             if (err) return err;
-            if (result[0]) return   res.status(400).json({ status: "error", error: "Ya se ha registrado un empleado con este documento de identidad" })
+            if (result[0]) return res.status(400).json({ status: "error", error: "Ya se ha registrado un empleado con este documento de identidad" })
 
             else {
                 db.query("INSERT INTO empleado SET ?", {
@@ -31,7 +31,7 @@ router.post('/crearEmpleado', async (req, res) => {
                     contraseña_empleado: contraseña_empleado
                 }, (error, result) => {
                     if (error) return error;
-                    return   res.json({ status: "success", success: "La Empleado se ha registrado" });
+                    return res.json({ status: "success", success: "La Empleado se ha registrado" });
                 });
             }
         });
@@ -86,11 +86,28 @@ router.post('/eliminarEmpleado', async (req, res) => {
 
 //Actualizar Empleado
 router.post('/actualizarEmpleado', async (req, res) => {
-    const { id_empleado, rol_empleado, direccion_empleado, telefono_empleado, correo_empleado, contraseña_empleado } =
+    const { id_empleado, nombre_empleado,
+        rol_empleado,
+        documento_identidad,
+        tipo_documento,
+        direccion_empleado,
+        telefono_empleado,
+        fecha_nacimiento_empleado,
+        correo_empleado,
+        contraseña_empleado } =
         req.body;
 
-    db.query('UPDATE empleado SET  rol_empleado = ?,  direccion_empleado = ? ,telefono_empleado = ?, correo_empleado = ? , contraseña_empleado = ?  WHERE id_empleado = ?',
-        [rol_empleado,  direccion_empleado, telefono_empleado, correo_empleado, contraseña_empleado, id_empleado],
+    db.query('UPDATE empleado SET  nombre_empleado =?, rol_empleado =?, documento_identidad =?, tipo_documento =?, direccion_empleado =?, telefono_empleado =?, fecha_nacimiento_empleado =?, correo_empleado =?, contraseña_empleado =?  WHERE id_empleado = ?',
+        [nombre_empleado,
+            rol_empleado,
+            documento_identidad,
+            tipo_documento,
+            direccion_empleado,
+            telefono_empleado,
+            fecha_nacimiento_empleado,
+            correo_empleado,
+            contraseña_empleado,
+            id_empleado],
         async (err, result) => {
             if (!err) {
                 res.json({ status: "success", error: "Se Actualizo Correctamente el Empleado" });

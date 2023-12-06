@@ -5,6 +5,7 @@ import Navbar from '../Componets/sidebar';
 import * as FaIcons from "react-icons/md";
 import CrearDocumento from "./crearDocumento";
 import SpinnerGrow from '../SpinnerGrow';
+import EditarProducto from '../Productos/EditarProducto';
 
 const NuestrosDocumentos = () => {
     const [post, setPost] = React.useState(null);
@@ -121,9 +122,9 @@ const NuestrosDocumentos = () => {
                                     <CrearDocumento />
                                 </div>
 
-                                {/* <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                                     <EditarProducto />
-                                </div> */}
+                                </div> 
                             </table>
                         </div>
                     </div>

@@ -17,13 +17,7 @@ export default function MostrarEmpleados() {
 
     const [isLoading, setIsLoading] = useState(true);
 
-    const [datosE, estableceDatos] = useState(null);
-
-
-
-    const setDatosEditarEmpleados = (item) => {
-        estableceDatos(item);
-    }
+    const [id, setId] = useState(null);
 
     const getEmpleados = () => {
         Axios.post('https://celuantioqueno.onrender.com/empleado/nuestrosEmpleados')
@@ -136,8 +130,8 @@ export default function MostrarEmpleados() {
                                                             <button className="btn btn-danger me-1" onClick={() => { deleteEmpleado(item.id_empleado) }} ><FaIcons.MdDelete /> </button>
                                                             <button className="btn btn-warning" id="btn-editEmpleado"
                                                                 data-bs-toggle="modal"
-                                                                data-bs-target="#modal-editEmpleado"
-                                                                onClick={() => { setDatosEditarEmpleados(item.id_empleado); }}> <FaIcons.MdModeEdit /></button>
+                                                                data-bs-target="#exampleModal2"
+                                                                onClick={() => { setId(item.id_empleado9) }}> <FaIcons.MdModeEdit /></button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -150,8 +144,9 @@ export default function MostrarEmpleados() {
                             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <CrearEmpleado />
                             </div>
-
-                            <EditarEmpleado setDatosEditarEmpleados={datosE} />
+                            <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                <EditarEmpleado id={id} />
+                            </div>
                         </div>
                     </div >
             }

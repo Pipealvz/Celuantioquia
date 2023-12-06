@@ -120,7 +120,7 @@ const CrearEmpleado = () => {
                                         <option className="form-control" value='' id="rol_empleado">Seleccione un rol</option>
                                         {rol.map(roles => {
                                             return (
-                                                <option className="form-control" id="rol_empleado" key={roles.id_rol} value={roles.id_rol}>{roles.nombre_rol}</option>
+                                                <option className="form-control is-valid" id="rol_empleado" key={roles.id_rol} value={roles.id_rol}>{roles.nombre_rol}</option>
                                             );
                                         })}
                                     </select>

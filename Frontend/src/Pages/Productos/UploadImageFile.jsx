@@ -61,7 +61,6 @@ const UploadImageFile = () => {
         } catch (error) {
             return 'we have an error, sorry!'
         }
-
     }
 
     const handleInputChange = (e) => {
