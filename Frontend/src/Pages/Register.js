@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form"
 //import React, { useState } from 'react';
 // import { Formik, Form, Field } from "formik";
 //import Button from 'react-bootstrap/Button';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //import Modal from 'react-bootstrap/Modal';
 import Swal from "sweetalert2";
 //CSS
@@ -53,6 +53,7 @@ const Login = () => {
 
 
     const onRegister = values => {
+        const navigate = useNavigate();
 
         
         Axios.post("https://celuantioqueno.onrender.com/auth/registerUsers", {
@@ -73,7 +74,7 @@ const Login = () => {
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
                     if (res.isConfirmed === true) {
-                        window.location.reload(true);
+                        navigate('/Login')
                     }
                 });
                 console.log("Esregister");
