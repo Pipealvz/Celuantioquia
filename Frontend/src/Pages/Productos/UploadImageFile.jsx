@@ -7,7 +7,7 @@ import SpinnerGrow from "../SpinnerGrow";
 const UploadImageFile = () => {
 
     const [image, setImage] = useState();
-
+    console.log(image)
     const [file, setFile] = useState(null);
     const [imageUrl, setImageUrl] = useState('');
 
@@ -96,5 +96,3 @@ const UploadImageFile = () => {
         </>
     )
 }
-
-export default UploadImageFile;
