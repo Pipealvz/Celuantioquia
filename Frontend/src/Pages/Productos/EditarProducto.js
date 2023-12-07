@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form"
 import './producto.css'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const EditarProducto = () => {
 
@@ -77,9 +77,19 @@ const EditarProducto = () => {
             });
     };
 
+    const navigate = useNavigate();
+    const regresar = () => {
+        navigate('/NuestrosProductos');
+    }
+
     return (
         <>
             <div className="modal-dialog bg-light modal-lg rounded">
+                <div className='mt-5'>
+                    <button onClick={regresar}>
+                        Regresar
+                    </button>
+                </div>
                 <div className="modal-content">
                     <div className="modal-header">
                         <h2 className='text-success text-center text-uppercase fs-1'>Editar producto</h2>
@@ -87,8 +97,6 @@ const EditarProducto = () => {
                     </div>
                     <div className="modal-body">
                         <form className="producto-form" onSubmit={handleSubmit(editarProducto)} onChange={handleCheckInputs}>
-
-
                             <div className="row text-success d-flex mb-3">
                                 <div className='w-50'>
                                     <label htmlFor="nombre_producto" className="form-label">Nombre del producto</label>
@@ -109,12 +117,12 @@ const EditarProducto = () => {
                             </div>
                             <div className="row text-success d-flex mb-3">
                                 <div className='w-50'>
-                                    <label htmlFor="cantidad" className="form-label">Cantidad del producto</label>
-                                    <input type="number" className={`form-control ${checkForm.cantidad <= 0 ? 'is-invalid' : 'is-valid'}`} value={checkForm.cantidad} min="1" max="999" id="cantidad"{...register('cantidad', { required: true })} />
+                                    <label htmlFor="cantidad" className="form-label">Precio del producto</label>
+                                    <input type="number" className={`form-control ${checkForm.cantidad <= 0 ? 'is-invalid' : 'is-valid'}`} value={checkForm.cantidad} min="1" id="cantidad"{...register('cantidad', { required: true })} />
                                 </div>
                                 <div className='w-50'>
-                                    <label htmlFor="precio" className="form-label">Precio del producto</label>
-                                    <input type="number" className={`form-control ${checkForm.precio <= 0 ? 'is-invalid' : 'is-valid'}`} value={checkForm.precio} min="1" max="1000000000" id="precio" {...register('precio', { required: true })} />
+                                    <label htmlFor="precio" className="form-label">Cantidad del producto</label>
+                                    <input type="number" className={`form-control ${checkForm.precio <= 0 ? 'is-invalid' : 'is-valid'}`} value={checkForm.precio} min="1" max="999" id="precio" {...register('precio', { required: true })} />
                                 </div>
                             </div>
                             <div className="row text-success d-flex mb-3">
