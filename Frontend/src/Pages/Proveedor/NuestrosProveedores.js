@@ -195,7 +195,7 @@ const NuestrosProveedores = memo(() => {
                                 <div className="modal-dialog bg-light modal-lg rounded">
                                     <div className="modal-content">
                                         <div className="modal-header">
-                                            <h2 className='text-success text-center text-uppercase fs-1'>Crear proveedor</h2>
+                                            <h2 className='text-success text-center text-uppercase fs-1'>Editar proveedor</h2>
                                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div className="modal-body">
@@ -242,7 +242,7 @@ const NuestrosProveedores = memo(() => {
                             >
                                 <Modal.Header closeButton>
                                     <Modal.Title id="contained-modal-title-vcenter">
-                                        Editar producto
+                                        Editar proveedor
                                     </Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>

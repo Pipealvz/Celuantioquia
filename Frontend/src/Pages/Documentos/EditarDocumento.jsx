@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form";
 import './documento.css'
 
-const CrearDocumento = () => {
+const EditarDocumento = (id) => {
 
     const { register, handleSubmit } = useForm();
     const [checkForm, setCheckForm] = useState({
@@ -17,12 +17,13 @@ const CrearDocumento = () => {
         console.log(target.value);
     }
 
-    const createDocumento = values => {
+    const editarDocumento = (values) => {
 
         //Se llama el enlace del servicio y se le asignan los valores al 
         //objeto que se con datos ingresasos en el formulario
 
-        Axios.post("https://celuantioqueno.onrender.com/documento/crearDocumento", {
+        Axios.post("https://celuantioqueno.onrender.com/documento/actualizarDocumento", {
+            id_documento: id,
             nombre_documento: values.nombre_documento,
             estado_documento: values.estado_documento
         },
@@ -32,7 +33,7 @@ const CrearDocumento = () => {
                 //             Alerta si se crea el Documento correctamente
                 Swal.fire({
                     title: "Proceso exitoso",
-                    text: "Documento creado con exito",
+                    text: "Documento actualizado con exito",
                     icon: "success",
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
@@ -46,7 +47,7 @@ const CrearDocumento = () => {
                 //             Alerta si ocurre algun error al crea el Documento 
                 Swal.fire({
                     title: "Error",
-                    text: "No se pudo crear el documento",
+                    text: "No se pudo actualizar el documento",
                     icon: "error",
                     confirmButtonText: "Aceptar",
                 });
@@ -58,11 +59,11 @@ const CrearDocumento = () => {
             <div className="modal-dialog bg-light modal-lg rounded">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h2 className='text-success text-center text-uppercase fs-1'>Crear Tipo de Documento</h2>
+                        <h2 className='text-success text-center text-uppercase fs-1'>Editar Tipo de Documento</h2>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
-                        <form className="producto-form" onSubmit={handleSubmit(createDocumento)} onChange={handleCheckInputs}>
+                        <form className="producto-form" onSubmit={handleSubmit(editarDocumento)} onChange={handleCheckInputs}>
                             <div className="row text-success d-flex mb-3">
                                 <div className='w-50'>
                                     <label htmlFor="nombre_documento" className="form-label">Tipo de documento</label>
@@ -77,7 +78,7 @@ const CrearDocumento = () => {
                                 </div>
                             </div>
                             <div className="text-center">
-                                <input type="submit" value="Crear" className="btn btn-success mt-4 w-50" />
+                                <input type="submit" value="Guardar" className="btn btn-success mt-4 w-50" />
                             </div>
                             <br />
                         </form>
@@ -88,4 +89,4 @@ const CrearDocumento = () => {
     )
 }
 
-export default CrearDocumento;
+export default EditarDocumento;

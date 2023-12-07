@@ -7,6 +7,8 @@ import { useForm } from "react-hook-form"
 
 const EditarEmpleado = ({ id }) => {
 
+    console.log("empleado", id);
+
     const { register, handleSubmit } = useForm();
     const [rol, setRol] = useState([]);
     const [documento, setDocumento] = useState([]);
