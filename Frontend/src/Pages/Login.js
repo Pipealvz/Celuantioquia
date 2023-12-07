@@ -65,7 +65,7 @@ const Login = () => {
                 console.log(res);
                 Swal.fire({
                     title: "Bienvenido",
-                    text: "Te logueaste exitosamente",
+                    text: "Inicio de sesión exitoso",
                     icon: "success",
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
