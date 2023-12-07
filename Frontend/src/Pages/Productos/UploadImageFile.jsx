@@ -25,18 +25,14 @@ const UploadImageFile = () => {
 
     useEffect(() => {
         getAllProductos();
-        console.log(id);
-        console.log(image);
     }, [id]);
 
     const uploadFile = async (e) => {
         e.preventDefault();
-
         const formData = new FormData();
         formData.append('imagen', file);
         try {
             const res = await Axios.post('https://celuantioqueno.onrender.com/uploadImage/product', { id_producto: id },)
-
             if (res.status === 200) {
                 setImageUrl(res.data.imageUrl);
                 Swal.fire({
