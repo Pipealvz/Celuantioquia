@@ -40,6 +40,14 @@ const NuestrosProductos = () => {
     //             console.log(res.data);
     //         });
     // }
+    const uploadFIle = () => {
+        Swal.fire({
+            title: "Error",
+            text: "Error al cargar la imagen",
+            icon: "error",
+            confirmButtonText: "Aceptar",
+        });
+    }
 
     React.useEffect(() => {
         getAllProductos();
@@ -202,7 +210,7 @@ const NuestrosProductos = () => {
                                                         <div className='d-flex'>
                                                             <button className="btn btn-danger me-1" onClick={() => { deleteProducto(item.id_producto); }} ><FaIcons.MdDelete /> </button>
                                                             <Link className="btn btn-warning me-1" to={`/EditarProducto/${item.id_producto}`}> <FaIcons.MdModeEdit /></Link>
-                                                            {/* <Link className="btn btn-success" to={`/UploadFile/${item.id_producto}`}> <FaIcons.MdUploadFile /></Link> */}
+                                                            <button className="btn btn-success" onClick={uploadFIle}> <FaIcons.MdUploadFile /></button>
                                                         </div>
                                                     </td>
                                                 </tr>
