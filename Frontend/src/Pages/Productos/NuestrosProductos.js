@@ -77,7 +77,7 @@ const NuestrosProductos = () => {
     //                 confirmButtonText: "Aceptar",
     //             }).then((res) => {
     //                 if (res.isConfirmed === true) {
-    //                     window.location.reload(true);
+    //                     console.log('OK');
     //                 }
     //             });
     //         })
@@ -124,7 +124,7 @@ const NuestrosProductos = () => {
                             icon: 'success',
                             confirmButtonText: 'Aceptar'
                         }).then(() => {
-                            window.location.reload();
+                            console.log('OK');
                         })
                     });
             } else if (

@@ -39,7 +39,7 @@ export default function MostrarCategoria() {
             id_categoria: id
         })
             .then(() => {
-                window.location.reload(true);
+                console.log('OK');
             });
 
     }

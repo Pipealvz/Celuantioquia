@@ -71,7 +71,7 @@ const NuestrosProveedores = memo(() => {
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
                     if (res.isConfirmed === true) {
-                        window.location.reload(true);
+                        console.log('OK');
                     }
                 });
             })
@@ -112,7 +112,7 @@ const NuestrosProveedores = memo(() => {
                             'El proveedor fue eliminado',
                             'success'
                         ).then(() => {
-                            window.location.reload();
+                            console.log('OK');
                         })
                     });
             } else if (result.dismiss === Swal.DismissReason.cancel) {

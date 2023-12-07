@@ -64,7 +64,7 @@ const CrearCliente = () => {
                     confirmButtonText: "Aceptar",
                 }).then((res) => {
                     if (res.isConfirmed === true) {
-                        window.location.reload(true);
+                        console.log('OK');
                     }
                 });
             })

@@ -49,7 +49,7 @@ const NuestrosDocumentos = () => {
                             icon: 'success',
                             confirmButtonText: 'Aceptar'
                         }).then(() => {
-                            window.location.reload();
+                            console.log('OK');
                         })
                     });
             } else if (
