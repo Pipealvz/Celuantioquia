@@ -1,16 +1,16 @@
-#Descripción de la necesidad
+# Descripción de la necesidad
 
 La empresa CeluAntioquia siendo una empresa que vende tecnologías principalmente celulares, accesorios para estos y algunos periféricos para computador, prestando sus servicios de venta de forma física desde sus inicios, en los últimos dos años han incursionado en redes sociales para ir pasando a prestar sus servicios de venta en redes sociales. Actualmente cuenta con un manejo de su información y la exposición de sus productos, cuenta redes sociales Instagram, Facebook, WhatsApp y buscan potenciar un nuevo canal web.
 
 A causa de la pandemia tuvieron que migrar su negocio a la venta por redes sociales, lograron un aumento en sus ventas debido al incremento del volumen de mensajes en las diferentes redes creando la necesidad de ampliarse a la web para brindarle un mayor rango de cobertura a los clientes nuevos y antiguos. El volumen de sus productos es tan alto, que no se pueden mostrar en su totalidad en una red social, por lo tanto, se requiere una página web que les permita mostrar sus productos y potenciar el canal de ventas en la web, con módulos que les permitan almacenar y llevar un conteo de sus productos, enseñar sus productos disponibles para la venta y dar a conocer información de la empresa.
 
-#Descripción del problema
+# Descripción del problema
 
 Podrá encontrar la descripción del problema representada en una espina de pescado, conociendo sus causas y efectos.
 
-#Objetivos del proyecto
+# Objetivos del proyecto
 
-##Objetivo general
+## Objetivo general
 
 Desarrollar un aplicativo web que permita dar exposición a los productos y servicios ofrecidos por la empresa CeluAntioquia.
 
