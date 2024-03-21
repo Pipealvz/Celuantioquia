@@ -64,3 +64,38 @@ Las actividades desarrolladas para el séptimo semestre serán las siguientes:
 
 - Documentación técnica del aplicativo.
 - Manual de usuario del aplicativo.
+
+# Requisitos funcionales del sistema
+
+| Id requisito | Nombre requisito          | Descripción                                                            | Usuario     |
+|--------------|---------------------------|------------------------------------------------------------------------|-------------|
+| RF-01        | Registro de usuario       | El sistema debe permitir crear un usuario.                             | Administrador, Cliente |
+| RF-02        | Autentificación de usuario| El sistema debe permitir autenticar al usuario.                        | Administrador, Cliente |
+| RF-03        | Crear empleado            | El sistema debe permitir crear un empleado al usuario administrador.   | Administrador |
+| RF-04        | Compra de productos       | El sistema debe permitir comprar los productos disponibles por el usuario. | Administrador |
+| RF-05        | Modificar empleado        | El sistema debe permitir modificar un empleado ya registrado al usuario administrador. | Administrador |
+| RF-06        | Eliminar empleado         | El sistema debe permitir eliminar un empleado ya registrado al usuario administrador. | Administrador |
+| RF-07        | Crear categoría           | El sistema debe permitir crear una categoría al usuario administrador. | Administrador |
+| RF-08        | Consultar catálogo        | El sistema debe permitir consultar el catálogo de productos disponible por el usuario. | Administrador, Cliente |
+| RF-09        | Modificar categoría       | El sistema debe permitir modificar una categoría al usuario administrador. | Administrador |
+| RF-10        | Eliminar categoría        | El sistema debe permitir eliminar una categoría al usuario administrador. | Administrador |
+| RF-11        | Crear proveedor           | El sistema debe permitir crear un proveedor al usuario administrador.  | Administrador |
+| RF-12        | Modificar proveedor       | El sistema debe permitir modificar un proveedor al usuario administrador. | Administrador |
+| RF-13        | Eliminar un proveedor     | El sistema debe permitir al eliminar un proveedor al usuario administrador. | Administrador |
+| RF-14        | Vista personal del producto | El sistema debe permitir ver todo el detalle del producto al cliente. | Cliente |
+| RF-15        | Carrito de compra         | El sistema debe permitir al cliente agregar productos al carrito de compra. | Cliente |
+| RF-16        | Enlace de asesoría en chat | El sistema debe permitir al cliente poder acceder a la asesoría en chat por parte de la empresa. | Cliente |
+| RF-17        | Actualización de empleado | El sistema debe permitir actualizar el empleado una vez creado.        | Administrador |
+| RF-18        | Actualizar proveedor      | El sistema debe permitir actualizar un proveedor una vez creado.       | Administrador |
+| RF-19        | Actualizar categoría      | El sistema debe permitir actualizar una categoría una vez creado.      | Administrador |
+| RF-20        | Actualizar producto       | El sistema debe permitir actualizar un producto una vez creado.        | Administrador |
+| RF-21        | Actualizar cliente        | El sistema debe permitir actualizar un cliente una vez creado.         | Cliente, Administrador |
+| RF-22        | Registrar un rol          | El sistema debe permitir registrar un nuevo rol.                      | Administrador |
+| RF-23        | Eliminar un rol           | El sistema debe permitir eliminar un rol ya existente en el sistema.   | Administrador |
+| RF-24        | Modificar un rol          | El sistema debe permitir modificar un rol previamente registrado en el sistema. | Administrador |
+| RF-25        | Ver roles                 | El sistema debe permitir mostrar los roles registrados en el sistema.  |             |
+| RF-26        | Actualización de inventario | El sistema debe permitir actualizar el inventario una vez creados los productos. | Administrador |
+| RF-27        | Actualizar carrito de compra | El sistema debe permitir actualizar al cliente su carrito de compra.  | Cliente |
+| RF-28        | Eliminar carrito de compra   | El sistema debe permitir eliminar al cliente objetos de su carrito de compra. | Cliente |
+| RF-29        | Modificar carrito de compra  | El sistema debe permitir modificar al cliente objetos de su carrito de compra. | Cliente |
+| RF-30        | Actualizar catálogo         | El sistema debe permitir actualizar el catálogo general de productos continuamente para el cliente. | Administrador |
